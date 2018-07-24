@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar"
 import { Col, Row, Container } from "../../src/components/Grid"
 import ContainerSpace from "../components/Containers"
-import FlexBox from "../components/FlexBox"
+import { FlexBox, FlexRow } from "../components/FlexBox"
 import ListingCard from "../components/ListingCard"
 import images from "../images.json"
 import API from "../utils/API"
@@ -25,7 +25,7 @@ class Home extends React.Component {
 
     loadListings = () => {
         API.getListings()
-            .then(res =>{
+            .then(res => {
                 this.setState({ listings: res.data });
                 console.log(res.data)
             }
@@ -44,22 +44,26 @@ class Home extends React.Component {
                 </Container>
                 <ContainerSpace />
                 <Container fluid>
+
                     <FlexBox>
-                        {/* {this.state.listings.length ? ()} */}
-                        {this.state.listings.map(listing => {
-                            return (
-                                <ListingCard
-                                    src={listing.imgSrc}
-                                    id={listing._id}
-                                    price={listing.price}
-                                    key={listing._id}
-                                    city={listing.city}
-                                    address={listing.street}
-                                    zipcode={listing.zipcode}
-                                />
-                            );
-                        })}
+                          {this.state.listings.map(listing => {
+                                return (
+                 
+                                        <FlexRow id={listing._id} key={listing._id}>
+                                            <ListingCard
+                                                src={listing.imgSrc}
+                                                id={listing._id}
+                                                price={listing.price}
+                                                key={listing._id}
+                                                city={listing.city}
+                                                address={listing.street}
+                                                zipcode={listing.zipcode}
+                                            />
+                                        </FlexRow>
+                                );
+                            })}
                     </FlexBox>
+
                 </Container>
             </div>
 
