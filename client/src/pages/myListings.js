@@ -24,7 +24,7 @@ class MyListings extends React.Component {
     loadListings() {
         API.getUserListings(this.state.user)
             .then(res => {
-                this.setState({ listings: res.data });
+                this.setState({ listings: [res.data] });
                 console.log(res.data)
             })
             .catch(err => console.log(err));
