@@ -1,12 +1,12 @@
 import axios from "axios";
 
 export default {
-    getListings: function(){
+    getAllListings: function(){
         return axios.get("/api/listings");
     },
     postListing: function(listingData){
         // console.log(listingData)
-        return axios.post("/api/post_listing",listingData)
+        return axios.post("/api/post/listing",listingData)
     },
     registerUser: function(userData){
         // console.log(userData)
@@ -16,9 +16,12 @@ export default {
         return axios.get("/api/listing/"+id)
     },
     saveListing: function(id){
-        return axios.post("/api/save_listing",id)
+        return axios.post("/api/save/listing",id)
     },
     getMySavedListings: function(){
         return axios.get("/api/saved/listings")
+    },
+    deleteListing: function(id){
+        return axios.delete("/api/listing/"+id)
     }
 }

@@ -5,7 +5,7 @@ import ContainerSpace from "../components/Containers"
 import images from "../images.json"
 import API from "../utils/API"
 import NavHeader from "../components/NavHeader"
-import { ListingDetail,DeleteBtn } from "../components/ListingDetail";
+import { ListingDetail, DeleteBtn } from "../components/ListingDetail";
 
 
 class SavedListings extends React.Component {
@@ -15,24 +15,24 @@ class SavedListings extends React.Component {
             images,
             listings: [],
         }
-        // this.deleteListing = this.deleteListing.bind(this)
+        this.deleteListing = this.deleteListing.bind(this)
     }
-    // deleteListing = listing_id => {
-    //     console.log(listing_id)
-    // }
+    deleteListing = listing_id => {
+        console.log(listing_id)
+        API.deleteListing(listing_id)
+        .then(res => this.loadListings())
+        .catch(err => console.log(err))
+    }
     componentDidMount() {
-        // alert("MOUNTED")
-        API.getListings()
-            .then(res => {
-                this.setState({ listings: res.data })
-                console.log(res.data)
-            })
-            .catch(err => console.log(err));
-        // API.getMySavedListings()
-        //     .then(res => console.log(res.data)
-        //         // this.setState({ listings: res.data })
-        //     )
-        //     .catch(err => console.log(err))
+        this.loadListings();
+    }
+    loadListings = () => {
+        API.getAllListings()
+        .then(res => {
+            this.setState({ listings: res.data })
+            console.log(res.data)
+        })
+        .catch(err => console.log(err));
     }
 
 
@@ -52,22 +52,24 @@ class SavedListings extends React.Component {
                 <Container fluid>
 
                     {this.state.listings.map(listing => {
-                        return(
-                            <ListingDetail
-                                src={listing.imgSrc}
-                                id={listing._id}
-                                price={listing.price}
-                                key={listing._id}
-                                city={listing.city}
-                                address={listing.street}
-                                zipcode={listing.zipcode}
+                        return (
+                            <div key={listing._id}>
+                                <ListingDetail
+                                    src={listing.imgSrc}
+                                    id={listing._id}
+                                    price={listing.price}
+                                    key={listing._id}
+                                    city={listing.city}
+                                    address={listing.street}
+                                    zipcode={listing.zipcode}
 
-                            >
-                            <DeleteBtn/>
-                            </ListingDetail>
-                            
+                                />
+
+                                <DeleteBtn onClick = {() => this.deleteListing(listing._id)}/>
+                            </div>
+
                         )
-                        })}
+                    })}
                 </Container>
             </div>
 

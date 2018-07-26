@@ -13,7 +13,7 @@ class App extends Component {
       <Router>
         <div>
           <Route exact path="/" component={Home} />
-          <Route exact path="/postlisting" component={PostListing} />
+          <Route exact path="/post/listing" component={PostListing} />
           <Route exact path="/listing/:id" component ={Listing}/>
           <Route exact path="/register" component={Register} />
           <Route exact path="/saved/listings" component={SavedListings} />

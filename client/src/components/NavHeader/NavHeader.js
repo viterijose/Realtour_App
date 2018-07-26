@@ -17,7 +17,7 @@ class NavHeader extends React.Component {
                         <a href="/saved/listings" className="navbar-brand">My Listings</a>
                     </div>
                     <div>
-                        <a href="/listings" className="navbar-brand"> Post Listing</a>
+                        <a href="/post/listing" className="navbar-brand"> Post Listing</a>
                     </div>
                     <div>
                         <a href="/appointment" className="navbar-brand">Schedule Appointment</a>

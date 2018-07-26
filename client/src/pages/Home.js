@@ -25,7 +25,7 @@ class Home extends React.Component {
     }
 
     loadListings = () => {
-        API.getListings()
+        API.getAllListings()
             .then(res => {
                 this.setState({ listings: res.data });
                 console.log(res.data)
