@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -11,7 +12,7 @@ app.use(bodyParser.json());
 // Serve up static assets
 app.use(express.static("client/build"));
 // Add routes, both API and view
-app.use(realtourController);
+app.use('/api/', realtourController);
 
 // Set up promises with mongoose
 mongoose.Promise = global.Promise;
