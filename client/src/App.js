@@ -3,7 +3,8 @@ import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import postListing from './pages/postListing';
-import Register from "./pages/Register"
+import Register from "./pages/Register";
+import MyListings from "./pages/myListings"
 
 class App extends Component {
   render() {
@@ -12,11 +13,11 @@ class App extends Component {
         <div>
           <Route exact path="/" component={Home} />
           <Route exact path="/listing" component={postListing} />
-          <Route exact path="/listings" component={postListing} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/myListings" component={MyListings} />
         </div>
       </Router>
-
+      
     );
   }
 }

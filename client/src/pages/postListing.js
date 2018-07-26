@@ -4,7 +4,8 @@ import { Col, Row, Container } from "../components/Grid";
 import { FormBtn, Input} from "../components/Form";
 import Navbar from "../components/Navbar";
 import images from "../images.json";
-import ContainerSpace from "../components/Containers"
+import ContainerSpace from "../components/Containers";
+import CreateOpenHouse from '../components/CreateOpenHouse';
 
 class postListing extends React.Component {
     constructor(props) {
@@ -92,6 +93,7 @@ class postListing extends React.Component {
                                     Submit Listing
                                 </FormBtn>
                             </form>
+                            <CreateOpenHouse />
                         </Col>
 
                         <Col size="lg-4">
