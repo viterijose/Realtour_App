@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Container } from "../Grid"
 import ModalWrapper from "../Modal"
+import "./Navbar.css"
 
 class Navbar extends React.Component {
 
@@ -11,7 +12,7 @@ class Navbar extends React.Component {
         return (
             <Container fluid>
 
-                <nav className="navbar navbar-light bg-light">
+                <nav className="navbar navbar-light">
                 
                     <div>
                         <a href="/" className="navbar-brand"><img src={src} style={{ width: 40, height: 40 }} alt="drone" />  RealTour</a>
