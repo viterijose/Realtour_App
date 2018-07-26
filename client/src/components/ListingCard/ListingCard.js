@@ -7,9 +7,11 @@ class ListingCard extends React.Component {
         const { name, src, address, price, city, zipcode,id } = this.props
         return (
             <div className="card" id={id}>
+            <a href={"/listing/"+id} className="listingCard">
                 <div className="img-container">
                     <img alt={name} src={src} />
                 </div>
+                </a>
                 <div className="content">
                     <ul>
                         <li>
@@ -29,7 +31,7 @@ class ListingCard extends React.Component {
                         </li>
                     </ul>
                 </div>
-
+                
             </div>
         )
     }
