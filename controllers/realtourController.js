@@ -1,8 +1,10 @@
 const path = require("path");
 const router = require("express").Router();
 const Realtour = require("../models/realtour");
-const newUser = require("../models/users")
-const user_saved = require("../models/user_saved")
+const newUser = require("../models/users");
+const user_saved = require("../models/user_saved");
+
+const videostream = require("../models/videosteam");
 
 const realtourFunctions = {
     create: function (req, res) {
@@ -51,6 +53,9 @@ const realtourFunctions = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+    videostream:function(req, res){
+      //  videostream()
+    }
 }
 
 // const userFunctions = {
