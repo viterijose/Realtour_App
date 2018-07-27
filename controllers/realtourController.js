@@ -43,6 +43,11 @@ const realtourFunctions = {
             .findOne({ownerName: req.params.id})
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
+    },
+    createOpenHouse: function(req, res) {
+        Realtour
+            .update({ownderId: req.body.id}, {$set: {openHouse: {start: req.body.start, end: req.body.end}}})
+            .catch(err => res.status(422).json(err));
     }
 }
 
@@ -66,7 +71,7 @@ router.post("/register", realtourFunctions.createUser);
 router.get("/listings", realtourFunctions.findAllListings);
 router.post("/listing", realtourFunctions.createListing);
 router.get('/userListings/:id', realtourFunctions.getUserListings);
-router.get('/createAppt', realtourFunctions.createAppt);
+router.post('/openhouse', realtourFunctions.createAppt);
 
 
 // router.use(function (req, res) {

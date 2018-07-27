@@ -1,11 +1,11 @@
 import React from "react";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
-import Navbar from "../components/Navbar";
 import ContainerSpace from "../components/Containers";
 import { FlexBox, FlexRow } from "../components/FlexBox"
 import ListingCard from "../components/ListingCard"
-import CreateOpenHouse from '../components/CreateOpenHouse';
+import PickDateRange from '../components/PickDateRange';
+import moment from 'moment';
 
 class MyListings extends React.Component {
     constructor(props) {
@@ -13,7 +13,9 @@ class MyListings extends React.Component {
         this.state = {
             images: [],
             listings: [],
-            user: 'andre myers'
+            user: 'andre myers',
+            startDate: moment(),
+            endDate: moment(),
         };
     }
 
@@ -30,13 +32,20 @@ class MyListings extends React.Component {
             .catch(err => console.log(err));
     }
 
+    createOpenHouse() {
+        API.createOpenHouse({
+            id: this.state.user,
+            start: this.state.startDate,
+            end: this.state.endDate,
+        })
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err));
+    }
+
     render() {
         return (
             <div>
-                <ContainerSpace />
-
-              
-                <ContainerSpace />
+                  <ContainerSpace />
                 <Container fluid>
 
                     <FlexBox>
@@ -57,7 +66,8 @@ class MyListings extends React.Component {
                             );
                         })}
                     </FlexBox>
-                    <CreateOpenHouse />
+                    <PickDateRange />
+                    <button onClick={this.createOpenHouse} />
                 </Container>
             </div>
         )

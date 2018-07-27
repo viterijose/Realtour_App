@@ -15,4 +15,7 @@ export default {
     getUserListings: function (user) {
         return axios.get(`/api/userListings/${user}`)
     },
+    createOpenHouse: function(apptData) {
+        return axios.post('/api/openhouse', apptData)
+    },
 }
