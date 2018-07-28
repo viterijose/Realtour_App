@@ -34,6 +34,7 @@ class Home extends React.Component {
         // console.log(this.state.listings)
 
     }
+    
     render() {
         return (
             <div>
@@ -58,6 +59,7 @@ class Home extends React.Component {
                                                 city={listing.city}
                                                 address={listing.street}
                                                 zipcode={listing.zipcode}
+                                                openHouse={listing.openHouse}
                                             />
                                         </FlexRow>
                                 );

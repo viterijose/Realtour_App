@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const realtourSchema = new Schema({
-  ownerId: { type: Schema.Types.ObjectId, ref: 'Users' },
+  owner: { type: Schema.Types.ObjectId, ref: 'Users' },
   appointments: [{ type: Schema.Types.ObjectId, ref: 'Appointments' }],
   street: { type: String, required: true },
   city: { type: String, required: true },
