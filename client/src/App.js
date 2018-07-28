@@ -6,6 +6,7 @@ import PostListing from './pages/PostListing';
 import Register from "./pages/Register";
 import Listing from "./pages/Listing";
 import SavedListings from "./pages/SavedListings";
+import Video from "./components/video/video";
 
 class App extends Component {
   render() {
@@ -17,7 +18,7 @@ class App extends Component {
           <Route exact path="/listing/:id" component ={Listing}/>
           <Route exact path="/register" component={Register} />
           <Route exact path="/saved/listings" component={SavedListings} />
-      
+          <Route exact path="/video" component={Video} />
         </div>
       </Router>
 

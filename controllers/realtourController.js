@@ -55,6 +55,8 @@ const realtourFunctions = {
     },
     videostream:function(req, res){
       //  videostream()
+      res.writeHead(200, {'Content-Type': 'image/png'});
+      res.end(lastPng);
     }
 }
 
@@ -80,7 +82,8 @@ router.post("/api/post/listing", realtourFunctions.create);
 router.get("/api/listing/:id", realtourFunctions.findbyId);
 router.post("/api/save/listing", realtourFunctions.saveListing);
 router.get("/api/saved/listings", realtourFunctions.findAll);
-router.delete("/api/listing/:id", realtourFunctions.remove)
+router.delete("/api/listing/:id", realtourFunctions.remove);
+router.get("/api/video", realtourFunctions.videostream);
 
 
 router.use(function (req, res) {
