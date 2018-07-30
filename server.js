@@ -5,6 +5,32 @@ const realtourController = require("./controllers/realtourController")
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+server = require("http").createServer(app);
+
+//Socket IO setup 
+
+const io = require('socket.io')();
+
+io.on('connection', (client) => {
+  client.on('subscribeToTimer', (interval) => {
+    console.log('client is subscribing to timer with interval ', interval);
+    setInterval(() => {
+      client.emit('timer', new Date());
+    }, interval);
+  });
+});
+
+const port = 3002;
+io.listen(port);
+console.log('listening on port ', port);
+
+
+
+///////
+
+
+
+
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -22,6 +48,8 @@ mongoose.connect(
     useMongoClient: true
   }
 );
+
+//require("./controllers/drone/controller");
 
 // Start the API server
 app.listen(PORT, function() {

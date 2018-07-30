@@ -55,8 +55,10 @@ const realtourFunctions = {
     },
     videostream:function(req, res){
       //  videostream()
+      console.log("In the vidoe contoller ");
       res.writeHead(200, {'Content-Type': 'image/png'});
       res.end(lastPng);
+      
     }
 }
 
@@ -75,6 +77,54 @@ const realtourFunctions = {
 //         .catch(err => res.status(422).json(err));
 //     }
 // }
+
+
+//create a connection to the drone
+
+//require("dronestream").listen(3002);
+
+
+var io = require('socket.io').listen(3003);
+io.serveClient('log level', 1);
+
+io.sockets.on('connection', function(socket){
+ console.log(" the Socket IO is connected.");
+
+ var arDrone = require('ar-drone');
+ var client = arDrone.createClient();
+
+
+
+
+ socket.on('event', function (data) {
+    console.log("IO is now running 1")
+    if(data.name=="takeoff"){
+        console.log("Browser asked Ar Drone to Take Off");
+        client.takeoff();
+    }
+    if(data.name=="spin"){
+        console.log("Browser asked Ar Drone to Start Spinning");
+        client.clockwise(1);
+    }
+    if(data.name=="stop"){
+        console.log("Browser asked Ar Drone to Stay and Hover");
+        client.stop();
+    }
+    if(data.name=="land"){
+        console.log("Browser asked Ar Drone to Land");
+        client.land();
+    }
+
+});
+
+
+});
+
+
+
+
+
+
 
 router.post("/api/register", realtourFunctions.createUser);
 router.get("/api/listings", realtourFunctions.findAll);

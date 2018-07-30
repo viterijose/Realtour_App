@@ -24,10 +24,12 @@
     "ar-drone": "^0.3.3",
     "axios": "^0.16.2",
     "body-parser": "^1.17.2",
+    "dronestream": "^1.1.1",
     "express": "^4.15.4",
     "mongoose": "^4.11.7",
     "npm": "^6.2.0",
     "react-bootstrap": "^0.32.1",
-    "react-modal": "^3.5.1"
+    "react-modal": "^3.5.1",
+    "socket.io": "^2.1.1"
   }
 }

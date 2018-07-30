@@ -1,16 +1,16 @@
-const arDrone = require('ar-drone');
+// const arDrone = require('ar-drone');
 
 
-let pngStream = arDrone.createClient().getPngStream();
-// let vidStream = arDrone.createClient().getVideoStream();
+// let pngStream = arDrone.createClient().getPngStream();
+// // let vidStream = arDrone.createClient().getVideoStream();
 
 
-let lastPng;
+// let lastPng;
 
- pngStream
-    .on('error', console.log)
-     .on('data', function(pngBuffer){
-        lastPng = pngBuffer;
-    })
+//  pngStream
+//     .on('error', console.log)
+//      .on('data', function(pngBuffer){
+//         lastPng = pngBuffer;
+//     })
 
-    console.log("In the Video Steam");
+    //console.log("In the Video Steam");
