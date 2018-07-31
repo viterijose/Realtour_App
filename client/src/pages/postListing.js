@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar";
 import images from "../images.json";
 import ContainerSpace from "../components/Containers";
 
-class postListing extends React.Component {
+class PostListing extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -104,4 +104,4 @@ class postListing extends React.Component {
     }
 }
 
-export default postListing;
+export default PostListing;

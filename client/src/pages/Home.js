@@ -6,6 +6,7 @@ import { FlexBox, FlexRow } from "../components/FlexBox"
 import ListingCard from "../components/ListingCard"
 import images from "../images.json"
 import API from "../utils/API"
+import NavHeader from "../components/NavHeader"
 
 
 class Home extends React.Component {
@@ -24,17 +25,15 @@ class Home extends React.Component {
     }
 
     loadListings = () => {
-        API.getListings()
+        API.getAllListings()
             .then(res => {
                 this.setState({ listings: res.data });
                 console.log(res.data)
             }
             )
             .catch(err => console.log(err));
-        // console.log(this.state.listings)
-
     }
-    
+
     render() {
         return (
             <div>
@@ -42,14 +41,17 @@ class Home extends React.Component {
                     <Navbar
                         src={this.state.images[0].src}
                     />
+                    <NavHeader/>
                 </Container>
+                
+                
                 <ContainerSpace />
                 <Container fluid>
 
+
                     <FlexBox>
-                          {this.state.listings.map(listing => {
+                        {this.state.listings.map(listing => {
                                 return (
-                 
                                         <FlexRow id={listing._id} key={listing._id}>
                                             <ListingCard
                                                 src={listing.imgSrc}
@@ -63,7 +65,7 @@ class Home extends React.Component {
                                             />
                                         </FlexRow>
                                 );
-                            })}
+                        })}
                     </FlexBox>
 
                 </Container>
