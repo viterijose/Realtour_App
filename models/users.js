@@ -7,7 +7,9 @@ const userSchema = new Schema({
     userName: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
-    ub_date: {type:Date, default:Date.now}
+    postedListings: [{ type: Schema.Types.ObjectId, ref: 'Listings' }],
+    appointments: [{ type: Schema.Types.ObjectId, ref: 'Appointments' }],
+    ub_date: { type: Date, default: Date.now }
 })
 
 const newUser = mongoose.model("Users", userSchema);
