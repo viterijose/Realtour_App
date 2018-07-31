@@ -118,7 +118,7 @@ class MyListings extends React.Component {
                         endDate={this.state.endDate}
                         onChange={this.handleChangeEnd}
                     />
-                    <button onClick={this.createOpenHouse} />
+                    <button onClick={this.createOpenHouse} >Submit</button>
                 </Container>
             </div>
         )

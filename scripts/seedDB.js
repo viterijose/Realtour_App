@@ -1,3 +1,4 @@
+require('dotenv').config()
 const mongoose = require("mongoose");
 const db = require("../models")
 mongoose.Promise = global.Promise;
@@ -71,9 +72,7 @@ const listingSeed =[
     }
 ]
 
-db.Realtour
-.remove({})
-.then(()=>db.Realtour.collection.insertMany(listingSeed))
+db.Realtour.collection.insertMany(listingSeed)
 .then(data => {
     console.log(data.insertedIds.length)
     process.exit(0);
