@@ -38,7 +38,7 @@ class MyListings extends React.Component {
         this.loadListings();
     }
 
-    loadListings() {
+    loadListings = () => {
         API.getUserListings(this.state.user._id)
             .then(res => {
                 this.setState({ listings: [res.data] });
