@@ -97,7 +97,7 @@ router.get('/userListings/:id', realtourFunctions.getUserListings);
 router.post('/openhouse', realtourFunctions.createOpenHouse);
 router.get("/listing/:id", realtourFunctions.findbyId);
 router.post("/save/listing", realtourFunctions.saveListing);
-router.delete("/listing/:id", realtourFunctions.remove);
+router.delete("/listing/:id", realtourFunctions.removeListing);
 
 // router.use(function (req, res) {
 //     res.sendFile(path.join(__dirname, "../client/build/index.html"))
