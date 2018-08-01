@@ -52,17 +52,18 @@ class Home extends React.Component {
                     <FlexBox>
                         {this.state.listings.map(listing => {
                                 return (
-                                    <FlexRow id={listing._id} key={listing._id}>
-                                        <ListingCard
-                                            src={listing.imgSrc}
-                                            id={listing._id}
-                                            price={listing.price}
-                                            key={listing._id}
-                                            city={listing.city}
-                                            address={listing.street}
-                                            zipcode={listing.zipcode}
-                                        />
-                                    </FlexRow>
+                                        <FlexRow id={listing._id} key={listing._id}>
+                                            <ListingCard
+                                                src={listing.imgSrc}
+                                                id={listing._id}
+                                                price={listing.price}
+                                                key={listing._id}
+                                                city={listing.city}
+                                                address={listing.street}
+                                                zipcode={listing.zipcode}
+                                                openHouse={listing.openHouse}
+                                            />
+                                        </FlexRow>
                                 );
                         })}
                     </FlexBox>
