@@ -20,19 +20,19 @@ class SavedListings extends React.Component {
     deleteListing = listing_id => {
         console.log(listing_id)
         API.deleteListing(listing_id)
-        .then(res => this.loadListings())
-        .catch(err => console.log(err))
+            .then(res => this.loadListings())
+            .catch(err => console.log(err))
     }
     componentDidMount() {
         this.loadListings();
     }
     loadListings = () => {
         API.getAllListings()
-        .then(res => {
-            this.setState({ listings: res.data })
-            console.log(res.data)
-        })
-        .catch(err => console.log(err));
+            .then(res => {
+                this.setState({ listings: res.data })
+                console.log(res.data)
+            })
+            .catch(err => console.log(err));
     }
 
 
@@ -49,24 +49,30 @@ class SavedListings extends React.Component {
 
 
                 <ContainerSpace />
-                <Container fluid>
+                <Container>
 
                     {this.state.listings.map(listing => {
                         return (
-                            <div key={listing._id}>
-                                <ListingDetail
-                                    src={listing.imgSrc}
-                                    id={listing._id}
-                                    price={listing.price}
-                                    key={listing._id}
-                                    city={listing.city}
-                                    address={listing.street}
-                                    zipcode={listing.zipcode}
 
-                                />
+                                <div key={listing._id}>
 
-                                <DeleteBtn onClick = {() => this.deleteListing(listing._id)}/>
-                            </div>
+                                    <ListingDetail
+                                        src={listing.imgSrc}
+                                        id={listing._id}
+                                        price={listing.price}
+                                        key={listing._id}
+                                        city={listing.city}
+                                        address={listing.street}
+                                        zipcode={listing.zipcode}
+                                        description={listing.description}
+
+                                    />
+                                    <br/>
+                                    <DeleteBtn onClick={() => this.deleteListing(listing._id)} />
+                                    <hr/>
+
+                                </div>
+
 
                         )
                     })}

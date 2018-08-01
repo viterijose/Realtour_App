@@ -1,6 +1,7 @@
-const path = require("path");
+
 const router = require("express").Router();
 const Realtour = require("../models/realtour");
+// const fileUpload = require("express-fileupload")
 
 const User = require("../models/users");
 const Appointment = require("../models/appointments");
@@ -8,7 +9,6 @@ const user_saved = require("../models/user_saved")
 
 const realtourFunctions = {
     createListing: function (req, res) {
-        // console.log("BODY FOR DB: \n"+req.body);
         Realtour
             .create(req.body)
             .then(dbModel => res.json(dbModel))
@@ -92,7 +92,7 @@ const realtourFunctions = {
 
 router.post("/register", realtourFunctions.createUser);
 router.get("/listings", realtourFunctions.findAllListings);
-router.post("/listing", realtourFunctions.createListing);
+router.post("/post/listing", realtourFunctions.createListing);
 router.get('/userListings/:id', realtourFunctions.getUserListings);
 router.post('/openhouse', realtourFunctions.createOpenHouse);
 router.get("/listing/:id", realtourFunctions.findbyId);

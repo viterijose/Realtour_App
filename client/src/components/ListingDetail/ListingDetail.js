@@ -5,12 +5,12 @@ import { Col, Row, Container } from "../Grid"
 class ListingDetail extends React.Component {
 
     render() {
-        const { name, src, address, price, city, zipcode, id } = this.props
+        const { name, src, address, price, city, zipcode, id ,description} = this.props
         return (
             <div id={id}>
                 <Container fluid>
                     <Row>
-                        <Col size="lg-6">
+                        <Col size="lg-4">
                             <div className="content">
                                 <ul>
                                     <li>
@@ -28,19 +28,24 @@ class ListingDetail extends React.Component {
                                     <li>
                                         <strong>Zipcode:</strong> {zipcode}
                                     </li>
+                                    <li>
+                                        <strong>Description:</strong>
+                                    <p style={{textAlign:"justify"}}>{description}</p>
+                                    </li>
                                 </ul>
                             </div>
 
                         </Col >
 
-                        <Col size="lg-6">
+                        <Col size="lg-8">
                             <div className="img-container">
-                                <img alt={name} src={src} />
+                                <img alt={name} src={src} style={{width:"100%",height:"100%"}}/>
                             </div>
 
                         </Col>
                     </Row>
                 </Container >
+                
             </div>
         )
     }
@@ -54,6 +59,8 @@ ListingDetail.props = {
     address: PropTypes.string,
     city: PropTypes.string,
     zipcode: PropTypes.string,
+    description: PropTypes.string,
+    price: PropTypes.number,
 }
 
 export default ListingDetail;
