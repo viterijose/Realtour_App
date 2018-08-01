@@ -3,6 +3,7 @@ import ReactModal from "react-modal";
 import PropTypes from "prop-types";
 import ModalSignIn from "./ModalSignIn"
 import { Col, Row, Container } from "../Grid"
+import "./ModalWrapper.css"
 
 const customStyles = {
   content: {

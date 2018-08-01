@@ -1,5 +1,6 @@
 import React from "react";
 import { FormBtn, Input } from "../Form"
+import "./ModalSignIn.css"
 class ModalSignIn extends React.Component {
     constructor(props){
         super(props);

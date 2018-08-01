@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Col, Row, Container } from "../Grid"
-// import ModalWrapper from "../Modal"
+import "./NavHeader.css" 
+import ModalWrapper from "../Modal"
 
 class NavHeader extends React.Component {
 
@@ -11,7 +12,7 @@ class NavHeader extends React.Component {
         return (
             <Container fluid>
 
-                <nav className="navbar navbar-light bg-light">
+                <nav className="navbar navbar-light bg-dark">
                 
                     <div>
                         <a href="/saved/listings" className="navbar-brand">My Listings</a>
