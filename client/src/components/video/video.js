@@ -33,7 +33,7 @@ class Video extends React.Component {
 
         //*** this is Key getting it working  */
  
-        
+         // eslint-disable-next-line
         new NodecopterStream(document.getElementById("droneStream"), {hostname:'localhost',port: 3010});
 
         //   const script = document.createElement("script");
