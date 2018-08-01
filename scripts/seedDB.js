@@ -1,3 +1,4 @@
+require('dotenv').config()
 const mongoose = require("mongoose");
 const db = require("../models")
 mongoose.Promise = global.Promise;
@@ -76,6 +77,7 @@ const listingSeed = [
         date: new Date(Date.now())
     }
 ]
+
 
 db.Realtour
     .remove({})

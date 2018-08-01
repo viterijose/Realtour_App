@@ -4,6 +4,12 @@ export default {
     getAllListings: function(){
         return axios.get("/api/listings");
     },
+    getUserListings: function (user) {
+        return axios.get(`/api/userListings/${user}`)
+    },
+    createOpenHouse: function(apptData) {
+        return axios.post('/api/openhouse', apptData)
+    },
     postListing: function(listingData){
         // console.log(listingData)
         return axios.post("/api/post/listing",listingData)
