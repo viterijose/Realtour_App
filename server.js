@@ -24,7 +24,7 @@ const port = 3002;
 io.listen(port);
 console.log('listening on port ', port);
 
-
+require("dronestream").listen(3010);
 
 ///////
 

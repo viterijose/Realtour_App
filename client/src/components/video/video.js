@@ -1,6 +1,7 @@
 import React from "react";
 import "./video.css";
 
+
 import openSocket from 'socket.io-client';
 const socket = openSocket('http://localhost:3002');
 
@@ -18,6 +19,7 @@ class Video extends React.Component {
     state = {
         timestamp: 'no timestamp yet'
     };
+
     constructor(props) {
         super(props);
         subscribeToTimer((err, timestamp) => this.setState({
@@ -28,7 +30,11 @@ class Video extends React.Component {
 
     componentDidMount() {
         // var lastPng; 
-        // new NodecopterStream(document.getElementById("placeholder"), {hostname:'localhost',port: 3001});
+
+        //*** this is Key getting it working  */
+ 
+        
+        new NodecopterStream(document.getElementById("droneStream"), {hostname:'localhost',port: 3010});
 
         //   const script = document.createElement("script");
 
