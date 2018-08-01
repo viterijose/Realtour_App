@@ -7,7 +7,7 @@ import Register from "./pages/Register";
 import MyListings from "./pages/MyListings";
 import Listing from "./pages/Listing";
 import SavedListings from "./pages/SavedListings";
-
+import Video from "./components/Video/video";
 class App extends Component {
   render() {
     return (
@@ -19,7 +19,7 @@ class App extends Component {
           <Route exact path="/register" component={Register} />
           <Route exact path="/myListings" component={MyListings} />
           <Route exact path="/saved/listings" component={SavedListings} />
-
+          <Route exact path="/video" component={Video} />
         </div>
       </Router>
       
