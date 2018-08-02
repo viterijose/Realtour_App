@@ -25,14 +25,14 @@ socket.on('timer', function (data) {
     //@TODO: add code to for take off and land buttons to function.
     if (data[0].name == "battery") {
         //console.log(data);
-        document.getElementById("battery-indicator").style.width = data[0].value + "%";
-        document.getElementById("numVal").innerHTML = data[0].value + "%";
-        let batPercent = data[0].value;
+        // document.getElementById("battery-indicator").style.width = data[0].value + "%";
+        // document.getElementById("numVal").innerHTML = data[0].value + "%";
+        // let batPercent = data[0].value;
        
             //Battery percentage tests
-            // document.getElementById("battery-indicator").style.width = count  + "%";
-            // document.getElementById("numVal").innerHTML = count + "%";
-            // let batPercent = count;
+            document.getElementById("battery-indicator").style.width = count  + "%";
+            document.getElementById("numVal").innerHTML = count + "%";
+            let batPercent = count;
 
 
        let level =  document.getElementById("batteryNew");
@@ -84,7 +84,7 @@ class Video extends React.Component {
                 <h1> Real Tour Live Drone Feed</h1>
                 <br />
                 
-                <div class="container">
+                <div className="Batterycontainer">
                     <div id="batteryNew" class="fa"></div><span id="numVal">loading</span>
                 </div>
 
