@@ -27,18 +27,40 @@ mongoose.connect(
 
 // Drone setup 
 server = require("http").createServer(app);
-
 const io = require('socket.io')();
+
+
+//phase 2 
+var arDrone = require('ar-drone');
+var drone = arDrone.createClient();
+
+///
+
+
+
 
 io.on('connection', (client) => {
   client.on('subscribeToTimer', (interval) => {
     console.log('client is subscribing to timer with interval ', interval);
     setInterval(() => {
-      let time  = `${new Date() }`
-      client.emit('timer', time);
+      let time = `${new Date()}`
+
+      let batteryLevel = drone.battery();
+
+      client.emit('timer', [{ time, name: 'battery', value: batteryLevel } ]);
     }, interval);
   });
 });
+
+//phase 2
+
+
+// setInterval(function(){
+//   var batteryLevel = drone.battery();
+//   socket.emit('event', { name: 'battery',value: batteryLevel});
+// },1000);
+
+///
 
 const port = 3002;
 io.listen(port);
@@ -48,6 +70,6 @@ require("dronestream").listen(3010);
 // -Donald
 
 // Start the API server
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });

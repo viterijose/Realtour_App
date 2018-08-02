@@ -17,7 +17,47 @@
     
     }
     
-    
+    #battery{
+        border:1px solid black;
+        width:500px;
+        height:20px;
+        text-align: center;
+    }
+
+    #batteryNew {
+        font-size: 10em;
+      }
+
+      .container {
+        width: 200px;
+        margin: 0 auto;
+      }
+
+
+
+    .bar {
+        margin: 5px 0 3px;
+        border: 6px solid #333;
+        background: #333;
+        overflow: hidden;
+        border-radius: 50px;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        box-shadow: 1px 1px 1px #777;
+        -moz-box-shadow: 1px 1px 1px #777;
+        -webkit-box-shadow: 1px 1px 1px #777;
+    }
+    .bar > span {
+        display: block;
+        height: 20px;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+    }
+
+    .color0 > span {
+        background-color: #FF0000;
+    }  
     
     /* reset */
     
@@ -203,7 +243,6 @@
         background: -webkit-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
         background: -o-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
         background: -ms-linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
-        background: linear-gradient(top, #ffffff 0%, #f2f2f2 100%);
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f2f2f2', GradientType=0);
     }
     
