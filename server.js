@@ -34,7 +34,8 @@ io.on('connection', (client) => {
   client.on('subscribeToTimer', (interval) => {
     console.log('client is subscribing to timer with interval ', interval);
     setInterval(() => {
-      client.emit('timer', new Date());
+      let time  = `${new Date() }`
+      client.emit('timer', time);
     }, interval);
   });
 });

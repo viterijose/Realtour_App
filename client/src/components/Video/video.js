@@ -32,21 +32,8 @@ class Video extends React.Component {
         // var lastPng; 
 
         //*** this is Key getting it working  */
-         // eslint-disable-next-line
-        new NodecopterStream(document.getElementById("droneStream"), {hostname:'localhost',port: 3010});
-
-        //   const script = document.createElement("script");
-
-        //   script.src = "nodecopter-client.js";
-        //   script.async = true;
-
-        //   document.body.appendChild(script);
-
-        //   const script2 = document.createElement("script");
-        //   script2.src = "/dronestream/nodecopter-client.js";
-        //   script2.async = true;
-        //   document.body.appendChild(script2);
-
+        // eslint-disable-next-line
+        new NodecopterStream(document.getElementById("droneStream"), { hostname: 'localhost', port: 3010 });
 
     }
 
@@ -54,14 +41,24 @@ class Video extends React.Component {
         return (
             <div>
 
-                <p> THIS IS A TEST VIDEO</p>
+                <h1> Real Tour Live Drone Feed</h1>
+                <br />
+                <div className="vdo-log margin_bottom">
+                    <div className="video-player">
+                        <div id="droneStream">
 
-                <div id="droneStream" className="liveVid">
-                    test
-                    <p className="App-intro">
-                        This is the timer value: {this.state.timestamp}
-                    </p>
+                        </div>
+                        <p>Current Date: {this.state.timestamp} </p>
+                    </div>
+                    <div className="clear"></div>
                 </div>
+
+                <div className="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" className="btn btn-danger">Launch</button>
+                    <button type="button" className="btn btn-success">Land</button>
+                    <button type="button" className="btn btn-warning">Camera</button>
+                </div>
+
             </div>
         )
 
