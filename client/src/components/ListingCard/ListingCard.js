@@ -6,17 +6,19 @@ import moment from 'moment';
 class ListingCard extends React.Component {
     constructor(props) {
         super(props);
-        this.handleClick = this.handleClick.bind(this);
+        // this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick() {
-        alert('hi')
-    }
+    // handleClick() {
+    //     alert('hi')
+    // }
 
     render() {
         const { name, src, address, price, city, zipcode, id, openHouse } = this.props
         return (
-            <div className="card" id={id} onClick={this.handleClick}>
+            <div className="card" id={id} 
+            // onClick={this.handleClick}
+            >
             <a href={"/listing/"+id} className="listingCard">
                 <div className="img-container">
                     <img alt={name} src={src} />
