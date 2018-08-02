@@ -1,3 +1,15 @@
-.navbar{
-    
+.navbar1{
+    background-color: green!important;
+}
+
+
+.navbar2{
+    background-color: yellow!important;
+}
+
+
+.container-full {
+    padding-left: 0px!important;
+    padding-right: 0px!important;
+
 }

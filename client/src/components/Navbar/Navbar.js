@@ -12,7 +12,7 @@ class Navbar extends React.Component {
         return (
             <Container fluid>
 
-                <nav className="navbar navbar-light bg-light">
+                <nav className="navbar navbar-light bg-light navbar1">
                 
                     <div>
                         <a href="/" className="navbar-brand"><img src={src} style={{ width: 40, height: 40 }} alt="drone" />  RealTour</a>
@@ -24,7 +24,7 @@ class Navbar extends React.Component {
                                 {/* <a className="nav-link" >Sign In<span className="sr-only">(current)</span></a> */}
                             </li>
                             <li className="nav-item active">
-                                <a className="nav-link" href="/register">Register<span className="sr-only">(current)</span></a>
+                                <a className="btn btn-secondary" href="/register">Register<span className="sr-only">(current)</span></a>
                             </li>
                         </ul>
                     </div>

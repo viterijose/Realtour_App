@@ -6,7 +6,7 @@ import images from "../images.json"
 import API from "../utils/API"
 import NavHeader from "../components/NavHeader"
 import { ListingDetail, DeleteBtn } from "../components/ListingDetail";
-
+import Footer from "../components/Footer"
 
 class SavedListings extends React.Component {
     constructor(props) {
@@ -71,6 +71,11 @@ class SavedListings extends React.Component {
                         )
                     })}
                 </Container>
+                <Container fluid>
+                    <Footer
+                        src={this.state.images[0].src}
+                    />                    
+                </Container>  
             </div>
 
         )

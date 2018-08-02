@@ -6,6 +6,7 @@ import images from "../images.json"
 import API from "../utils/API"
 import NavHeader from "../components/NavHeader"
 import {SaveBtn,ListingDetail} from "../components/ListingDetail";
+import Footer from "../components/Footer"
 
 
 class Listing extends React.Component {
@@ -58,7 +59,11 @@ class Listing extends React.Component {
 
                 />
                 <SaveBtn onClick={() => this.SaveListing(this.state.listing._id)} />
-                
+                <Container fluid>
+                    <Footer
+                        src={this.state.images[0].src}
+                    />                    
+                </Container>
             </div>
 
         )

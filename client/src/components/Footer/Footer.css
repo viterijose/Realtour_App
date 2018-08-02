@@ -1,0 +1,28 @@
+.navbar1{
+    background-color: green!important;
+}
+
+
+.navbar2{
+    background-color: yellow!important;
+}
+
+
+.footer {
+    background-color:white;
+    color:white;
+    font-size:xx-small!important;
+}
+
+.footer-brand{
+    font-weight: 200;
+    font-size: x-small;
+    color: navy;
+}
+
+.footer-band {
+    width: 100%;
+    margin-left:0px!important;
+    margin-right: 0px!important;
+}
+

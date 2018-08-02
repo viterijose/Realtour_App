@@ -7,7 +7,7 @@ class Container extends React.Component {
     const { fluid, children } = this.props
 
     return (
-      <div className={`container${fluid ? "-fluid" : ""}`} >
+      <div className={`container${fluid ? "-fluid container-full" : ""}`}  >
         {children}
       </div>
     );

@@ -7,7 +7,7 @@ import ListingCard from "../components/ListingCard"
 import images from "../images.json"
 import API from "../utils/API"
 import NavHeader from "../components/NavHeader"
-
+import Footer from "../components/Footer"
 class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -67,9 +67,16 @@ class Home extends React.Component {
                         })}
                     </FlexBox>
 
+                </Container>             
+                <Container fluid>
+                    <Footer
+                        src={this.state.images[0].src}
+                    />                    
                 </Container>
             </div>
 
+
+   
         )
     }
 

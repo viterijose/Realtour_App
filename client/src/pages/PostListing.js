@@ -5,6 +5,7 @@ import { FormBtn, Input} from "../components/Form";
 import Navbar from "../components/Navbar";
 import images from "../images.json";
 import ContainerSpace from "../components/Containers";
+import Footer from "../components/Footer"
 
 class PostListing extends React.Component {
     constructor(props) {

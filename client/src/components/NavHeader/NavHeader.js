@@ -12,7 +12,7 @@ class NavHeader extends React.Component {
         return (
             <Container fluid>
 
-                <nav className="navbar navbar-light bg-dark">
+                <nav className="navbar navbar-light bg-dark navbar2">
                 
                     <div>
                         <a href="/saved/listings" className="navbar-brand">My Listings</a>

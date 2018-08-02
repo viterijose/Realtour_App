@@ -7,6 +7,7 @@ import ListingCard from "../components/ListingCard"
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import Footer from "../components/Footer"
 
 class MyListings extends React.Component {
     constructor(props) {
@@ -119,6 +120,11 @@ class MyListings extends React.Component {
                         onChange={this.handleChangeEnd}
                     />
                     <button onClick={this.createOpenHouse} >Submit</button>
+                </Container>
+                <Container fluid>
+                    <Footer
+                        src={this.state.images[0].src}
+                    />                    
                 </Container>
             </div>
         )

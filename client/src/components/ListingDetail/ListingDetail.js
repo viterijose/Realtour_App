@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Col, Row, Container } from "../Grid"
+import "./ListingDetail.css"
 
 class ListingDetail extends React.Component {
 
@@ -10,8 +11,9 @@ class ListingDetail extends React.Component {
             <div id={id}>
                 <Container fluid>
                     <Row>
-                        <Col size="lg-6">
-                            <div className="content">
+                        <Col size="lg-3">
+                            <div className="content content-white">
+                            <br/>
                                 <ul>
                                     <li>
                                         <strong>Price:</strong> ${price}
@@ -29,6 +31,7 @@ class ListingDetail extends React.Component {
                                         <strong>Zipcode:</strong> {zipcode}
                                     </li>
                                 </ul>
+                                <br/>
                             </div>
 
                         </Col >
