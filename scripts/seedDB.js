@@ -160,7 +160,7 @@ var listingSeed = [
         date: new Date(Date.now())
     }
 ]
-
+//--------- SEED FOR USERS ------------//
 // newUser
 //     .remove({})
 //     .then(() => 
@@ -176,26 +176,28 @@ var listingSeed = [
 //         process.exit(1);
 //     })
 db.newUser
-.find()
+    .find()
+    .then(dbModel =>
+        dbModel.forEach((user, i) => {
+            let id = user._id;
+            // console.log(id)
+            listingSeed[i].owner=id;
+            console.log(listingSeed);
 
-.then(dbModel => 
-    dbModel.forEach((user,i) =>{
-        let id = user._id;
-        let userEmail = user.email
-        listingSeed.forEach(listing=>{
-            listing.owner = {"id":id,owner:userEmail}
+            db.Realtour
+                .remove({})
+                .then(() =>
+                    db.Realtour.collection.insertMany(listingSeed)
+                )
+                .then(data => {
+                    console.log(data)
+                    process.exit(0);
+                })
+                .catch(err => {
+                    console.error(err);
+                    process.exit(1);
+                })
+
         })
-        console.log(listingSeed)
-    })
-
-)
-    // console.log(dbModel))
-.catch(err => console.log(err))
-    // userSeed.forEach((user, i) => {
-    //     db.users.collection.insertOne(user)
-    //         .then(data => {
-    //             listingSeed[i].owner = data.ops[0]._id;
-    //             db.Realtour.collection.insertOne(listingSeed[i])
-    //                 .catch(err => { if (err) console.log(err) })
-    //         }).catch(err => { if (err) console.log(err) })
-    //  })
+    )
+    .catch(err => console.log(err))

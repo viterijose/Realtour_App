@@ -21,16 +21,16 @@ class MyListings extends React.Component {
             listing: {},
             isUpdate: false,
             user: {
-                "_id": "5b58091d48a774316e702636",
-                "firstName": "Andre",
-                "lastName": "Myers",
-                "userName": "pbaff",
-                "email": "andre.myers99@gmail.com",
-                "password": "Paganizonda1",
-                "ub_date": {
-                    "$date": "2018-07-25T05:22:37.361Z"
-                },
-                "__v": 0
+                "_id": "5b63aeddb13c1d098fb11ab9",
+                // "firstName": "Iman",
+                // "lastName": "Eltyab",
+                // "userName": "pbaff",
+                // "email": "andre.myers99@gmail.com",
+                // "password": "Paganizonda1",
+                // "ub_date": {
+                //     "$date": "2018-07-25T05:22:37.361Z"
+                // },
+                // "__v": 0
             },
             startDate: moment(),
             endDate: moment(),
@@ -65,7 +65,9 @@ class MyListings extends React.Component {
     handleFormSubmit = event => {
         event.preventDefault();
         API.patchListing(this.state.listing._id, this.state.listing)
-            .then(res => this.setState({ isUpdate: false }))
+            .then(res => this.setState({ 
+                isUpdate: false,
+             }))
             .catch(err => console.log(err))
     }
 
