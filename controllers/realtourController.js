@@ -92,11 +92,11 @@ const realtourFunctions = {
 
 router.post("/register", realtourFunctions.createUser);
 router.get("/listings", realtourFunctions.findAllListings);
-router.post("/post/listing", realtourFunctions.createListing);
+router.post("/postListing", realtourFunctions.createListing);
 router.get('/userListings/:id', realtourFunctions.getUserListings);
 router.post('/openhouse', realtourFunctions.createOpenHouse);
 router.get("/listing/:id", realtourFunctions.findbyId);
-router.post("/save/listing", realtourFunctions.saveListing);
+router.post("/savedListing", realtourFunctions.saveListing);
 router.delete("/listing/:id", realtourFunctions.removeListing);
 
 // router.use(function (req, res) {

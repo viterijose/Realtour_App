@@ -8,7 +8,6 @@ import images from "../images.json"
 import API from "../utils/API"
 import NavHeader from "../components/NavHeader"
 
-
 class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -40,6 +39,7 @@ class Home extends React.Component {
     render() {
         return (
             <div>
+                {/* <Listing display={this.state.display} userId={this.state.userId}/> */}
                 <Container fluid>
                     <Navbar
                         src={this.state.images[0].src}

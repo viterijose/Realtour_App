@@ -23,13 +23,13 @@ class NavHeader extends React.Component {
                             <a href={"/myListings/:"+userId} className="navbar-brand">My Listings</a>
                         </div>
                         <div>
-                            <a href={"/postListing:"+userId} className="navbar-brand"> Post Listing</a>
+                            <a href={"/postListing/:"+userId} className="navbar-brand"> Post Listing</a>
                         </div>
                         <div>
-                            <a href={"/savedListing:"+userId} className="navbar-brand"> Saved Listing</a>
+                            <a href={"/savedListings/:"+userId} className="navbar-brand"> Saved Listing</a>
                         </div>
                         <div>
-                            <a href={"/appointment:"+userId} className="navbar-brand">Schedule Appointment</a>
+                            <a href={"/appointment/:"+userId} className="navbar-brand">Schedule Appointment</a>
                         </div>
 
                     </nav>

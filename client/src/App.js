@@ -18,11 +18,11 @@ class App extends Component {
           <Route exact path="/register" component={Register} />
          
           {/* Routes that show when user is signed in ---- */}
-          <Route exact path="/:id" component={Home} />
-          <Route exact path="/postListing/:id" component={PostListing} />
+          <Route exact path="/:user" component={Home} />
+          <Route exact path="/postListing/:user" component={PostListing} />
           <Route exact path="/listing/:id" component ={Listing}/>
           <Route exact path="/myListings/:id" component={MyListings} />
-          <Route exact path="/savedListings/:id" component={SavedListings} />
+          <Route exact path="/savedListings/:user" component={SavedListings} />
 
         </div>
       </Router>

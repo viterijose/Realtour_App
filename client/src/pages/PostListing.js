@@ -2,8 +2,9 @@ import React from "react";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { FormBtn, Input, TextArea } from "../components/Form";
-import { Carousel, Carousel_Item ,CarouselAct_Item} from "../components/Carousel"
+import { Carousel, Carousel_Item, CarouselAct_Item } from "../components/Carousel"
 import Navbar from "../components/Navbar";
+import NavHeader from "../components/NavHeader"
 import images from "../images.json";
 import ContainerSpace from "../components/Containers";
 
@@ -67,6 +68,10 @@ class PostListing extends React.Component {
                 <Container fluid>
                     <Navbar
                         src={this.state.images[0].src}
+                    />
+                    <NavHeader
+                        display={this.state.display}
+                        userId={this.state.userId}
                     />
                 </Container>
 

@@ -14,6 +14,9 @@ class Listing extends React.Component {
         this.state = {
             images,
             listing: {},
+            login: false,
+            display: "block",
+            userId: "psmith"
         }
         this.SaveListing = this.SaveListing.bind(this)
 
@@ -41,7 +44,10 @@ class Listing extends React.Component {
                     <Navbar
                         src={this.state.images[0].src}
                     />
-                    <NavHeader />
+                    <NavHeader
+                        display={this.state.display}
+                        userId={this.state.userId}
+                    />
                 </Container>
 
 
