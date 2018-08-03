@@ -11,7 +11,7 @@ mongoose.connect(
 
 const listingSeed = [
     {
-        ownerName: "Philip",
+        owner: "Philip",
         street: "95 overlook",
         city: "Belleville",
         state: "NJ",
@@ -22,7 +22,7 @@ const listingSeed = [
         date: new Date(Date.now())
     },
     {
-        ownerName: "Nathan",
+        owner: "Nathan",
         street: "22 springfield ave",
         city: "Princeton",
         state: "NJ",
@@ -33,7 +33,7 @@ const listingSeed = [
         date: new Date(Date.now())
     },
     {
-        ownerName: "Iman",
+        owner: "Iman",
         street: "150 Field st",
         city: "Rochester",
         state: "NY",
@@ -44,7 +44,7 @@ const listingSeed = [
         date: new Date(Date.now())
     },
     {
-        ownerName: "Max",
+        owner: "Max",
         street: "120 Joralemon St",
         city: "Jersey City",
         state: "NJ",
@@ -55,7 +55,7 @@ const listingSeed = [
         date: new Date(Date.now())
     },
     {
-        ownerName: "Marie",
+        owner: "Marie",
         street: "46 Linden Ave",
         city: "New Brunswick",
         state: "NJ",
@@ -66,7 +66,7 @@ const listingSeed = [
         date: new Date(Date.now())
     },
     {
-        ownerName: "Jennifer",
+        owner: "Jennifer",
         street: "260 Border st",
         city: "Rochester",
         state: "NY",
