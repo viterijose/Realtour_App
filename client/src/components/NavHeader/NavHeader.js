@@ -6,26 +6,36 @@ import { Col, Row, Container } from "../Grid"
 class NavHeader extends React.Component {
 
 
+
     render() {
-        const { children} = this.props;
+        const { userId, children, display } = this.props;
+        // console.log(userId)
+        // let user = JSON.stringify(userId)
+        // console.log(user)
         return (
-            <Container fluid>
+            
+            <div style={{ display: display }}>
+                <Container fluid>
 
-                <nav className="navbar navbar-light bg-light">
-                
-                    <div>
-                        <a href="/saved/listings" className="navbar-brand">My Listings</a>
-                    </div>
-                    <div>
-                        <a href="/post/listing" className="navbar-brand"> Post Listing</a>
-                    </div>
-                    <div>
-                        <a href="/appointment" className="navbar-brand">Schedule Appointment</a>
-                    </div>
-                
-                </nav>
+                    <nav className="navbar navbar-light bg-light">
 
-             </Container>
+                        <div>
+                            <a href={"/myListings/:"+userId} className="navbar-brand">My Listings</a>
+                        </div>
+                        <div>
+                            <a href={"/postListing:"+userId} className="navbar-brand"> Post Listing</a>
+                        </div>
+                        <div>
+                            <a href={"/savedListing:"+userId} className="navbar-brand"> Saved Listing</a>
+                        </div>
+                        <div>
+                            <a href={"/appointment:"+userId} className="navbar-brand">Schedule Appointment</a>
+                        </div>
+
+                    </nav>
+
+                </Container>
+            </div>
 
 
         )
@@ -33,5 +43,7 @@ class NavHeader extends React.Component {
 }
 NavHeader.props = {
     children: PropTypes.node,
+    userId: PropTypes.string,
+    login: PropTypes.string,
 }
 export default NavHeader

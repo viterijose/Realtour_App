@@ -13,12 +13,16 @@ class App extends Component {
     return (
       <Router>
         <div>
+          {/* Regular routes for no users ---- */}
           <Route exact path="/" component={Home} />
-          <Route exact path="/post/listing" component={PostListing} />
-          <Route exact path="/listing/:id" component ={Listing}/>
           <Route exact path="/register" component={Register} />
-          <Route exact path="/myListings" component={MyListings} />
-          <Route exact path="/saved/listings" component={SavedListings} />
+         
+          {/* Routes that show when user is signed in ---- */}
+          <Route exact path="/:id" component={Home} />
+          <Route exact path="/postListing/:id" component={PostListing} />
+          <Route exact path="/listing/:id" component ={Listing}/>
+          <Route exact path="/myListings/:id" component={MyListings} />
+          <Route exact path="/savedListings/:id" component={SavedListings} />
 
         </div>
       </Router>

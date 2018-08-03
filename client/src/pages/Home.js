@@ -14,7 +14,10 @@ class Home extends React.Component {
         super(props);
         this.state = {
             images,
-            listings: []
+            listings: [],
+            login:false,
+            display:"block",
+            userId:"psmith"
 
         }
     }
@@ -41,7 +44,10 @@ class Home extends React.Component {
                     <Navbar
                         src={this.state.images[0].src}
                     />
-                    <NavHeader/>
+                    <NavHeader
+                        display={this.state.display}
+                        userId={this.state.userId}
+                    />
                 </Container>
                 
                 
