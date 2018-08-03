@@ -29,5 +29,10 @@ export default {
     },
     deleteListing: function(id){
         return axios.delete("/api/listing/"+id)
+    },
+    patchListing: function(id,listingData){
+        // console.log(id)
+        // console.log("IN AXIOS \n"+JSON.stringify(listingData))
+        return axios.patch("/api/updateListing/"+id,listingData)
     }
 }

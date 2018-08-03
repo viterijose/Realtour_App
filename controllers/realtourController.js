@@ -21,6 +21,14 @@ const realtourFunctions = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+    updateListing: function (req, res) {
+        // console.log(req.params.id)
+        Realtour
+            .findOneAndUpdate({ _id: req.params.id }, req.body)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err))
+
+    },
     findAllListings: function (req, res) {
         Realtour
             .find(req.query)
@@ -55,13 +63,13 @@ const realtourFunctions = {
     },
     getUserListings: function (req, res) {
         Realtour
-            .findOne({owner: req.params.id})
+            .findOne({ owner: req.params.id })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
-    createOpenHouse: function(req, res) {
+    createOpenHouse: function (req, res) {
         Realtour
-            .update({owner: req.body.id}, {$set: {openHouse: {start: req.body.start, end: req.body.end}}})
+            .update({ owner: req.body.id }, { $set: { openHouse: { start: req.body.start, end: req.body.end } } })
             .then(res.json(200))
             .catch(err => res.status(422).json(err));
     },
@@ -74,21 +82,6 @@ const realtourFunctions = {
     },
 }
 
-// const userFunctions = {
-//     createUser: function(req,res){
-//         newUser
-//         .create(req.body)
-//         .then(dbModel => res.json(dbModel))
-//         .catch(err => res.status(422).json(err));
-//     },
-//     remove: function(req,res){
-//         newUser
-//         .findById({_id:req.params.id},req.body)
-//         .then(dbModel => dbModel.remove())
-//         .then(dbModel => res.json(dbModel))
-//         .catch(err => res.status(422).json(err));
-//     }
-// }
 
 router.post("/register", realtourFunctions.createUser);
 router.get("/listings", realtourFunctions.findAllListings);
@@ -98,6 +91,7 @@ router.post('/openhouse', realtourFunctions.createOpenHouse);
 router.get("/listing/:id", realtourFunctions.findbyId);
 router.post("/savedListing", realtourFunctions.saveListing);
 router.delete("/listing/:id", realtourFunctions.removeListing);
+router.patch("/updateListing/:id", realtourFunctions.updateListing)
 
 // router.use(function (req, res) {
 //     res.sendFile(path.join(__dirname, "../client/build/index.html"))

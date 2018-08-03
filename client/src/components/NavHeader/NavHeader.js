@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Col, Row, Container } from "../Grid"
+import { Container } from "../Grid"
 // import ModalWrapper from "../Modal"
 
 class NavHeader extends React.Component {
@@ -8,7 +8,7 @@ class NavHeader extends React.Component {
 
 
     render() {
-        const { userId, children, display } = this.props;
+        const { userId, display } = this.props;
         // console.log(userId)
         // let user = JSON.stringify(userId)
         // console.log(user)

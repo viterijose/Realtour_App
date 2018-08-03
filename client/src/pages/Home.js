@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar"
-import { Col, Row, Container } from "../../src/components/Grid"
+import {Container } from "../../src/components/Grid"
 import ContainerSpace from "../components/Containers"
 import { FlexBox, FlexRow } from "../components/FlexBox"
 import ListingCard from "../components/ListingCard"

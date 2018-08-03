@@ -1,10 +1,10 @@
 import Carousel from "./Carousel";
-import Carousel_Item from "./Carosel_Item";
-import CarouselAct_Item from "./CaroselAct_Item";
+import CarouselItem from "./Carousel_Item";
+import CarouselActItem from "./CarouselAct_Item";
 
 
 export {
-    Carousel_Item,
-    CarouselAct_Item,
+    CarouselItem,
+    CarouselActItem,
     Carousel
 }

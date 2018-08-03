@@ -2,8 +2,6 @@ import React from "react";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import ContainerSpace from "../components/Containers";
-import { FlexBox, FlexRow } from "../components/FlexBox";
-import ListingCard from "../components/ListingCard";
 import Navbar from "../components/Navbar";
 import NavHeader from "../components/NavHeader";
 import images from "../images.json"
@@ -11,6 +9,8 @@ import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ListingDetail, EditBtn } from "../components/ListingDetail";
+import { Input, TextArea, FormBtn } from "../components/Form"
+import { Carousel, CarouselActItem } from "../components/Carousel"
 
 class MyListings extends React.Component {
     constructor(props) {
@@ -18,6 +18,8 @@ class MyListings extends React.Component {
         this.state = {
             images,
             listings: [],
+            listing: {},
+            isUpdate: false,
             user: {
                 "_id": "5b58091d48a774316e702636",
                 "firstName": "Andre",
@@ -36,20 +38,213 @@ class MyListings extends React.Component {
         this.createOpenHouse = this.createOpenHouse.bind(this);
         this.handleChangeStart = this.handleChangeStart.bind(this);
         this.handleChangeEnd = this.handleChangeEnd.bind(this);
+        this.editListing = this.editListing.bind(this);
     }
 
     componentDidMount() {
         this.loadListings();
     }
+    editListing = (listingId) => {
+        API.getListing(listingId)
+            .then(res => this.setState({ listing: res.data }))
+            .catch(err => console.log(err))
+        this.setState({
+            isUpdate: true
+        })
+        console.log(this.state.listing)
+    }
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        const updatedListing = { ...this.state.listing }
+        updatedListing[name] = value
+        this.setState({
+            listing: updatedListing
+        })
+    }
+
+    handleFormSubmit = event => {
+        event.preventDefault();
+        API.patchListing(this.state.listing._id, this.state.listing)
+            .then(res => this.setState({ isUpdate: false }))
+            .catch(err => console.log(err))
+    }
 
     loadListings = () => {
         API.getUserListings(this.state.user._id)
             .then(res => {
-                this.setState({ listings: [res.data] });
+                this.setState({
+                    listings: [res.data],
+                    listing: res.data
+                });
                 console.log(res.data)
             })
             .catch(err => console.log(err));
     }
+
+    readListing = () => (
+        <div>
+            <Container fluid>
+                <Navbar
+                    src={this.state.images[0].src}
+                />
+                <NavHeader
+                    display={this.state.display}
+                    userId={this.state.userId}
+                />
+            </Container>
+            <ContainerSpace />
+            <Container >
+
+
+                {this.state.listings.map(listing => {
+                    return (
+                        <div key={listing._id}>
+                            <Row>
+                                <Col size="lg-12">
+                                    <ListingDetail
+                                        src={listing.imgSrc}
+                                        id={listing._id}
+                                        price={listing.price}
+                                        key={listing._id}
+                                        city={listing.city}
+                                        address={listing.street}
+                                        zipcode={listing.zipcode}
+                                    />
+
+                                </Col>
+                            </Row>
+                            <br />
+                            <Row>
+                                <Col size="lg-4">
+                                    From:
+                   <DatePicker
+                                        selected={this.state.startDate}
+                                        selectsStart
+                                        showTimeSelect
+                                        timeFormat="HH:mm"
+                                        timeIntervals={15}
+                                        dateFormat="LLL"
+                                        timeCaption="time"
+                                        startDate={this.state.startDate}
+                                        endDate={this.state.endDate}
+                                        onChange={this.handleChangeStart}
+                                    />
+                                    To:
+                  <DatePicker
+                                        selected={this.state.endDate}
+                                        selectsEnd
+                                        showTimeSelect
+                                        timeFormat="HH:mm"
+                                        timeIntervals={15}
+                                        dateFormat="LLL"
+                                        timeCaption="time"
+                                        startDate={this.state.startDate}
+                                        endDate={this.state.endDate}
+                                        onChange={this.handleChangeEnd}
+                                    />
+                                    <br />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col size="lg-2">
+                                    <button className="btn btn-success" onClick={this.createOpenHouse} >Submit</button>
+                                </Col>
+                                <Col size="lg-2">
+                                    <EditBtn onClick={() => this.editListing(this.state.listing._id)} />
+                                </Col>
+                            </Row>
+                            <hr />
+                        </div>
+
+                    );
+                })}
+            </Container>
+            <ContainerSpace />
+        </div>
+
+    );
+
+    updateListing = () => (
+        <div>
+            <Container fluid>
+                <Navbar
+                    src={this.state.images[0].src}
+                />
+                <NavHeader
+                    display={this.state.display}
+                    userId={this.state.userId}
+                />
+            </Container>
+            <ContainerSpace />
+            <Container >
+                <Row>
+                    <Col size="lg-6">
+                        <div className="postForm" style={{
+                            width: "100%",
+                            background: "rgb(217,217,217)",
+                            padding: "20px",
+                            border: "2px",
+                            borderRadius: "2%",
+                            boxShadow: "2px 2px grey"
+                        }}>
+                            <form>
+                                <Input
+                                    name="price"
+                                    placeholder="Price"
+                                    value={this.state.price}
+                                    onChange={this.handleInputChange}
+                                />
+                                <br />
+                                <Input
+                                    name="street"
+                                    placeholder="Street"
+                                    value={this.state.street}
+                                    onChange={this.handleInputChange}
+                                />
+                                <br />
+                                <Input
+                                    name="city"
+                                    placeholder="City"
+                                    value={this.state.city}
+                                    onChange={this.handleInputChange}
+                                />
+                                <br />
+                                <Input
+                                    name="zipcode"
+                                    placeholder="zipcode"
+                                    value={this.state.zipcode}
+                                    onChange={this.handleInputChange}
+                                />
+                                <br />
+                                <TextArea
+                                    value={this.state.description}
+                                    onChange={this.handleInputChange}
+                                    name="description"
+                                    placeholder="Describe your house and the surrounding area (Optional)"
+                                />
+                                <br />
+                                <FormBtn
+                                    // disabled={!(this.state.ownerName && this.state.street)}
+                                    onClick={this.handleFormSubmit}
+                                >
+                                    Submit Listing
+                                </FormBtn>
+                            </form>
+                        </div>
+                    </Col>
+                    <Col size="lg-6">
+                        <Carousel>
+                            <CarouselActItem src={this.state.images[1].src} name={"First-slide"}
+                            />
+                        </Carousel>
+                    </Col>
+                </Row>
+
+            </Container>
+            <ContainerSpace />
+        </div>
+
+    )
 
     createOpenHouse() {
         API.createOpenHouse({
@@ -72,88 +267,93 @@ class MyListings extends React.Component {
         });
     }
 
+    // render() {
+    //     return (
+    //         <div>
+    //             <Container fluid>
+    //                 <Navbar
+    //                     src={this.state.images[0].src}
+    //                 />
+    //                 <NavHeader
+    //                     display={this.state.display}
+    //                     userId={this.state.userId}
+    //                 />
+    //             </Container>
+    //             <ContainerSpace />
+    //             <Container >
+
+
+    //                 {this.state.listings.map(listing => {
+    //                     return (
+    //                         <div key={listing._id}>
+    //                             <Row>
+    //                                 <Col size="lg-12">
+    //                                     <ListingDetail
+    //                                         src={listing.imgSrc}
+    //                                         id={listing._id}
+    //                                         price={listing.price}
+    //                                         key={listing._id}
+    //                                         city={listing.city}
+    //                                         address={listing.street}
+    //                                         zipcode={listing.zipcode}
+    //                                     />
+
+    //                                 </Col>
+    //                             </Row>
+    //                             <br />
+    //                             <Row>
+    //                                 <Col size="lg-4">
+    //                                     From:
+    //                        <DatePicker
+    //                                         selected={this.state.startDate}
+    //                                         selectsStart
+    //                                         showTimeSelect
+    //                                         timeFormat="HH:mm"
+    //                                         timeIntervals={15}
+    //                                         dateFormat="LLL"
+    //                                         timeCaption="time"
+    //                                         startDate={this.state.startDate}
+    //                                         endDate={this.state.endDate}
+    //                                         onChange={this.handleChangeStart}
+    //                                     />
+    //                                     To:
+    //                       <DatePicker
+    //                                         selected={this.state.endDate}
+    //                                         selectsEnd
+    //                                         showTimeSelect
+    //                                         timeFormat="HH:mm"
+    //                                         timeIntervals={15}
+    //                                         dateFormat="LLL"
+    //                                         timeCaption="time"
+    //                                         startDate={this.state.startDate}
+    //                                         endDate={this.state.endDate}
+    //                                         onChange={this.handleChangeEnd}
+    //                                     />
+    //                                     <br />
+    //                                 </Col>
+    //                             </Row>
+    //                             <Row>
+    //                                 <Col size="lg-2">
+    //                                     <button className="btn btn-success" onClick={this.createOpenHouse} >Submit</button>
+    //                                 </Col>
+    //                                 <Col size="lg-2">
+    //                                     <EditBtn onClick={() => this.editListing(this.state.listing._id)}/>
+    //                                 </Col>
+    //                             </Row>
+    //                             <hr />
+    //                         </div>
+
+    //                     );
+    //                 })}
+    //             </Container>
+    //             <ContainerSpace />
+    //         </div>
+    //     )
+    // }
+
     render() {
-        return (
-            <div>
-                <Container fluid>
-                    <Navbar
-                        src={this.state.images[0].src}
-                    />
-                    <NavHeader
-                        display={this.state.display}
-                        userId={this.state.userId}
-                    />
-                </Container>
-                <ContainerSpace />
-                <Container >
-
-
-                    {this.state.listings.map(listing => {
-                        return (
-                            <div key={listing._id}>
-                                <Row>
-                                    <Col size="lg-12">
-                                        <ListingDetail
-                                            src={listing.imgSrc}
-                                            id={listing._id}
-                                            price={listing.price}
-                                            key={listing._id}
-                                            city={listing.city}
-                                            address={listing.street}
-                                            zipcode={listing.zipcode}
-                                        />
-
-                                    </Col>
-                                </Row>
-                                <br />
-                                <Row>
-                                    <Col size="lg-4">
-                                        From:
-                           <DatePicker
-                                            selected={this.state.startDate}
-                                            selectsStart
-                                            showTimeSelect
-                                            timeFormat="HH:mm"
-                                            timeIntervals={15}
-                                            dateFormat="LLL"
-                                            timeCaption="time"
-                                            startDate={this.state.startDate}
-                                            endDate={this.state.endDate}
-                                            onChange={this.handleChangeStart}
-                                        />
-                                        To:
-                          <DatePicker
-                                            selected={this.state.endDate}
-                                            selectsEnd
-                                            showTimeSelect
-                                            timeFormat="HH:mm"
-                                            timeIntervals={15}
-                                            dateFormat="LLL"
-                                            timeCaption="time"
-                                            startDate={this.state.startDate}
-                                            endDate={this.state.endDate}
-                                            onChange={this.handleChangeEnd}
-                                        />
-                                        <br />
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col size="lg-2">
-                                        <button className="btn btn-success" onClick={this.createOpenHouse} >Submit</button>
-                                    </Col>
-                                    <Col size="lg-2">
-                                        <EditBtn />
-                                    </Col>
-                                </Row>
-                                <hr />
-                            </div>
-
-                        );
-                    })}
-                </Container>
-                <ContainerSpace />
-            </div>
-        )
+        if (!this.state.isUpdate) return this.readListing();
+        else return this.updateListing();
     }
 }
 

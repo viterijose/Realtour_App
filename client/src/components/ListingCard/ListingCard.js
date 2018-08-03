@@ -4,14 +4,6 @@ import "./ListingCard.css";
 import moment from 'moment';
 
 class ListingCard extends React.Component {
-    constructor(props) {
-        super(props);
-        // this.handleClick = this.handleClick.bind(this);
-    }
-
-    // handleClick() {
-    //     alert('hi')
-    // }
 
     render() {
         const { name, src, address, price, city, zipcode, id, openHouse } = this.props

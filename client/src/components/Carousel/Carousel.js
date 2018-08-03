@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Container } from "../Grid"
+// import { Container } from "../Grid"
 // import ModalWrapper from "../Modal"
 // import "./Navbar.css"
 

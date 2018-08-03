@@ -2,7 +2,7 @@ import React from "react";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { FormBtn, Input, TextArea } from "../components/Form";
-import { Carousel, Carousel_Item, CarouselAct_Item } from "../components/Carousel"
+import { Carousel, CarouselItem, CarouselActItem } from "../components/Carousel"
 import Navbar from "../components/Navbar";
 import NavHeader from "../components/NavHeader"
 import images from "../images.json";
@@ -150,11 +150,11 @@ class PostListing extends React.Component {
 
                         <Col size="lg-6">
                             <Carousel>
-                                <CarouselAct_Item src={this.state.images[1].src} name={"First-slide"}
+                                <CarouselActItem src={this.state.images[1].src} name={"First-slide"}
                                 />
-                                <Carousel_Item src={this.state.images[2].src} name={"Second-slide"}
+                                <CarouselItem src={this.state.images[2].src} name={"Second-slide"}
                                 />
-                                <Carousel_Item src={this.state.images[3].src} name={"third"}
+                                <CarouselItem src={this.state.images[3].src} name={"third"}
                                 />
                             </Carousel>
 

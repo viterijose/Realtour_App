@@ -54,8 +54,8 @@ class SavedListings extends React.Component {
                     {this.state.listings.map(listing => {
                         return (
 
-                                <div key={listing._id}>
-
+                            <div key={listing._id}>
+                                <Row>
                                     <ListingDetail
                                         src={listing.imgSrc}
                                         id={listing._id}
@@ -67,11 +67,24 @@ class SavedListings extends React.Component {
                                         description={listing.description}
 
                                     />
-                                    <br/>
-                                    <DeleteBtn onClick={() => this.deleteListing(listing._id)} />
-                                    <hr/>
+                                </Row>
 
-                                </div>
+                                <br />
+                                <Row>
+                                    <Col size="lg-2">
+                                        <DeleteBtn onClick={() => this.deleteListing(listing._id)} />
+                                    </Col>
+                                    <Col size="lg-2">
+                                    <button className="btn btn-primary">Set up Appointment</button>
+                                    </Col>
+                                    <Col size="lg-2">
+                                    <a href="/video">Open House</a>
+                                    </Col>
+                                </Row>
+                                <hr />
+
+
+                            </div>
 
 
                         )
