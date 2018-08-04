@@ -1,10 +1,13 @@
 import React from "react";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
-import { FormBtn, Input} from "../components/Form";
+import { FormBtn, Input, TextArea } from "../components/Form";
+import { Carousel, CarouselItem, CarouselActItem } from "../components/Carousel"
 import Navbar from "../components/Navbar";
+import NavHeader from "../components/NavHeader"
 import images from "../images.json";
 import ContainerSpace from "../components/Containers";
+
 
 class PostListing extends React.Component {
     constructor(props) {
@@ -17,6 +20,7 @@ class PostListing extends React.Component {
             zipcode: "",
             buildingType: "",
             price: "",
+            description: "",
             date: new Date(Date.now()),
             images
         }
@@ -32,15 +36,30 @@ class PostListing extends React.Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        console.log(this.state.ownerName)
+
         API.postListing({
             ownerName: this.state.ownerName,
             street: this.state.street,
             city: this.state.city,
             zipcode: this.state.zipcode,
-            date: this.state.date
+            date: this.state.date,
+            price: this.state.price,
+            img: this.state.photo,
+            description: this.state.description
         })
-            .then(res => console.log(res.data))
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    ownerName: "",
+                    street: "",
+                    city: "",
+                    zipcode: "",
+                    date: "",
+                    price: "",
+                    img: "",
+                    description: "",
+                })
+            })
             .catch(err => console.log(err));
     }
     render() {
@@ -50,55 +69,99 @@ class PostListing extends React.Component {
                     <Navbar
                         src={this.state.images[0].src}
                     />
+                    <NavHeader
+                        display={this.state.display}
+                        userId={this.state.userId}
+                    />
                 </Container>
-                
-                <ContainerSpace/>
+
+                <ContainerSpace />
 
                 <Container fluid>
                     <Row>
-                        <Col size="lg-4">
-                        </Col>
-
-                        <Col size="lg-4">
-                            <form>
-                                <Input
-                                    name="ownerName"
-                                    placeholder="Owner"
-                                    value={this.state.ownerName}
-                                    onChange={this.handleInputChange}
-                                />
-                                <Input
-                                    name="street"
-                                    placeholder="Street"
-                                    value={this.state.street}
-                                    onChange={this.handleInputChange}
-                                />
-                                <Input
-                                    name="city"
-                                    placeholder="City"
-                                    value={this.state.city}
-                                    onChange={this.handleInputChange}
-                                />
-                                <Input
-                                    name="zipcode"
-                                    placeholder="zipcode"
-                                    value={this.state.zipcode}
-                                    onChange={this.handleInputChange}
-                                />
-                                <FormBtn
-                                    disabled={!(this.state.ownerName && this.state.street)}
-                                    onClick={this.handleFormSubmit}
-                                >
-                                    Submit Listing
+                        <Col size="lg-6">
+                            <div className="postForm" style={{
+                                width: "100%",
+                                background: "rgb(217,217,217)",
+                                padding: "20px",
+                                border: "2px",
+                                borderRadius: "2%",
+                                boxShadow: "2px 2px grey"
+                            }}>
+                                <form>
+                                    <Input
+                                        name="ownerName"
+                                        placeholder="Owner"
+                                        value={this.state.ownerName}
+                                        onChange={this.handleInputChange}
+                                    />
+                                    <br />
+                                    <Input
+                                        name="price"
+                                        placeholder="Price"
+                                        value={this.state.price}
+                                        onChange={this.handleInputChange}
+                                    />
+                                    <br />
+                                    <Input
+                                        name="street"
+                                        placeholder="Street"
+                                        value={this.state.street}
+                                        onChange={this.handleInputChange}
+                                    />
+                                    <br />
+                                    <Input
+                                        name="city"
+                                        placeholder="City"
+                                        value={this.state.city}
+                                        onChange={this.handleInputChange}
+                                    />
+                                    <br />
+                                    <Input
+                                        name="zipcode"
+                                        placeholder="zipcode"
+                                        value={this.state.zipcode}
+                                        onChange={this.handleInputChange}
+                                    />
+                                    <br />
+                                    <Input
+                                        name="photo"
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={this.handleInputChange}
+                                    />
+                                    <br />
+                                    <TextArea
+                                        value={this.state.description}
+                                        onChange={this.handleInputChange}
+                                        name="description"
+                                        placeholder="Describe your house and the surrounding area (Optional)"
+                                    />
+                                    <br />
+                                    <FormBtn
+                                        disabled={!(this.state.ownerName && this.state.street)}
+                                        onClick={this.handleFormSubmit}
+                                    >
+                                        Submit Listing
                                 </FormBtn>
-                            </form>
+                                </form>
+                            </div>
                         </Col>
 
-                        <Col size="lg-4">
+                        <Col size="lg-6">
+                            <Carousel>
+                                <CarouselActItem src={this.state.images[1].src} name={"First-slide"}
+                                />
+                                <CarouselItem src={this.state.images[2].src} name={"Second-slide"}
+                                />
+                                <CarouselItem src={this.state.images[3].src} name={"third"}
+                                />
+                            </Carousel>
+
                         </Col>
+
                     </Row>
                 </Container>
-                {/* <p>{this.state.ownerName} {this.state.street} {this.state.city} {this.state.zipcode}</p> */}
             </div>
         )
     }
