@@ -9,8 +9,8 @@ import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ListingDetail, EditBtn } from "../components/ListingDetail";
-import { Input, TextArea, FormBtn } from "../components/Form"
-import { Carousel, CarouselActItem } from "../components/Carousel"
+import { Input, TextArea, FormBtn } from "../components/Form";
+// import { Carousel, CarouselActItem } from "../components/Carousel"
 
 class MyListings extends React.Component {
     constructor(props) {
@@ -65,10 +65,11 @@ class MyListings extends React.Component {
     handleFormSubmit = event => {
         event.preventDefault();
         API.patchListing(this.state.listing._id, this.state.listing)
-            .then(res => this.setState({ 
-                isUpdate: false,
-             }))
-            .catch(err => console.log(err))
+            .then(res => {
+                this.setState({isUpdate: false});
+                this.loadListings();
+            })
+            .catch (err => console.log(err))
     }
 
     loadListings = () => {
@@ -111,6 +112,8 @@ class MyListings extends React.Component {
                                         city={listing.city}
                                         address={listing.street}
                                         zipcode={listing.zipcode}
+                                        description={listing.description}
+                                        openHouse={listing.openHouse}
                                     />
 
                                 </Col>
@@ -235,10 +238,37 @@ class MyListings extends React.Component {
                         </div>
                     </Col>
                     <Col size="lg-6">
-                        <Carousel>
-                            <CarouselActItem src={this.state.images[1].src} name={"First-slide"}
-                            />
-                        </Carousel>
+                        <h2>Current Listing Displayed:</h2>
+                        <br/>
+                        <div className="content">
+                            <ul>
+                                <li>
+                                    <strong>Price:</strong> ${this.state.listing.price}
+                                </li>
+
+                                <li>
+                                    <strong>Address:</strong> {this.state.listing.street}
+                                </li>
+
+                                <li>
+                                    <strong>City:</strong> {this.state.listing.city}
+                                </li>
+
+                                <li>
+                                    <strong>Zipcode:</strong> {this.state.listing.zipcode}
+                                </li>
+
+
+                                <li>
+                                    <strong>Open House:</strong> {moment(this.state.listing.openHouse.start).format('lll')} to {moment(this.state.listing.openHouse.end).format('lll')}
+                                </li>
+
+                                <li>
+                                    <strong>Description:</strong>
+                                    <p style={{ textAlign: "justify" }}>{this.state.listing.description}</p>
+                                </li>
+                            </ul>
+                        </div>
                     </Col>
                 </Row>
 

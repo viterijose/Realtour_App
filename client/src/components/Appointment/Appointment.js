@@ -96,14 +96,14 @@ class Appointment extends React.Component {
     );
 
     render() {
-        const { isAppointmentSet, listingId ,userId,owner} = this.props
+        const {  listingId ,userId,owner} = this.props
         console.log(userId)
         if (this.state.isSet) return this.viewOpenHouse(listingId);
         else return this.setAppointment(listingId,userId,owner);
     }
 }
 Appointment.props = {
-    isAppointmentSet: PropTypes.bool,
+    isAppointmentSet: PropTypes.bool, //variable from mongo schema "hasAppointment"
     listingId: PropTypes.string,
     userId: PropTypes.string,
     owner: PropTypes.string

@@ -66,7 +66,7 @@ class Listing extends React.Component {
                         address={this.state.listing.street}
                         zipcode={this.state.listing.zipcode}
                         description={this.state.listing.description}
-                        // openHouse={this.state.listing.openHouse.toString()}
+                        openHouse={this.state.listing.openHouse}
 
                     />
                     <br />
