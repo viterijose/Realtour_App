@@ -28,7 +28,7 @@ class Home extends React.Component {
         this.loadListings();
     }
     searchFormSubmit = () => {
-        alert("Searching..." + this.state.searchVal)
+        // alert("Searching..." + this.state.searchVal)
         if (/\d/.test(this.state.searchVal)) {
             // const data = this.state.searchVal
             API.searchByZipcode({ data: this.state.searchVal })
