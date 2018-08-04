@@ -3,4 +3,5 @@ body {
   padding: 0;
   font-family: sans-serif;
   background-image: url(https://vastphotos.com/files/uploads/photos/10317/nyc-day-and-night-photo-l.jpg);
+  background-repeat: no-repeat;
 }
