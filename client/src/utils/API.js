@@ -34,8 +34,18 @@ export default {
         return axios.delete("/api/listing/"+id)
     },
     patchListing: function(id,listingData){
-        console.log(id)
-        console.log("IN AXIOS \n"+JSON.stringify(listingData))
+        // console.log(id)
+        // console.log("IN AXIOS \n"+JSON.stringify(listingData))
         return axios.patch("/api/updateListing/"+id,listingData)
+    },
+    searchByZipcode: function(listingData){
+        // console.log(listingData)
+        // console.log("IN API:"+JSON.stringify(listingData))
+        return axios.get("/api/findListings/zipcode/"+listingData.data)
+    },
+    searchByCity: function(listingData){
+        // console.log(listingData)
+        // console.log("IN API:"+JSON.stringify(listingData))
+        return axios.get("/api/findListings/city/"+listingData.data)
     }
 }

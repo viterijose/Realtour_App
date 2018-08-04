@@ -21,6 +21,7 @@ class Home extends React.Component {
             searchVal: ""
 
         }
+        // this.searchListing = this.searchListing.bind(this)
     }
 
     componentDidMount() {
@@ -29,12 +30,32 @@ class Home extends React.Component {
     }
     searchFormSubmit = () => {
         alert("Searching..." + this.state.searchVal)
+        if (/\d/.test(this.state.searchVal)) {
+            // const data = this.state.searchVal
+            API.searchByZipcode({data: this.state.searchVal})
+                .then(res => console.log(res.data))
+                .catch(err => console.log(err))
+        } else {
+            API.searchByCity({data: this.state.searchVal})
+                .then(res => console.log(res.data))
+                .catch(err => console.log(err))
+        }
+
+
+
     }
+    // searchListing = function(data){
+    //     API.searchListings(data)
+    //     .then(res => console.log(res.data))
+    //     .catch(err => console.log(err))
+    // }
+
+
     loadListings = () => {
         API.getAllListings()
             .then(res => {
                 this.setState({ listings: res.data });
-                console.log(res.data)
+                // console.log(res.data)
             }
             )
             .catch(err => console.log(err));
@@ -48,7 +69,6 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                {/* <Listing display={this.state.display} userId={this.state.userId}/> */}
                 <Container fluid>
                     <Navbar
                         src={this.state.images[0].src}
@@ -61,6 +81,7 @@ class Home extends React.Component {
 
 
                 <ContainerSpace />
+
                 <SearchContainer>
                     <SearchInput
                         value={this.state.searchVal}
@@ -71,6 +92,7 @@ class Home extends React.Component {
                         onClick={() => this.searchFormSubmit()}
                     />
                 </SearchContainer>
+
                 <ContainerSpace />
 
                 <Container fluid>
@@ -96,6 +118,7 @@ class Home extends React.Component {
                     </FlexBox>
 
                 </Container>
+                <ContainerSpace />
             </div>
 
         )

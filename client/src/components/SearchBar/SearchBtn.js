@@ -5,7 +5,7 @@ class SearchBtn extends React.Component {
     render() {
         const { onClick } = this.props
         return (
-            <div class="input-group-append">
+            <div className="input-group-append">
                 <button onClick={onClick} className="btn btn-secondary">
                     Search
             </button>

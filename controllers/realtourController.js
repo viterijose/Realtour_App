@@ -43,6 +43,20 @@ const realtourFunctions = {
             .catch(err => res.status(422).json(err))
 
     },
+    findByZipcode: function(req,res){
+        Realtour
+        .find()
+        .where("zipcode").equals(req.params.zipcode)
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err))
+    },
+    findByCity: function(req,res){
+        Realtour
+        .find()
+        .where("city").equals(req.params.city)
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err))
+    },
     createUser: function (req, res) {
         User
             .create(req.body)
@@ -99,6 +113,8 @@ router.post("/savedListing", realtourFunctions.saveListing);
 router.delete("/listing/:id", realtourFunctions.removeListing);
 router.patch("/updateListing/:id", realtourFunctions.updateListing)
 router.post('/appointment', realtourFunctions.createAppt);
+router.get("/findListings/zipcode/:zipcode",realtourFunctions.findByZipcode);
+router.get("/findListings/city/:city",realtourFunctions.findByCity);
 
 // router.use(function (req, res) {
 //     res.sendFile(path.join(__dirname, "../client/build/index.html"))

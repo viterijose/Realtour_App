@@ -14,7 +14,8 @@ class SearchContainer extends React.Component {
                     <Row>
                         <Col size="lg-3" />
                         <Col size="lg-6">
-
+                        <h4>Search for your next property</h4>
+                        <br/>
                             <div className="input-group mb-3">
                                     {children}
                             </div>
@@ -29,8 +30,5 @@ class SearchContainer extends React.Component {
 }
 SearchContainer.props = {
     children: PropTypes.node,
-    // onClick: PropTypes.func,
-    // name:PropTypes.string,
-    // placeholder:PropTypes.string
 }
 export default SearchContainer
