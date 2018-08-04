@@ -80,6 +80,12 @@ const realtourFunctions = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+    // createAppointment: function(req,res){
+    //     Realtour
+    //     .update({ owner: req.body.id }, { $set: { openHouse: { start: req.body.start, end: req.body.end } } })
+    //     .then(res.json(200))
+    //     .catch(err => res.status(422).json(err));
+    // }
 }
 
 
@@ -92,6 +98,7 @@ router.get("/listing/:id", realtourFunctions.findbyId);
 router.post("/savedListing", realtourFunctions.saveListing);
 router.delete("/listing/:id", realtourFunctions.removeListing);
 router.patch("/updateListing/:id", realtourFunctions.updateListing)
+router.post('/appointment', realtourFunctions.createAppt);
 
 // router.use(function (req, res) {
 //     res.sendFile(path.join(__dirname, "../client/build/index.html"))

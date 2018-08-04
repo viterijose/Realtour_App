@@ -5,7 +5,7 @@ import { Col, Row, Container } from "../Grid"
 class ListingDetail extends React.Component {
 
     render() {
-        const { name, src, address, price, city, zipcode, id ,description} = this.props
+        const { name, src, address, price, city, zipcode, id ,description,openHouse} = this.props
         return (
             <div id={id}>
                 <Container fluid>
@@ -27,6 +27,10 @@ class ListingDetail extends React.Component {
 
                                     <li>
                                         <strong>Zipcode:</strong> {zipcode}
+                                    </li>
+
+                                    <li>
+                                        <strong>Open House:</strong> {openHouse}
                                     </li>
                                     <li>
                                         <strong>Description:</strong>
@@ -61,6 +65,7 @@ ListingDetail.props = {
     zipcode: PropTypes.string,
     description: PropTypes.string,
     price: PropTypes.number,
+    openHouse: PropTypes.string
 }
 
 export default ListingDetail;

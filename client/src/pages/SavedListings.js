@@ -6,6 +6,7 @@ import images from "../images.json"
 import API from "../utils/API"
 import NavHeader from "../components/NavHeader"
 import { ListingDetail, DeleteBtn } from "../components/ListingDetail";
+import {Appointment} from "../components/Appointment";
 
 
 class SavedListings extends React.Component {
@@ -14,14 +15,11 @@ class SavedListings extends React.Component {
         this.state = {
             images,
             listings: [],
+            isAppointment: false,
+            userId:"5b63aeddb13c1d098fb11ab9"
         }
         this.deleteListing = this.deleteListing.bind(this)
-    }
-    deleteListing = listing_id => {
-        console.log(listing_id)
-        API.deleteListing(listing_id)
-            .then(res => this.loadListings())
-            .catch(err => console.log(err))
+        // this.setAppointment =  this.setAppointment.bind(this)
     }
     componentDidMount() {
         this.loadListings();
@@ -34,6 +32,17 @@ class SavedListings extends React.Component {
             })
             .catch(err => console.log(err));
     }
+
+    deleteListing = listing_id => {
+        console.log(listing_id)
+        API.deleteListing(listing_id)
+            .then(res => this.loadListings())
+            .catch(err => console.log(err))
+    }
+
+    // setAppointment = () =>(
+
+    // )
 
 
     render() {
@@ -52,8 +61,9 @@ class SavedListings extends React.Component {
                 <Container>
 
                     {this.state.listings.map(listing => {
+                        // console.log(listing.openHouse.start)
                         return (
-
+                            
                             <div key={listing._id}>
                                 <Row>
                                     <ListingDetail
@@ -65,6 +75,7 @@ class SavedListings extends React.Component {
                                         address={listing.street}
                                         zipcode={listing.zipcode}
                                         description={listing.description}
+                                        // openHouse = {listing.openHouse.start}
 
                                     />
                                 </Row>
@@ -73,12 +84,9 @@ class SavedListings extends React.Component {
                                 <Row>
                                     <Col size="lg-2">
                                         <DeleteBtn onClick={() => this.deleteListing(listing._id)} />
-                                    </Col>
-                                    <Col size="lg-2">
-                                    <button className="btn btn-primary">Set up Appointment</button>
-                                    </Col>
-                                    <Col size="lg-2">
-                                    <a href="/video">Open House</a>
+                                    </Col>  
+                                    <Col size = "lg-4">
+                                        <Appointment listingId = {listing._id} isAppointmentSet ={listing.hasAppointments} owner={listing.owner} userId={this.state.userId}/>
                                     </Col>
                                 </Row>
                                 <hr />

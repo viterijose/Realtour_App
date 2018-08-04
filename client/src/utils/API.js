@@ -10,6 +10,9 @@ export default {
     createOpenHouse: function(apptData) {
         return axios.post('/api/openhouse', apptData)
     },
+    createAppointment: function(apptData) {
+        return axios.post('/api/appointment', apptData)
+    },
     postListing: function(listingData){
         // console.log(listingData)
         return axios.post("/api/post/listing",listingData)
@@ -31,8 +34,8 @@ export default {
         return axios.delete("/api/listing/"+id)
     },
     patchListing: function(id,listingData){
-        // console.log(id)
-        // console.log("IN AXIOS \n"+JSON.stringify(listingData))
+        console.log(id)
+        console.log("IN AXIOS \n"+JSON.stringify(listingData))
         return axios.patch("/api/updateListing/"+id,listingData)
     }
 }

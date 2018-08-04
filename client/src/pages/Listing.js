@@ -22,7 +22,7 @@ class Listing extends React.Component {
 
     }
     SaveListing = listing_id => {
-        console.log(listing_id)
+        // console.log(listing_id)
         API.saveListing({ listing_id })
             .then(res => console.log(res.data))
             .catch(err => console.log(err))
@@ -31,13 +31,17 @@ class Listing extends React.Component {
     componentDidMount() {
         // alert("MOUNTED")
         API.getListing(this.props.match.params.id)
-            .then(res => this.setState({ listing: res.data }))
+            .then(res => {
+                this.setState({ listing: res.data })
+                console.log(this.state.listing.openHouse.start)
+            })
             .catch(err => console.log(err))
+
+          
     }
 
 
     render() {
-
         return (
             <div>
                 <Container fluid>
@@ -62,6 +66,7 @@ class Listing extends React.Component {
                         address={this.state.listing.street}
                         zipcode={this.state.listing.zipcode}
                         description={this.state.listing.description}
+                        // openHouse={this.state.listing.openHouse.toString()}
 
                     />
                     <br />
