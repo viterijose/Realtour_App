@@ -7,12 +7,12 @@ class NavHeader extends React.Component {
 
 
     render() {
-        const { children} = this.props;
+        const { children } = this.props;
         return (
             <Container fluid>
 
                 <nav className="navbar navbar-light bg-light">
-                
+
                     <div>
                         <a href="/saved/listings" className="navbar-brand">My Listings</a>
                     </div>
@@ -22,10 +22,10 @@ class NavHeader extends React.Component {
                     <div>
                         <a href="/appointment" className="navbar-brand">Schedule Appointment</a>
                     </div>
-                
+
                 </nav>
 
-             </Container>
+            </Container>
 
 
         )

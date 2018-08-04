@@ -1,6 +1,5 @@
 import React from "react";
-import Navbar from "../components/Navbar"
-import { Col, Row, Container } from "../../src/components/Grid"
+import { Container } from "../../src/components/Grid"
 import ContainerSpace from "../components/Containers"
 import images from "../images.json"
 import API from "../utils/API"
@@ -37,14 +36,6 @@ class Listing extends React.Component {
 
         return (
             <div>
-                <Container fluid>
-                    <Navbar
-                        src={this.state.images[0].src}
-                    />
-                    <NavHeader />
-                </Container>
-
-
                 <ContainerSpace />
 
                 <ListingDetail

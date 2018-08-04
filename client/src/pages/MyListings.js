@@ -1,12 +1,15 @@
 import React from "react";
 import API from "../utils/API";
-import { Col, Row, Container } from "../components/Grid";
+import { Container } from "../components/Grid";
 import ContainerSpace from "../components/Containers";
 import { FlexBox, FlexRow } from "../components/FlexBox"
 import ListingCard from "../components/ListingCard"
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import withAuthorization from '../components/withAuthorization';
+
+const authCondition = (authUser) => !!authUser;
 
 class MyListings extends React.Component {
     constructor(props) {
@@ -14,18 +17,7 @@ class MyListings extends React.Component {
         this.state = {
             images: [],
             listings: [],
-            user: {
-                "_id": "5b58091d48a774316e702636",
-                "firstName": "Andre",
-                "lastName": "Myers",
-                "userName": "pbaff",
-                "email": "andre.myers99@gmail.com",
-                "password": "Paganizonda1",
-                "ub_date": {
-                    "$date": "2018-07-25T05:22:37.361Z"
-                },
-                "__v": 0
-            },
+            user: {},
             startDate: moment(),
             endDate: moment(),
         };
@@ -125,4 +117,4 @@ class MyListings extends React.Component {
     }
 }
 
-export default MyListings;
+export default withAuthorization(authCondition)(MyListings);

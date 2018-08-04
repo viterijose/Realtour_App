@@ -9,6 +9,7 @@ const userSchema = new Schema({
     password: { type: String, required: true },
     postedListings: [{ type: Schema.Types.ObjectId, ref: 'Listings' }],
     appointments: [{ type: Schema.Types.ObjectId, ref: 'Appointments' }],
+    savedListings: [{ type: Schema.Types.ObjectId, ref: 'Listings' }],
     ub_date: { type: Date, default: Date.now }
 })
 
