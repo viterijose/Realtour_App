@@ -21,35 +21,32 @@ class Home extends React.Component {
             searchVal: ""
 
         }
-        // this.searchListing = this.searchListing.bind(this)
     }
 
     componentDidMount() {
-        // alert("MOUNTED")
+
         this.loadListings();
     }
     searchFormSubmit = () => {
         alert("Searching..." + this.state.searchVal)
         if (/\d/.test(this.state.searchVal)) {
             // const data = this.state.searchVal
-            API.searchByZipcode({data: this.state.searchVal})
-                .then(res => console.log(res.data))
+            API.searchByZipcode({ data: this.state.searchVal })
+                .then(res => this.setState({
+                    listings: res.data,
+                    searchVal: ""
+                }))
                 .catch(err => console.log(err))
         } else {
-            API.searchByCity({data: this.state.searchVal})
-                .then(res => console.log(res.data))
+            // let city = this.state.searchVal.toUpperCase() -----------------for better features and eliminating bugs
+            API.searchByCity({ data: this.state.searchVal })
+                .then(res => this.setState({
+                    listings: res.data,
+                    searchVal: ""
+                }))
                 .catch(err => console.log(err))
         }
-
-
-
     }
-    // searchListing = function(data){
-    //     API.searchListings(data)
-    //     .then(res => console.log(res.data))
-    //     .catch(err => console.log(err))
-    // }
-
 
     loadListings = () => {
         API.getAllListings()
