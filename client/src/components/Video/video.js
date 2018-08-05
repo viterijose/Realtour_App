@@ -155,6 +155,10 @@ class Video extends React.Component {
                         console.log("Button clicked spin")
                         socket.emit('event', { name: "spin" });
                     }} type="button" className="btn btn-warning">spin</button>
+                    <button onClick={() => {
+                        console.log("Button clicked spin")
+                        socket.emit('event', { name: "demo" });
+                    }} type="button" className="btn btn-warning">Demo</button>
                     
                 </div>
 

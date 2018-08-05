@@ -55,13 +55,37 @@ io.on('connection', (client) => {
       if (data.name == "takeoff") {
         console.log("******Browser asked Ar Drone to Take Off*****");
         drone.takeoff();
+      }
+      if (data.name == "spin") {
+        console.log("Browser asked Ar Drone to Start Spinning");
+        client.clockwise(1);
+      }
+      if (data.name == "stop") {
+        console.log("Client asked Drone to Stay and Hover");
+        client.stop();
+      }
+      if (data.name == "land") {
+        console.log("Browser asked Ar Drone to Land");
+        client.land();
+      }
+
+      if(data.name == "demo"){
+        console.log("performing the Demo")
+        drone.takeoff();
         drone.after(3000, function () {
           console.log("about to land");
           this.stop();
           this.land();
           console.log("landed");
         });
+
       }
+
+
+
+
+
+
     });
 
 
