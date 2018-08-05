@@ -1,10 +1,13 @@
 import React from "react";
+import Navbar from "../components/Navbar"
 import { Container } from "../../src/components/Grid"
 import ContainerSpace from "../components/Containers"
 import { FlexBox, FlexRow } from "../components/FlexBox"
 import ListingCard from "../components/ListingCard"
 import images from "../images.json"
 import API from "../utils/API"
+import NavHeader from "../components/NavHeader"
+import { SearchInput, SearchBtn, SearchContainer } from "../components/SearchBar"
 
 class Home extends React.Component {
     constructor(props) {
@@ -62,8 +65,16 @@ class Home extends React.Component {
     }
     render() {
         return (
-
             <div>
+                <Container fluid>
+                    <Navbar
+                        src={this.state.images[0].src}
+                    />
+                    <NavHeader
+                        display={this.state.display}
+                        userId={this.state.userId}
+                    />
+                </Container>
 
 
                 <ContainerSpace />
@@ -82,6 +93,8 @@ class Home extends React.Component {
                 <ContainerSpace />
 
                 <Container fluid>
+
+
                     <FlexBox>
                         {this.state.listings.map(listing => {
                             return (

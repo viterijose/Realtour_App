@@ -2,8 +2,7 @@ import React from "react";
 import ReactModal from "react-modal";
 import PropTypes from "prop-types";
 import ModalSignIn from "./ModalSignIn"
-import { Col, Row, Container } from "../Grid";
-import SignOutButton from '../SignOutButton';
+import { Col, Row, Container } from "../Grid"
 
 const customStyles = {
   content: {
@@ -37,8 +36,7 @@ class ModalWrapper extends React.Component {
   render() {
     return (
       <div>
-        {this.props.auth === false && <button onClick={this.handleOpenModal} className="btn btn-primary">Sign In</button>}
-        {this.props.auth === true && <SignOutButton />}
+        <button onClick={this.handleOpenModal} className="btn btn-primary">Sign In</button>
         <ReactModal
           isOpen={this.state.showModal}
           contentLabel="Minimal Modal Example"
