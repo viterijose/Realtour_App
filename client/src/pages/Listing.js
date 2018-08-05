@@ -1,11 +1,15 @@
-import React from "react";
-import Navbar from "../components/Navbar"
-import { Container } from "../../src/components/Grid"
-import ContainerSpace from "../components/Containers"
-import images from "../images.json"
-import API from "../utils/API"
-import NavHeader from "../components/NavHeader"
-import { SaveBtn, ListingDetail } from "../components/ListingDetail";
+import React from "react"; //Andre Branch
+import Navbar from "../components/Navbar";
+import { Container } from "../../src/components/Grid";
+import ContainerSpace from "../components/Containers";//Andre Branch
+import images from "../images.json";
+import API from "../utils/API";//Andre Branch
+import NavHeader from "../components/NavHeader";
+import { SaveBtn, ListingDetail } from "../components/ListingDetail";//Andre Branch
+
+import withAuthorization from "../components/withAuthorization";
+
+const authCondition = (authUser) => !!authUser; //returns a true due to double exclamation mark
 
 
 class Listing extends React.Component {
@@ -80,4 +84,4 @@ class Listing extends React.Component {
 
 }
 
-export default Listing;
+export default withAuthorization(authCondition)(Listing);
