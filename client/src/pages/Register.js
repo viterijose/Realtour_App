@@ -2,7 +2,7 @@ import React from "react";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { FormBtn, Input, FormContainer } from "../components/Form";
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 import images from "../images.json";
 import ContainerSpace from "../components/Containers";
 import { auth } from '../firebase';
@@ -135,19 +135,12 @@ class Register extends React.Component {
                                         value={passwordConfirm}
                                         onChange={this.handleInputChange}
                                     />
-                                    {/* <Input
-                                    name="passwordCheck"
-                                    type="password"
-                                    placeholder="Verify Password"
-                                    value={this.state.passwordCheck}
-                                    onChange={this.handleInputChange}
-                                /> */}
                                     <br />
                                     <FormBtn
                                         disabled={!(this.state.firstName && this.state.lastName && this.state.userName && this.state.email && this.state.password)}
                                         onClick={this.handleFormSubmit}
                                     >
-                                        Submit Listing
+                                        Submit
                                 </FormBtn>
 
                                     {error && <p>{error.message}</p>}

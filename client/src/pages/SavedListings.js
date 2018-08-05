@@ -53,12 +53,12 @@ class SavedListings extends React.Component {
 
         return (
             <div>
-                <Container fluid>
+                {/* <Container fluid>
                     <Navbar
                         src={this.state.images[0].src}
                     />
                     <NavHeader />
-                </Container>
+                </Container> */}
 
 
                 <ContainerSpace />

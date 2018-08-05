@@ -69,7 +69,7 @@ class PostListing extends React.Component {
     render() {
         return (
             <div>
-                <Container fluid>
+                {/* <Container fluid>
                     <Navbar
                         src={this.state.images[0].src}
                     />
@@ -77,7 +77,7 @@ class PostListing extends React.Component {
                         display={this.state.display}
                         userId={this.state.userId}
                     />
-                </Container>
+                </Container> */}
 
                 <ContainerSpace />
 
