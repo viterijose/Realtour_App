@@ -1,18 +1,15 @@
 import React from "react";
-import Navbar from "../components/Navbar"
-import { Container } from "../../src/components/Grid"
 import ContainerSpace from "../components/Containers"
-import images from "../images.json"
 import API from "../utils/API"
-import NavHeader from "../components/NavHeader"
 import { SaveBtn, ListingDetail } from "../components/ListingDetail";
+import withAuthorization from '../components/withAuthorization';
 
+const authCondition = (authUser) => !!authUser;
 
 class Listing extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            images,
             listing: {},
             login: false,
             display: "block",
@@ -22,7 +19,8 @@ class Listing extends React.Component {
 
     }
     SaveListing = listing_id => {
-        // console.log(listing_id)
+
+        console.log(listing_id)
         API.saveListing({ listing_id })
             .then(res => console.log(res.data))
             .catch(err => console.log(err))
@@ -42,37 +40,24 @@ class Listing extends React.Component {
 
 
     render() {
+
+        const { imgSrc, _id, price, city, street, zipcode } = this.state.listing;
+
         return (
             <div>
-                <Container fluid>
-                    <Navbar
-                        src={this.state.images[0].src}
-                    />
-                    <NavHeader
-                        display={this.state.display}
-                        userId={this.state.userId}
-                    />
-                </Container>
-
-
                 <ContainerSpace />
-                <Container>
-                    <ListingDetail
-                        src={this.state.listing.imgSrc}
-                        id={this.state.listing._id}
-                        price={this.state.listing.price}
-                        key={this.state.listing._id}
-                        city={this.state.listing.city}
-                        address={this.state.listing.street}
-                        zipcode={this.state.listing.zipcode}
-                        description={this.state.listing.description}
-                        openHouse={this.state.listing.openHouse}
 
-                    />
-                    <br />
-                    <SaveBtn onClick={() => this.SaveListing(this.state.listing._id)} />
-                </Container>
-                <ContainerSpace />
+                <ListingDetail
+                    src={imgSrc}
+                    id={_id}
+                    price={price}
+                    key={_id}
+                    city={city}
+                    address={street}
+                    zipcode={zipcode}
+
+                />
+                <SaveBtn onClick={() => this.SaveListing(_id)} />
             </div>
 
         )
@@ -80,4 +65,4 @@ class Listing extends React.Component {
 
 }
 
-export default Listing;
+export default withAuthorization(authCondition)(Listing);

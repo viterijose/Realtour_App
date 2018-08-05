@@ -1,12 +1,11 @@
 import React from "react";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
-import { FormBtn, Input, TextArea } from "../components/Form";
-import { Carousel, CarouselItem, CarouselActItem } from "../components/Carousel"
-import Navbar from "../components/Navbar";
-import NavHeader from "../components/NavHeader"
-import images from "../images.json";
+import { FormBtn, Input } from "../components/Form";
 import ContainerSpace from "../components/Containers";
+import withAuthorization from '../components/withAuthorization';
+
+const authCondition = (authUser) => !!authUser;
 
 
 class PostListing extends React.Component {
@@ -22,7 +21,6 @@ class PostListing extends React.Component {
             price: "",
             description: "",
             date: new Date(Date.now()),
-            images
         }
     }
 
@@ -65,15 +63,6 @@ class PostListing extends React.Component {
     render() {
         return (
             <div>
-                <Container fluid>
-                    <Navbar
-                        src={this.state.images[0].src}
-                    />
-                    <NavHeader
-                        display={this.state.display}
-                        userId={this.state.userId}
-                    />
-                </Container>
 
                 <ContainerSpace />
 
@@ -167,4 +156,4 @@ class PostListing extends React.Component {
     }
 }
 
-export default PostListing;
+export default withAuthorization(authCondition)(PostListing);
