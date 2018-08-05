@@ -47,9 +47,33 @@ io.on('connection', (client) => {
 
       let batteryLevel = drone.battery();
 
-      client.emit('timer', [{ time, name: 'battery', value: batteryLevel } ]);
+      client.emit('timer', [{ time, name: 'battery', value: batteryLevel }]);
     }, interval);
+
+    client.on('event', function (data) {
+      //console.log("IO is now running 1")
+      if (data.name == "takeoff") {
+        console.log("******Browser asked Ar Drone to Take Off*****");
+        drone.takeoff();
+        drone.after(3000, function () {
+          console.log("about to land");
+          this.stop();
+          this.land();
+          console.log("landed");
+        });
+      }
+    });
+
+
+
+
+
   });
+
+
+
+
+
 });
 
 //phase 2
@@ -68,6 +92,13 @@ console.log('listening on port ', port);
 
 require("dronestream").listen(3010);
 // -Donald
+
+
+
+
+
+
+
 
 // Start the API server
 app.listen(PORT, function () {

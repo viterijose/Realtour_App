@@ -28,29 +28,29 @@ socket.on('timer', function (data) {
         document.getElementById("battery-indicator").style.width = data[0].value + "%";
         document.getElementById("numVal").innerHTML = data[0].value + "%";
         let batPercent = data[0].value;
-       
-            //Battery percentage tests
-            // document.getElementById("battery-indicator").style.width = count  + "%";
-            // document.getElementById("numVal").innerHTML = count + "%";
-            // let batPercent = count;
+
+        //Battery percentage tests
+        // document.getElementById("battery-indicator").style.width = count  + "%";
+        // document.getElementById("numVal").innerHTML = count + "%";
+        // let batPercent = count;
 
 
-       let level =  document.getElementById("batteryNew");
+        let level = document.getElementById("batteryNew");
 
-        if(batPercent >= 80){
+        if (batPercent >= 80) {
             level.innerHTML = "&#xf240;";
-        }else if(batPercent <=79 && batPercent >=60){
+        } else if (batPercent <= 79 && batPercent >= 60) {
             level.innerHTML = "&#xf241;";
-        }else if(batPercent <=59 && batPercent >=40){
+        } else if (batPercent <= 59 && batPercent >= 40) {
             level.innerHTML = "&#xf242;";
-        }else if(batPercent <=39 && batPercent >=20){
+        } else if (batPercent <= 39 && batPercent >= 20) {
             level.innerHTML = "&#xf243;";
-        }else if(batPercent <=19 && batPercent >=0){
+        } else if (batPercent <= 19 && batPercent >= 0) {
             level.innerHTML = "&#xf244;";
         }
 
-        if(count<=99)
-        count++;
+        if (count <= 99)
+            count++;
     }
 });
 
@@ -74,7 +74,33 @@ class Video extends React.Component {
         //*** this is Key getting it working  */
         // eslint-disable-next-line
         new NodecopterStream(document.getElementById("droneStream"), { hostname: 'localhost', port: 3010 });
-        
+
+
+        function startCameraFeed() {
+            navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+            var constraints = { audio: false, video: true };
+            var video = document.querySelector("video");
+
+            function successCallback(stream) {
+                window.stream = stream; // stream available to console
+                if (window.URL) {
+                    video.src = window.URL.createObjectURL(stream);
+                } else {
+                    video.src = stream;
+                }
+                video.play();
+            }
+
+            function errorCallback(error) {
+                console.log("navigator.getUserMedia error: ", error);
+            }
+
+            navigator.getUserMedia(constraints, successCallback, errorCallback);
+
+        }
+        startCameraFeed();
+
     }
 
     render() {
@@ -83,9 +109,9 @@ class Video extends React.Component {
 
                 <h1> Real Tour Live Drone Feed</h1>
                 <br />
-                
+
                 <div className="Batterycontainer">
-                    <div id="batteryNew" class="fa"></div><span id="numVal">loading</span>
+                    <div id="batteryNew" className="fa"></div><span id="numVal">loading</span>
                 </div>
 
                 <br />
@@ -102,13 +128,37 @@ class Video extends React.Component {
                         <p>Current Date: {this.state.timestamp} </p>
                     </div>
                     <div className="clear"></div>
+
+                    <h1>Your Camera Feed</h1>
+                    <video id="live" width="640" height="360" autoPlay></video>
+
                 </div>
 
                 <div className="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" className="btn btn-danger">Launch</button>
-                    <button type="button" className="btn btn-success">Land</button>
-                    <button type="button" className="btn btn-warning">Camera</button>
+
+                    <button onClick={() => {
+                        console.log("Button clicked launch")
+                        socket.emit('event', { name: "takeoff" });
+                    }} type="button" className="btn btn-danger">Launch</button>
+
+                    <button onClick={() => {
+                        console.log("Button clicked stop")
+                        socket.emit('event', { name: "stop" });
+                    }} type="button" className="btn btn-warning">Stop</button>
+
+                    <button onClick={() => {
+                        console.log("Button clicked land")
+                        socket.emit('event', { name: "land" });
+                    }} type="button" className="btn btn-success">Land</button>
+
+                    <button onClick={() => {
+                        console.log("Button clicked spin")
+                        socket.emit('event', { name: "spin" });
+                    }} type="button" className="btn btn-warning">spin</button>
+                    
                 </div>
+
+
 
             </div>
         )
