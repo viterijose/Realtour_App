@@ -12,6 +12,17 @@ import { ListingDetail, EditBtn } from "../components/ListingDetail";
 import { Input, TextArea, FormBtn } from "../components/Form";
 // import { Carousel, CarouselActItem } from "../components/Carousel"
 
+import withAuthorization from '../components/withAuthorization';
+
+//--test
+
+const authCondition = (authUser) => !!authUser;
+
+import { ListingDetail, EditBtn } from "../components/ListingDetail";
+import { Input, TextArea, FormBtn } from "../components/Form";
+// import { Carousel, CarouselActItem } from "../components/Carousel"
+
+
 class MyListings extends React.Component {
     constructor(props) {
         super(props);
