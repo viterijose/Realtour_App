@@ -8,8 +8,7 @@ class Navbar extends React.Component {
 
 
     render() {
-        const { src, auth } = this.props;
-
+        const { src } = this.props;
         return (
             <Container fluid>
 
@@ -21,10 +20,11 @@ class Navbar extends React.Component {
                     <div>
                         <ul className="nav justify-content-end">
                             <li className="nav-item active">
-                            <ModalWrapper auth={auth}/>
+                            <ModalWrapper/>
+                                {/* <a className="nav-link" >Sign In<span className="sr-only">(current)</span></a> */}
                             </li>
                             <li className="nav-item active">
-                                {auth === false && <a className="nav-link" href="/register">Register<span className="sr-only">(current)</span></a>}
+                                <a className="nav-link" href="/register">Register<span className="sr-only">(current)</span></a>
                             </li>
                         </ul>
                     </div>
@@ -36,7 +36,6 @@ class Navbar extends React.Component {
         )
     }
 }
-
 Navbar.props = {
     children: PropTypes.node,
     src: PropTypes.string

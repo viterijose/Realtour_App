@@ -1,6 +1,6 @@
 import React from "react";
 import API from "../utils/API";
-import { Container } from "../components/Grid";
+import { Col, Row, Container } from "../components/Grid";
 import ContainerSpace from "../components/Containers";
 import Navbar from "../components/Navbar";
 import NavHeader from "../components/NavHeader";
@@ -8,11 +8,9 @@ import images from "../images.json"
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-
-import withAuthorization from '../components/withAuthorization';
-
-const authCondition = (authUser) => !!authUser;
-
+import { ListingDetail, EditBtn } from "../components/ListingDetail";
+import { Input, TextArea, FormBtn } from "../components/Form";
+// import { Carousel, CarouselActItem } from "../components/Carousel"
 
 class MyListings extends React.Component {
     constructor(props) {
@@ -20,10 +18,20 @@ class MyListings extends React.Component {
         this.state = {
             images,
             listings: [],
-            user: {},
             listing: {},
             isUpdate: false,
-
+            user: {
+                "_id": "5b63aeddb13c1d098fb11ab9",
+                // "firstName": "Iman",
+                // "lastName": "Eltyab",
+                // "userName": "pbaff",
+                // "email": "andre.myers99@gmail.com",
+                // "password": "Paganizonda1",
+                // "ub_date": {
+                //     "$date": "2018-07-25T05:22:37.361Z"
+                // },
+                // "__v": 0
+            },
             startDate: moment(),
             endDate: moment(),
         };
@@ -291,68 +299,94 @@ class MyListings extends React.Component {
         });
     }
 
+    // render() {
+    //     return (
+    //         <div>
+    //             <Container fluid>
+    //                 <Navbar
+    //                     src={this.state.images[0].src}
+    //                 />
+    //                 <NavHeader
+    //                     display={this.state.display}
+    //                     userId={this.state.userId}
+    //                 />
+    //             </Container>
+    //             <ContainerSpace />
+    //             <Container >
+
+
+    //                 {this.state.listings.map(listing => {
+    //                     return (
+    //                         <div key={listing._id}>
+    //                             <Row>
+    //                                 <Col size="lg-12">
+    //                                     <ListingDetail
+    //                                         src={listing.imgSrc}
+    //                                         id={listing._id}
+    //                                         price={listing.price}
+    //                                         key={listing._id}
+    //                                         city={listing.city}
+    //                                         address={listing.street}
+    //                                         zipcode={listing.zipcode}
+    //                                     />
+
+    //                                 </Col>
+    //                             </Row>
+    //                             <br />
+    //                             <Row>
+    //                                 <Col size="lg-4">
+    //                                     From:
+    //                        <DatePicker
+    //                                         selected={this.state.startDate}
+    //                                         selectsStart
+    //                                         showTimeSelect
+    //                                         timeFormat="HH:mm"
+    //                                         timeIntervals={15}
+    //                                         dateFormat="LLL"
+    //                                         timeCaption="time"
+    //                                         startDate={this.state.startDate}
+    //                                         endDate={this.state.endDate}
+    //                                         onChange={this.handleChangeStart}
+    //                                     />
+    //                                     To:
+    //                       <DatePicker
+    //                                         selected={this.state.endDate}
+    //                                         selectsEnd
+    //                                         showTimeSelect
+    //                                         timeFormat="HH:mm"
+    //                                         timeIntervals={15}
+    //                                         dateFormat="LLL"
+    //                                         timeCaption="time"
+    //                                         startDate={this.state.startDate}
+    //                                         endDate={this.state.endDate}
+    //                                         onChange={this.handleChangeEnd}
+    //                                     />
+    //                                     <br />
+    //                                 </Col>
+    //                             </Row>
+    //                             <Row>
+    //                                 <Col size="lg-2">
+    //                                     <button className="btn btn-success" onClick={this.createOpenHouse} >Submit</button>
+    //                                 </Col>
+    //                                 <Col size="lg-2">
+    //                                     <EditBtn onClick={() => this.editListing(this.state.listing._id)}/>
+    //                                 </Col>
+    //                             </Row>
+    //                             <hr />
+    //                         </div>
+
+    //                     );
+    //                 })}
+    //             </Container>
+    //             <ContainerSpace />
+    //         </div>
+    //     )
+    // }
 
     render() {
-        const { listings } = this.state;
-        return (
-            <div>
-                <ContainerSpace />
-                <Container fluid>
-
-                                <FlexRow id={listing._id} key={listing._id}>
-                                    <ListingCard
-                                        src={listing.imgSrc}
-                                        id={listing._id}
-                                        price={listing.price}
-                                        key={listing._id}
-                                        city={listing.city}
-                                        address={listing.street}
-                                        zipcode={listing.zipcode}
-                                    />
-                                </FlexRow>
-                            );
-                        })}
-                    </FlexBox>
-                    {
-                        listings.length > 0 &&
-                        <div>
-                            From:
-                    <DatePicker
-                                selected={this.state.startDate}
-                                selectsStart
-                                showTimeSelect
-                                timeFormat="HH:mm"
-                                timeIntervals={15}
-                                dateFormat="LLL"
-                                timeCaption="time"
-                                startDate={this.state.startDate}
-                                endDate={this.state.endDate}
-                                onChange={this.handleChangeStart}
-                            />
-                            To:
-                    <DatePicker
-                                selected={this.state.endDate}
-                                selectsEnd
-                                showTimeSelect
-                                timeFormat="HH:mm"
-                                timeIntervals={15}
-                                dateFormat="LLL"
-                                timeCaption="time"
-                                startDate={this.state.startDate}
-                                endDate={this.state.endDate}
-                                onChange={this.handleChangeEnd}
-                            />
-                            <button onClick={this.createOpenHouse} >Submit</button>
-                        </div>}
-                    {
-                        listings.length < 1 &&
-                        <h2>You haven't posted any listings...</h2>
-                    }
-                </Container>
-            </div>
-        )
-
+        if (!this.state.isUpdate) return this.readListing();
+        else return this.updateListing();
     }
 }
 
-export default withAuthorization(authCondition)(MyListings);
+export default MyListings;

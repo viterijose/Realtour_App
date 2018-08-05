@@ -1,20 +1,19 @@
 import React from "react";
-import { Container } from "../../src/components/Grid"
+import Navbar from "../components/Navbar"
+import { Col, Row, Container } from "../../src/components/Grid"
 import ContainerSpace from "../components/Containers"
+import images from "../images.json"
 import API from "../utils/API"
+import NavHeader from "../components/NavHeader"
 import { ListingDetail, DeleteBtn } from "../components/ListingDetail";
-
-import withAuthorization from '../components/withAuthorization';
-
 import {Appointment} from "../components/Appointment";
 
-
-const authCondition = (authUser) => !!authUser;
 
 class SavedListings extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            images,
             listings: [],
             isAppointment: false,
             userId:"5b63aeddb13c1d098fb11ab9"
@@ -50,6 +49,14 @@ class SavedListings extends React.Component {
 
         return (
             <div>
+                <Container fluid>
+                    <Navbar
+                        src={this.state.images[0].src}
+                    />
+                    <NavHeader />
+                </Container>
+
+
                 <ContainerSpace />
                 <Container>
 
@@ -98,4 +105,4 @@ class SavedListings extends React.Component {
 
 }
 
-export default withAuthorization(authCondition)(SavedListings);
+export default SavedListings;

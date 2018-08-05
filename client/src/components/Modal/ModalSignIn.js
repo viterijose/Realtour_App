@@ -1,46 +1,27 @@
 import React from "react";
 import { FormBtn, Input } from "../Form"
-import { withRouter } from 'react-router-dom';
-import { RegisterLink } from "../../pages/Register";
-import { auth } from '../../firebase';
-
-// const SignInPage = ({ history }) =>
-//     <div>
-//         <ModalSignIn history={history} />
-//         <RegisterLink />
-//     </div>
-
 class ModalSignIn extends React.Component {
-    constructor(props) {
+    constructor(props){
         super(props);
-        this.state = {
-            email: "",
-            password: "",
-            error: null,
+        this.state={
+            username:"",
+            email:"",
+            password:""
         }
         this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
     }
     handleInputChange = event => {
-        const { name, value } = event.target
+        const{name,value} = event.target
         this.setState({
-            [name]: value
+            [name]:value
         })
     }
     handleLoginSubmit = event => {
         event.preventDefault();
-        const { email, password } = this.state;
-        const { history } = this.props;
-        auth.doSignInWithEmailAndPassword(email, password)
-            .then(() => {
-                history.push('/myListings');
-            })
-            .catch(error => this.setState({ error: error }))
+        //FIREBASE LOGIN
 
     }
     render() {
-        const { email, password, error } = this.state;
-        const isInvalid = password === "" || email === "";
-
         return (
             <div>
                 <form>
@@ -48,33 +29,28 @@ class ModalSignIn extends React.Component {
                     <Input
                         value={this.state.username}
                         onChange={this.handleInputChange}
-                        name="email"
-                        placeholder="Email"
+                        name="username"
+                        placeholder="Username"
                     />
-                    <hr />
+                    <hr/>
                     <Input
                         value={this.state.password}
                         onChange={this.handleInputChange}
                         name="password"
                         type="password"
-                        placeholder="Password"
+                        placeholder="Password (required)"
                     />
-                    <hr />
-                    <FormBtn
-                        className="btn btn-success"
-                        disabled={isInvalid}
-                        onClick={this.handleLoginSubmit}
+                    <hr/>
+                    <FormBtn 
+                        className ="btn btn-success"
+                        disabled={!(this.state.username && this.state.password)}
+                        onClick = {this.handleLoginSubmit}
                     >
-                        Login
+                    Login
                     </FormBtn>
-                    {error && <p>{error.message}</p>}
                 </form>
-                {/* <RegisterLink /> */}
             </div>
         )
     }
 }
-
-// export default withRouter(SignInPage);
-
-export default ModalSignIn ;
+export default ModalSignIn
