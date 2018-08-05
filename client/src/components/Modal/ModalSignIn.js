@@ -32,7 +32,8 @@ class ModalSignIn extends React.Component {
         const { history } = this.props;
         auth.doSignInWithEmailAndPassword(email, password)
             .then(() => {
-                history.push('/myListings');
+                // history.push('/myListings');
+                // this.close();
             })
             .catch(error => this.setState({ error: error }))
 

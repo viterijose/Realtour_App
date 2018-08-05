@@ -1,21 +1,14 @@
 import React from "react";
-<<<<<<< HEAD
-=======
 import Navbar from "../components/Navbar"
->>>>>>> joseBranch
 import { Container } from "../../src/components/Grid"
 import ContainerSpace from "../components/Containers"
 import { FlexBox, FlexRow } from "../components/FlexBox"
 import ListingCard from "../components/ListingCard"
 import images from "../images.json"
 import API from "../utils/API"
-<<<<<<< HEAD
-
-=======
 import NavHeader from "../components/NavHeader"
 import { SearchInput, SearchBtn, SearchContainer } from "../components/SearchBar"
 import { AboutUs } from "../components/AboutUs"
->>>>>>> joseBranch
 
 class Home extends React.Component {
     constructor(props) {
@@ -73,9 +66,6 @@ class Home extends React.Component {
     }
     render() {
         return (
-<<<<<<< HEAD
-            <div> 
-=======
             <div>
                 {/* <Container fluid> */}
                 {/* <Navbar
@@ -101,7 +91,6 @@ class Home extends React.Component {
                     />
                 </SearchContainer>
 
->>>>>>> joseBranch
                 <ContainerSpace />
 
                 <Container fluid>

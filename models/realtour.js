@@ -13,14 +13,9 @@ const realtourSchema = new Schema({
   price: { type: Number, required: true },
   description:{type:String},
   openHouse: {start: {type: Date}, end: {Type: Date}},
-<<<<<<< HEAD
-  pub_date: { type: Date, default: Date.now },
-  description: {type: String},
-=======
   pub_date: { type: Date, default: Date.now }
 
   
->>>>>>> joseBranch
 })
 
 // Virtual for listings' URL

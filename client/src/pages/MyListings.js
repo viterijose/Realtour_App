@@ -1,6 +1,6 @@
 import React from "react";
 import API from "../utils/API";
-import { Container } from "../components/Grid";
+import { Row, Col, Container } from "../components/Grid";
 import ContainerSpace from "../components/Containers";
 import Navbar from "../components/Navbar";
 import NavHeader from "../components/NavHeader";

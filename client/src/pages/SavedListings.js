@@ -1,17 +1,11 @@
 import React from "react";
-import { Container } from "../../src/components/Grid"
+import { Row, Col, Container } from "../../src/components/Grid"
 import ContainerSpace from "../components/Containers"
 import API from "../utils/API"
 import { ListingDetail, DeleteBtn } from "../components/ListingDetail";
-<<<<<<< HEAD
-import withAuthorization from '../components/withAuthorization';
-=======
 import {Appointment} from "../components/Appointment";
 
 import withAuthorization from '../components/withAuthorization';
-
-const authCondition = (authUser) => !!authUser;
->>>>>>> joseBranch
 
 const authCondition = (authUser) => !!authUser;
 
@@ -54,8 +48,6 @@ class SavedListings extends React.Component {
 
         return (
             <div>
-<<<<<<< HEAD
-=======
                 {/* <Container fluid>
                     <Navbar
                         src={this.state.images[0].src}
@@ -64,7 +56,6 @@ class SavedListings extends React.Component {
                 </Container> */}
 
 
->>>>>>> joseBranch
                 <ContainerSpace />
                 <Container>
 

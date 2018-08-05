@@ -9,9 +9,8 @@ import images from "../images.json";
 import ContainerSpace from "../components/Containers";
 import withAuthorization from '../components/withAuthorization';
 
-const authCondition = (authUser) => !!authUser;
 
-import withAuthorization from '../components/withAuthorization';//Andre Branch
+
 
 const authCondition = (authUser) => !!authUser;//Andre Branch
 
@@ -20,7 +19,7 @@ class PostListing extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            ownerName: "",
+            owner: "",
             street: "",
             city: "",
             state: "",
@@ -29,6 +28,7 @@ class PostListing extends React.Component {
             price: "",
             description: "",
             date: new Date(Date.now()),
+            images
         }
     }
 
@@ -44,7 +44,7 @@ class PostListing extends React.Component {
         event.preventDefault();
 
         API.postListing({
-            ownerName: this.state.ownerName,
+            owner: this.state.owner,
             street: this.state.street,
             city: this.state.city,
             zipcode: this.state.zipcode,
@@ -56,7 +56,7 @@ class PostListing extends React.Component {
             .then(res => {
                 console.log(res.data)
                 this.setState({
-                    ownerName: "",
+                    owner: "",
                     street: "",
                     city: "",
                     zipcode: "",
