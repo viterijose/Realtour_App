@@ -1,0 +1,33 @@
+.aboutUsImg{
+    width:80%
+}
+.aboutus-container{
+    background-image:url('https://igloosurfaces.com/wp-content/uploads/2017/08/Stuble-Pebble.png');
+    background-repeat: repeat;
+    background-size: 100%;
+    /* background-color: darkgray; */
+    padding:40px
+}
+.aboutus-h3{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 45px;
+    /* text-align: center; */
+    color: rgb(15, 148, 215)
+}
+.aboutus-h5{
+    font-weight: lighter
+}
+.aboutus-p{
+    font-weight: lighter;
+    text-align: justify;
+    font-size: 12px;
+}
+.aboutus-btn{
+    border: solid 1px rgb(0, 153, 255);
+    padding: 10px;
+    margin:auto;
+    background-color:transparent;
+    text-align: justify;
+    font-weight: lighter;
+    font-size: 15px;
+}

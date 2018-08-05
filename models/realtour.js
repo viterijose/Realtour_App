@@ -3,15 +3,24 @@ const Schema = mongoose.Schema;
 
 const realtourSchema = new Schema({
   owner: { type: Schema.Types.ObjectId, ref: 'Users' },
+  hasAppointments:{type: Boolean, required: true},
   appointments: [{ type: Schema.Types.ObjectId, ref: 'Appointments' }],
   street: { type: String, required: true },
   city: { type: String, required: true },
   zipcode: { type: String, required: true },
   coordinates: [Number],
+  img: {type: String , data: Buffer},
   price: { type: Number, required: true },
+  description:{type:String},
   openHouse: {start: {type: Date}, end: {Type: Date}},
+<<<<<<< HEAD
   pub_date: { type: Date, default: Date.now },
   description: {type: String},
+=======
+  pub_date: { type: Date, default: Date.now }
+
+  
+>>>>>>> joseBranch
 })
 
 // Virtual for listings' URL

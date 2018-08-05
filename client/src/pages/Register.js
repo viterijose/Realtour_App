@@ -1,7 +1,12 @@
 import React from "react";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
+<<<<<<< HEAD
 import { FormBtn, Input, FormContainer, } from "../components/Form";
+=======
+import { FormBtn, Input, FormContainer } from "../components/Form";
+// import Navbar from "../components/Navbar";
+>>>>>>> joseBranch
 import images from "../images.json";
 import ContainerSpace from "../components/Containers";
 import { auth } from '../firebase';
@@ -51,6 +56,7 @@ class Register extends React.Component {
         event.preventDefault();
         // console.log(this.state.ownerName)
         // if (this.state.password === this.passwordCheck) {
+<<<<<<< HEAD
         API.registerUser({
             firstName: firstName,
             lastName: lastName,
@@ -58,16 +64,31 @@ class Register extends React.Component {
             email: email,
             password: password,
             date: date,
+=======
+        const { history } = this.props;
+        API.registerUser({
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            userName: this.state.userName,
+            email: this.state.email,
+            password: this.state.password,
+            date: this.state.date
+>>>>>>> joseBranch
         })
             .then(res => console.log(res.data))
             .catch(err => console.log(err));
 
+<<<<<<< HEAD
         auth.doCreateUserWithEmailAndPassword(email, password)
+=======
+        auth.doCreateUserWithEmailAndPassword(this.state.email, this.state.password)
+>>>>>>> joseBranch
             .then(authUser => {
                 console.log(authUser);
                 history.push('/myListings')
             })
             .catch(err => this.setState({ error: err }));
+<<<<<<< HEAD
         // }else{
         //     this.setState({
         //         password:"",
@@ -78,6 +99,11 @@ class Register extends React.Component {
         // }
     }
     render() {
+=======
+    }
+    render() {
+
+>>>>>>> joseBranch
         const {
             firstName,
             lastName,
@@ -92,8 +118,20 @@ class Register extends React.Component {
 
         return (
             <div>
+<<<<<<< HEAD
                 <ContainerSpace />
 
+=======
+                {/* <Container fluid>
+                    <Navbar
+                        src={this.state.images[0].src}
+                    />
+
+                </Container> */}
+
+                <ContainerSpace />
+
+>>>>>>> joseBranch
                 <Container fluid>
                     <Row>
                         <Col size="lg-4">
@@ -144,6 +182,7 @@ class Register extends React.Component {
                                         value={passwordConfirm}
                                         onChange={this.handleInputChange}
                                     />
+<<<<<<< HEAD
                                     {/* <Input
                                     name="passwordCheck"
                                     type="password"
@@ -158,6 +197,16 @@ class Register extends React.Component {
                                     >
                                         Submit
                                     </FormBtn>
+=======
+                                    <br />
+                                    <FormBtn
+                                        disabled={!(this.state.firstName && this.state.lastName && this.state.userName && this.state.email && this.state.password)}
+                                        onClick={this.handleFormSubmit}
+                                    >
+                                        Submit
+                                </FormBtn>
+
+>>>>>>> joseBranch
                                     {error && <p>{error.message}</p>}
                                 </form>
                             </FormContainer>
@@ -172,6 +221,7 @@ class Register extends React.Component {
         )
     }
 }
+<<<<<<< HEAD
 
 const RegisterLink = () =>
     <p>
@@ -182,3 +232,13 @@ const RegisterLink = () =>
 
 export default withRouter(RegisterPage);
 export { Register, RegisterLink };
+=======
+const RegisterLink = () =>
+    <p>
+        Don't have an account?
+    {' '}
+        <Link to={'/register'}>Sign Up</Link>
+    </p>
+export default withRouter(RegisterPage);
+export {Register,RegisterLink};
+>>>>>>> joseBranch
