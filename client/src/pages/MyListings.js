@@ -8,9 +8,17 @@ import images from "../images.json"
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+
+import withAuthorization from '../components/withAuthorization';
+
+//--test
+
+const authCondition = (authUser) => !!authUser;
+
 import { ListingDetail, EditBtn } from "../components/ListingDetail";
 import { Input, TextArea, FormBtn } from "../components/Form";
 // import { Carousel, CarouselActItem } from "../components/Carousel"
+
 
 class MyListings extends React.Component {
     constructor(props) {
