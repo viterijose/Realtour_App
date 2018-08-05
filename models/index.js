@@ -1,3 +1,4 @@
 module.exports = {
-    Realtour : require("./realtour")
+    Realtour : require("./realtour"),
+    newUser: require("./users")
 }
