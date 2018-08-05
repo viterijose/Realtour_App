@@ -10,6 +10,9 @@ export default {
     createOpenHouse: function(apptData) {
         return axios.post('/api/openhouse', apptData)
     },
+    createAppointment: function(apptData) {
+        return axios.post('/api/appointment', apptData)
+    },
     postListing: function(listingData){
         // console.log(listingData)
         return axios.post("/api/post/listing",listingData)
@@ -29,5 +32,20 @@ export default {
     },
     deleteListing: function(id){
         return axios.delete("/api/listing/"+id)
+    },
+    patchListing: function(id,listingData){
+        // console.log(id)
+        // console.log("IN AXIOS \n"+JSON.stringify(listingData))
+        return axios.patch("/api/updateListing/"+id,listingData)
+    },
+    searchByZipcode: function(listingData){
+        // console.log(listingData)
+        // console.log("IN API:"+JSON.stringify(listingData))
+        return axios.get("/api/findListings/zipcode/"+listingData.data)
+    },
+    searchByCity: function(listingData){
+        // console.log(listingData)
+        // console.log("IN API:"+JSON.stringify(listingData))
+        return axios.get("/api/findListings/city/"+listingData.data)
     }
 }
