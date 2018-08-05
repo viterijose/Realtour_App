@@ -9,6 +9,7 @@ import Listing from "./pages/Listing";
 import SavedListings from "./pages/SavedListings";
 import images from "./images.json";
 import Navbar from "./components/Navbar";
+import NavHeader from './components/NavHeader';
 import { Container } from "./components/Grid"
 import { firebase } from './firebase';
 import AuthUserContext from './components/AuthUserContext';
@@ -39,6 +40,7 @@ class App extends Component {
               src={images[0].src}
               auth={authUser ? true : false}
             />
+            {authUser && <NavHeader />}
           </Container>
           <Router>
             <div>

@@ -61,6 +61,7 @@ class MyListings extends React.Component {
     }
 
     render() {
+        const { listings } = this.state;
         return (
             <div>
                 <ContainerSpace />
@@ -84,33 +85,41 @@ class MyListings extends React.Component {
                             );
                         })}
                     </FlexBox>
-                    From:
+                    {
+                        listings.length > 0 &&
+                        <div>
+                            From:
                     <DatePicker
-                        selected={this.state.startDate}
-                        selectsStart
-                        showTimeSelect
-                        timeFormat="HH:mm"
-                        timeIntervals={15}
-                        dateFormat="LLL"
-                        timeCaption="time"
-                        startDate={this.state.startDate}
-                        endDate={this.state.endDate}
-                        onChange={this.handleChangeStart}
-                    />
-                    To:
+                                selected={this.state.startDate}
+                                selectsStart
+                                showTimeSelect
+                                timeFormat="HH:mm"
+                                timeIntervals={15}
+                                dateFormat="LLL"
+                                timeCaption="time"
+                                startDate={this.state.startDate}
+                                endDate={this.state.endDate}
+                                onChange={this.handleChangeStart}
+                            />
+                            To:
                     <DatePicker
-                        selected={this.state.endDate}
-                        selectsEnd
-                        showTimeSelect
-                        timeFormat="HH:mm"
-                        timeIntervals={15}
-                        dateFormat="LLL"
-                        timeCaption="time"
-                        startDate={this.state.startDate}
-                        endDate={this.state.endDate}
-                        onChange={this.handleChangeEnd}
-                    />
-                    <button onClick={this.createOpenHouse} >Submit</button>
+                                selected={this.state.endDate}
+                                selectsEnd
+                                showTimeSelect
+                                timeFormat="HH:mm"
+                                timeIntervals={15}
+                                dateFormat="LLL"
+                                timeCaption="time"
+                                startDate={this.state.startDate}
+                                endDate={this.state.endDate}
+                                onChange={this.handleChangeEnd}
+                            />
+                            <button onClick={this.createOpenHouse} >Submit</button>
+                        </div>}
+                    {
+                        listings.length < 1 &&
+                        <h2>You haven't posted any listings...</h2>
+                    }
                 </Container>
             </div>
         )

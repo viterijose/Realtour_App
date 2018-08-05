@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Col, Row, Container } from "../Grid"
+import { Container } from "../Grid"
 // import ModalWrapper from "../Modal"
 
 class NavHeader extends React.Component {
 
 
     render() {
-        const { children } = this.props;
+        // const { children } = this.props;
         return (
             <Container fluid>
 

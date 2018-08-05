@@ -5,7 +5,6 @@ import { FlexBox, FlexRow } from "../components/FlexBox"
 import ListingCard from "../components/ListingCard"
 import images from "../images.json"
 import API from "../utils/API"
-import NavHeader from "../components/NavHeader";
 
 
 class Home extends React.Component {
