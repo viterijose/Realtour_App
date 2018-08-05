@@ -80,4 +80,5 @@ class Listing extends React.Component {
 
 }
 
-export default Listing;
+export default withAuthorization(authCondition)(Listing);
+//test

@@ -105,4 +105,5 @@ class SavedListings extends React.Component {
 
 }
 
-export default SavedListings;
+export default withAuthorization(authCondition)(SavedListings);
+//test

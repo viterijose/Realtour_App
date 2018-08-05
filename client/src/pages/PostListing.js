@@ -167,4 +167,5 @@ class PostListing extends React.Component {
     }
 }
 
-export default PostListing;
+export default withAuthorization(authCondition)(PostListing);
+//test
