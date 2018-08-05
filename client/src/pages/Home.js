@@ -68,13 +68,13 @@ class Home extends React.Component {
         return (
             <div>
                 {/* <Container fluid> */}
-                <Navbar
+                {/* <Navbar
                     src={this.state.images[0].src}
                 />
                 <NavHeader
                     display={this.state.display}
                     userId={this.state.userId}
-                />
+                /> */}
                 {/* </Container> */}
 
 

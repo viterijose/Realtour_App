@@ -8,6 +8,10 @@ import NavHeader from "../components/NavHeader"
 import images from "../images.json";
 import ContainerSpace from "../components/Containers";
 
+import withAuthorization from '../components/withAuthorization';//Andre Branch
+
+const authCondition = (authUser) => !!authUser;//Andre Branch
+
 
 class PostListing extends React.Component {
     constructor(props) {
@@ -167,4 +171,4 @@ class PostListing extends React.Component {
     }
 }
 
-export default PostListing;
+export default withAuthorization(authCondition)(PostListing);

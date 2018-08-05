@@ -8,6 +8,10 @@ import NavHeader from "../components/NavHeader"
 import { ListingDetail, DeleteBtn } from "../components/ListingDetail";
 import {Appointment} from "../components/Appointment";
 
+import withAuthorization from '../components/withAuthorization';
+
+const authCondition = (authUser) => !!authUser;
+
 
 class SavedListings extends React.Component {
     constructor(props) {
@@ -105,4 +109,4 @@ class SavedListings extends React.Component {
 
 }
 
-export default SavedListings;
+export default withAuthorization(authCondition)(SavedListings);

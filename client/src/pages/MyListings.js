@@ -11,6 +11,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { ListingDetail, EditBtn } from "../components/ListingDetail";
 import { Input, TextArea, FormBtn } from "../components/Form";
 // import { Carousel, CarouselActItem } from "../components/Carousel"
+import withAuthorization from '../components/withAuthorization';//Andre Branch
+
+const authCondition = (authUser) => !!authUser;//Andre Branch
 
 class MyListings extends React.Component {
     constructor(props) {
@@ -86,7 +89,7 @@ class MyListings extends React.Component {
 
     readListing = () => (
         <div>
-            <Container fluid>
+            {/* <Container fluid>
                 <Navbar
                     src={this.state.images[0].src}
                 />
@@ -94,7 +97,7 @@ class MyListings extends React.Component {
                     display={this.state.display}
                     userId={this.state.userId}
                 />
-            </Container>
+            </Container> */}
             <ContainerSpace />
             <Container >
 
@@ -171,7 +174,7 @@ class MyListings extends React.Component {
 
     updateListing = () => (
         <div>
-            <Container fluid>
+            {/* <Container fluid>
                 <Navbar
                     src={this.state.images[0].src}
                 />
@@ -179,7 +182,7 @@ class MyListings extends React.Component {
                     display={this.state.display}
                     userId={this.state.userId}
                 />
-            </Container>
+            </Container> */}
             <ContainerSpace />
             <Container >
                 <Row>
@@ -389,4 +392,4 @@ class MyListings extends React.Component {
     }
 }
 
-export default MyListings;
+export default withAuthorization(authCondition)(MyListings);
