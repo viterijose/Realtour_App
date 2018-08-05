@@ -1,0 +1,18 @@
+[
+    {
+        "src": "/images/drone.png",
+        "value": 0
+    },
+    {
+        "src": "/images/Inside.jpg",
+        "value": 1
+    },
+    {
+        "src": "/images/Building.jpg",
+        "value": 2
+    },
+    {
+        "src": "/images/drone_villa.jpg",
+        "value": 3
+    }
+]
