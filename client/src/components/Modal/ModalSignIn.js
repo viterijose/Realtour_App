@@ -76,6 +76,6 @@ class ModalSignIn extends React.Component {
     }
 }
 
-// export default withRouter(SignInPage);
+// export default withRouter(SignInPage);a
 
 export default ModalSignIn ;
