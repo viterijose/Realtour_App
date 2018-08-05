@@ -6,57 +6,103 @@ import ListingCard from "../components/ListingCard"
 import images from "../images.json"
 import API from "../utils/API"
 
-
 class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             images,
-            listings: []
+            listings: [],
+            login: false,
+            display: "block",
+            userId: "psmith",
+            searchVal: ""
 
         }
     }
 
     componentDidMount() {
-        // alert("MOUNTED")
+
         this.loadListings();
+    }
+    searchFormSubmit = () => {
+        // alert("Searching..." + this.state.searchVal)
+        if (/\d/.test(this.state.searchVal)) {
+            // const data = this.state.searchVal
+            API.searchByZipcode({ data: this.state.searchVal })
+                .then(res => this.setState({
+                    listings: res.data,
+                    searchVal: ""
+                }))
+                .catch(err => console.log(err))
+        } else {
+            // let city = this.state.searchVal.toUpperCase() -----------------for better features and eliminating bugs
+            API.searchByCity({ data: this.state.searchVal })
+                .then(res => this.setState({
+                    listings: res.data,
+                    searchVal: ""
+                }))
+                .catch(err => console.log(err))
+        }
     }
 
     loadListings = () => {
         API.getAllListings()
             .then(res => {
                 this.setState({ listings: res.data });
-                console.log(res.data)
+                // console.log(res.data)
             }
             )
             .catch(err => console.log(err));
     }
-
+    handleInputChange = event => {
+        const { name, value } = event.target
+        this.setState({
+            [name]: value
+        })
+    }
     render() {
         return (
-            <div> 
+
+            <div>
+
+
                 <ContainerSpace />
+
+                <SearchContainer>
+                    <SearchInput
+                        value={this.state.searchVal}
+                        onChange={this.handleInputChange}
+                        name="searchVal"
+                    />
+                    <SearchBtn
+                        onClick={() => this.searchFormSubmit()}
+                    />
+                </SearchContainer>
+
+                <ContainerSpace />
+
                 <Container fluid>
                     <FlexBox>
                         {this.state.listings.map(listing => {
-                                return (
-                                        <FlexRow id={listing._id} key={listing._id}>
-                                            <ListingCard
-                                                src={listing.imgSrc}
-                                                id={listing._id}
-                                                price={listing.price}
-                                                key={listing._id}
-                                                city={listing.city}
-                                                address={listing.street}
-                                                zipcode={listing.zipcode}
-                                                openHouse={listing.openHouse}
-                                            />
-                                        </FlexRow>
-                                );
+                            return (
+                                <FlexRow id={listing._id} key={listing._id}>
+                                    <ListingCard
+                                        src={listing.imgSrc}
+                                        id={listing._id}
+                                        price={listing.price}
+                                        key={listing._id}
+                                        city={listing.city}
+                                        address={listing.street}
+                                        zipcode={listing.zipcode}
+                                        openHouse={listing.openHouse}
+                                    />
+                                </FlexRow>
+                            );
                         })}
                     </FlexBox>
 
                 </Container>
+                <ContainerSpace />
             </div>
 
         )

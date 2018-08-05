@@ -72,6 +72,7 @@ class Register extends React.Component {
         //     this.setState({
         //         password:"",
         //         passwordCheck:""
+        
         //     })
         //     return alert("Passwords must match")
 

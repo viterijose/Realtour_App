@@ -11,11 +11,15 @@ class Listing extends React.Component {
         super(props);
         this.state = {
             listing: {},
+            login: false,
+            display: "block",
+            userId: "psmith"
         }
         this.SaveListing = this.SaveListing.bind(this)
 
     }
     SaveListing = listing_id => {
+
         console.log(listing_id)
         API.saveListing({ listing_id })
             .then(res => console.log(res.data))
@@ -25,12 +29,18 @@ class Listing extends React.Component {
     componentDidMount() {
         // alert("MOUNTED")
         API.getListing(this.props.match.params.id)
-            .then(res => this.setState({ listing: res.data }))
+            .then(res => {
+                this.setState({ listing: res.data })
+                console.log(this.state.listing.openHouse.start)
+            })
             .catch(err => console.log(err))
+
+          
     }
 
 
     render() {
+
         const { imgSrc, _id, price, city, street, zipcode } = this.state.listing;
 
         return (
@@ -48,7 +58,6 @@ class Listing extends React.Component {
 
                 />
                 <SaveBtn onClick={() => this.SaveListing(_id)} />
-
             </div>
 
         )

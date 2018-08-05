@@ -6,10 +6,11 @@ import { Container } from "../Grid"
 class NavHeader extends React.Component {
 
 
+
     render() {
-        // const { children } = this.props;
         return (
-            <Container fluid>
+                <Container fluid>
+
 
                 <nav className="navbar navbar-light bg-light">
 
@@ -26,7 +27,6 @@ class NavHeader extends React.Component {
                 </nav>
 
             </Container>
-
 
         )
     }
