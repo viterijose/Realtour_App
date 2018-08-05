@@ -137,4 +137,13 @@ class Register extends React.Component {
     }
 }
 
-export default Register;
+const RegisterLink = () =>
+    <p>
+        Don't have an account?
+        {' '}
+        <Link to={'/register'}>Sign Up</Link>
+    </p>
+
+export default withRouter(RegisterPage);
+export { Register, RegisterLink };
+//test
