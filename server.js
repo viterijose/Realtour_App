@@ -58,15 +58,15 @@ io.on('connection', (client) => {
       }
       if (data.name == "spin") {
         console.log("Browser asked Ar Drone to Start Spinning");
-        client.clockwise(1);
+        drone.clockwise(1);
       }
       if (data.name == "stop") {
         console.log("Client asked Drone to Stay and Hover");
-        client.stop();
+        drone.stop();
       }
       if (data.name == "land") {
         console.log("Browser asked Ar Drone to Land");
-        client.land();
+        drone.land();
       }
 
       if(data.name == "demo"){
