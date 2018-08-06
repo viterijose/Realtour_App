@@ -4,35 +4,15 @@
         "value": 0
     },
     {
-        "src": "/images/Cletus.png",
+        "src": "/images/Inside.jpg",
         "value": 1
     },
     {
-        "src": "/images/ComicbookGuy.jpg",
+        "src": "/images/Building.jpg",
         "value": 2
     },
     {
-        "src": "/images/Duffman.jpg",
+        "src": "/images/drone_villa.jpg",
         "value": 3
-    },
-    {
-        "src": "/images/Homer.jpg",
-        "value": 4
-    },
-    {
-        "src": "/images/Lisa.jpeg",
-        "value": 5
-    },
-    {
-        "src": "/images/Marge.jpg",
-        "value": 6
-    },
-    {
-        "src": "/images/MrBurns.jpg",
-        "value": 7
-    },
-    {
-        "src": "/images/Ned.jpg",
-        "value": 8
     }
 ]

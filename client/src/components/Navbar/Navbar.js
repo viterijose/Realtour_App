@@ -2,16 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Container } from "../Grid"
 import ModalWrapper from "../Modal"
+import "./Navbar.css"
 
 class Navbar extends React.Component {
 
 
     render() {
-        const { src } = this.props;
+        const { src, auth } = this.props;
+
         return (
             <Container fluid>
 
-                <nav className="navbar navbar-light bg-light">
+                <nav className="navbar navbar-light">
                 
                     <div>
                         <a href="/" className="navbar-brand"><img src={src} style={{ width: 40, height: 40 }} alt="drone" />  RealTour</a>
@@ -19,11 +21,10 @@ class Navbar extends React.Component {
                     <div>
                         <ul className="nav justify-content-end">
                             <li className="nav-item active">
-                            <ModalWrapper/>
-                                {/* <a className="nav-link" >Sign In<span className="sr-only">(current)</span></a> */}
+                            <ModalWrapper auth={auth}/>
                             </li>
                             <li className="nav-item active">
-                                <a className="nav-link" href="/register">Register<span className="sr-only">(current)</span></a>
+                                {auth === false && <a className="nav-link" href="/register">Register<span className="sr-only">(current)</span></a>}
                             </li>
                         </ul>
                     </div>
@@ -35,6 +36,7 @@ class Navbar extends React.Component {
         )
     }
 }
+
 Navbar.props = {
     children: PropTypes.node,
     src: PropTypes.string

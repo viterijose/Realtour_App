@@ -1,0 +1,13 @@
+.navheader{
+    background: rgb(120, 181, 255);
+    padding:10px
+}
+.flex-fill{
+    width:33%;
+    text-align: center;
+    border-right: solid 1px white;
+    border-left: solid 1px white;
+}
+.navbar-brand{
+    color:white
+}
