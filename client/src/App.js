@@ -13,7 +13,7 @@ import NavHeader from './components/NavHeader';//Andre Branch
 import { Container } from "./components/Grid";//Andre Branch
 import { firebase } from './firebase';//Andre Branch
 import AuthUserContext from './components/AuthUserContext';//Andre Branch
-
+import Video from "./components/Video/video";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -52,6 +52,8 @@ class App extends Component {
               <Route exact path="/listing/:id" component={Listing} />
               <Route exact path="/myListings/:id" component={MyListings} />
               <Route exact path="/savedListings/:user" component={SavedListings} />
+               {/* The Drone route */}
+              <Route exact path="/video" component={Video} />
 
             </div>
           </Router>
