@@ -33,13 +33,11 @@ class App extends Component {
     return (
       <AuthUserContext.Provider value={authUser}>
         <div>
-
           <Navbar
             src={images[0].src}
             auth={authUser ? true : false}
           />
           {authUser && <NavHeader />}
-
           <Router>
             <div>
               {/* Regular routes for no users ---- */}
@@ -52,9 +50,8 @@ class App extends Component {
               <Route exact path="/listing/:id" component={Listing} />
               <Route exact path="/myListings/:id" component={MyListings} />
               <Route exact path="/savedListings/:user" component={SavedListings} />
-               {/* The Drone route */}
+              {/* The Drone route */}
               <Route exact path="/video" component={Video} />
-
             </div>
           </Router>
         </div>
@@ -62,5 +59,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;

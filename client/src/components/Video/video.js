@@ -1,7 +1,7 @@
 import React from "react";
 import "./video.css";
 import "./font-awesome.css"
-
+import { Col, Row, Container } from "../../components/Grid";
 
 import openSocket from 'socket.io-client';
 const socket = openSocket('http://localhost:3002');
@@ -48,7 +48,6 @@ socket.on('timer', function (data) {
         } else if (batPercent <= 19 && batPercent >= 0) {
             level.innerHTML = "&#xf244;";
         }
-
         if (count <= 99)
             count++;
     }
@@ -75,37 +74,39 @@ class Video extends React.Component {
         // eslint-disable-next-line
         new NodecopterStream(document.getElementById("droneStream"), { hostname: 'localhost', port: 3010 });
 
+        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
-        function startCameraFeed() {
-            navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+        var constraints = { audio: false, video: true };
+        var video = document.querySelector("video");
 
-            var constraints = { audio: false, video: true };
-            var video = document.querySelector("video");
-
-            function successCallback(stream) {
-                window.stream = stream; // stream available to console
-                if (window.URL) {
-                    video.src = window.URL.createObjectURL(stream);
-                } else {
-                    video.src = stream;
-                }
-                video.play();
+        function successCallback(stream) {
+            window.stream = stream; // stream available to console
+            if (window.URL) {
+                video.src = window.URL.createObjectURL(stream);
+            } else {
+                video.src = stream;
             }
-
-            function errorCallback(error) {
-                console.log("navigator.getUserMedia error: ", error);
-            }
-
-            navigator.getUserMedia(constraints, successCallback, errorCallback);
-
+            video.play();
         }
-        startCameraFeed();
+        function errorCallback(error) {
+            console.log("navigator.getUserMedia error: ", error);
+        }
+        navigator.getUserMedia(constraints, successCallback, errorCallback);
+
+
 
     }
 
     render() {
         return (
             <div>
+
+
+<Container fluid>
+                    <Row>
+
+<Col size="lg-6">
+
 
                 <h1> Real Tour Live Drone Feed</h1>
                 <br />
@@ -127,12 +128,9 @@ class Video extends React.Component {
                         </div>
                         <p>Current Date: {this.state.timestamp} </p>
                     </div>
+                    </div>
                     <div className="clear"></div>
 
-                    <h1>Your Camera Feed</h1>
-                    <video id="live" width="640" height="360" autoPlay></video>
-
-                </div>
 
                 <div className="btn-group" role="group" aria-label="Basic example">
 
@@ -159,9 +157,22 @@ class Video extends React.Component {
                         console.log("Button clicked spin")
                         socket.emit('event', { name: "demo" });
                     }} type="button" className="btn btn-warning">Demo</button>
-                    
-                </div>
 
+                </div>
+                </Col>
+
+ <Col size="lg-6">
+
+                    <h1>Your Camera Feed</h1>
+                    <video id="live" width="640" height="360" autoPlay></video>
+</Col>
+              
+
+
+
+
+    </Row>
+                </Container>
 
 
             </div>
