@@ -68,8 +68,6 @@ class Video extends React.Component {
     }
 
     componentDidMount() {
-        // var lastPng; 
-
         //*** this is Key getting it working  */
         // eslint-disable-next-line
         new NodecopterStream(document.getElementById("droneStream"), { hostname: 'localhost', port: 3010 });
@@ -92,93 +90,79 @@ class Video extends React.Component {
             console.log("navigator.getUserMedia error: ", error);
         }
         navigator.getUserMedia(constraints, successCallback, errorCallback);
-
-
-
-    }
+    }//componentDidMount
 
     render() {
         return (
             <div>
-
-
-<Container fluid>
+                <Container fluid>
                     <Row>
 
-<Col size="lg-6">
+                        <Col size="lg-6">
 
 
-                <h1> Real Tour Live Drone Feed</h1>
-                <br />
+                            <h1> Real Tour Live Drone Feed</h1>
+                            <br />
 
-                <div className="Batterycontainer">
-                    <div id="batteryNew" className="fa"></div><span id="numVal">loading</span>
-                </div>
+                            <div className="Batterycontainer">
+                                <div id="batteryNew" className="fa"></div><span id="numVal">loading</span>
+                            </div>
 
-                <br />
-                <div className="bar color0">
-                    <span id="battery-indicator" style={{ width: "50%" }}></span>
-                </div>
-                <br />
+                            <br />
+                            <div className="bar color0">
+                                <span id="battery-indicator" style={{ width: "50%" }}></span>
+                            </div>
+                            <br />
 
-                <div className="vdo-log margin_bottom">
-                    <div className="video-player">
-                        <div id="droneStream">
+                            <div className="vdo-log margin_bottom">
+                                <div className="video-player">
+                                    <div id="droneStream">
 
-                        </div>
-                        <p>Current Date: {this.state.timestamp} </p>
-                    </div>
-                    </div>
-                    <div className="clear"></div>
-
-
-                <div className="btn-group" role="group" aria-label="Basic example">
-
-                    <button onClick={() => {
-                        console.log("Button clicked launch")
-                        socket.emit('event', { name: "takeoff" });
-                    }} type="button" className="btn btn-danger">Launch</button>
-
-                    <button onClick={() => {
-                        console.log("Button clicked stop")
-                        socket.emit('event', { name: "stop" });
-                    }} type="button" className="btn btn-warning">Stop</button>
-
-                    <button onClick={() => {
-                        console.log("Button clicked land")
-                        socket.emit('event', { name: "land" });
-                    }} type="button" className="btn btn-success">Land</button>
-
-                    <button onClick={() => {
-                        console.log("Button clicked spin")
-                        socket.emit('event', { name: "spin" });
-                    }} type="button" className="btn btn-warning">spin</button>
-                    <button onClick={() => {
-                        console.log("Button clicked spin")
-                        socket.emit('event', { name: "demo" });
-                    }} type="button" className="btn btn-warning">Demo</button>
-
-                </div>
-                </Col>
-
- <Col size="lg-6">
-
-                    <h1>Your Camera Feed</h1>
-                    <video id="live" width="640" height="360" autoPlay></video>
-</Col>
-              
+                                    </div>
+                                    <p>Current Date: {this.state.timestamp} </p>
+                                </div>
+                            </div>
+                            <div className="clear"></div>
 
 
+                            <div className="btn-group" role="group" aria-label="Basic example">
 
+                                <button onClick={() => {
+                                    console.log("Button clicked launch")
+                                    socket.emit('event', { name: "takeoff" });
+                                }} type="button" className="btn btn-danger">Launch</button>
 
-    </Row>
+                                <button onClick={() => {
+                                    console.log("Button clicked stop")
+                                    socket.emit('event', { name: "stop" });
+                                }} type="button" className="btn btn-warning">Stop</button>
+
+                                <button onClick={() => {
+                                    console.log("Button clicked land")
+                                    socket.emit('event', { name: "land" });
+                                }} type="button" className="btn btn-success">Land</button>
+
+                                <button onClick={() => {
+                                    console.log("Button clicked spin")
+                                    socket.emit('event', { name: "spin" });
+                                }} type="button" className="btn btn-warning">spin</button>
+                                <button onClick={() => {
+                                    console.log("Button clicked spin")
+                                    socket.emit('event', { name: "demo" });
+                                }} type="button" className="btn btn-warning">Demo</button>
+
+                            </div>
+                        </Col>
+
+                        <Col size="lg-6">
+
+                            <h1>Your Camera Feed</h1>
+                            <video id="live" width="640" height="360" autoPlay></video>
+                        </Col>
+                    </Row>
                 </Container>
-
-
             </div>
         )
-
     }
-
 }
 export default Video
