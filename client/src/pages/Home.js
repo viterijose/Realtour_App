@@ -6,7 +6,7 @@ import { FlexBox, FlexRow } from "../components/FlexBox"
 import ListingCard from "../components/ListingCard"
 import images from "../images.json"
 import API from "../utils/API"
-import NavHeader from "../components/NavHeader"
+// import NavHeader from "../components/NavHeader"
 import { SearchInput, SearchBtn, SearchContainer } from "../components/SearchBar"
 import { AboutUs } from "../components/AboutUs"
 
@@ -67,18 +67,6 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                {/* <Container fluid> */}
-                {/* <Navbar
-                    src={this.state.images[0].src}
-                />
-                <NavHeader
-                    display={this.state.display}
-                    userId={this.state.userId}
-                /> */}
-                {/* </Container> */}
-
-
-                {/* <ContainerSpace /> */}
 
                 <SearchContainer >
                     <SearchInput

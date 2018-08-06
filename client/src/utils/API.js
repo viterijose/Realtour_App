@@ -21,6 +21,10 @@ export default {
         // console.log(userData)
         return axios.post("/api/register",userData)
     },
+    getUser: function(userEmail){
+        // console.log(userData)
+        return axios.get("/api/user/"+userEmail)
+    },
     getListing: function(id){
         return axios.get("/api/listing/"+id)
     },

@@ -63,6 +63,14 @@ const realtourFunctions = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+    getUser: function (req, res) {
+        // console.log(req.body.email)
+        User
+            .find()
+            .where("email").equals(req.params.user)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
     createAppt: function (req, res) {
         Appointment
             .create(req.body)
@@ -104,6 +112,7 @@ const realtourFunctions = {
 
 
 router.post("/register", realtourFunctions.createUser);
+router.get("/user/:user", realtourFunctions.getUser);
 router.get("/listings", realtourFunctions.findAllListings);
 router.post("/postListing", realtourFunctions.createListing);
 router.get('/userListings/:id', realtourFunctions.getUserListings);

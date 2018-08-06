@@ -1,10 +1,10 @@
 import React from "react"; //Andre Branch
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 import { Container } from "../../src/components/Grid";
 import ContainerSpace from "../components/Containers";//Andre Branch
-import images from "../images.json";
+// import images from "../images.json";
 import API from "../utils/API";//Andre Branch
-import NavHeader from "../components/NavHeader";
+// import NavHeader from "../components/NavHeader";
 import { SaveBtn, ListingDetail } from "../components/ListingDetail";//Andre Branch
 
 import withAuthorization from "../components/withAuthorization";
@@ -33,6 +33,7 @@ class Listing extends React.Component {
 
     componentDidMount() {
         // alert("MOUNTED")
+        // console.log(this.props.match.params.id)
         API.getListing(this.props.match.params.id)
             .then(res => {
                 this.setState({ listing: res.data })
@@ -82,5 +83,6 @@ class Listing extends React.Component {
     }
 
 }
+// export default Listing;
 
 export default withAuthorization(authCondition)(Listing);

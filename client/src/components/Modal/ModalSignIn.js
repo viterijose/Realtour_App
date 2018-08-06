@@ -1,7 +1,7 @@
 import React from "react";
 import { FormBtn, Input } from "../Form"
-import { withRouter } from 'react-router-dom';
-import { RegisterLink } from "../../pages/Register";
+// import { withRouter } from 'react-router-dom';
+// import { RegisterLink } from "../../pages/Register";
 import { auth } from '../../firebase';
 
 // const SignInPage = ({ history }) =>
@@ -33,7 +33,7 @@ class ModalSignIn extends React.Component {
         auth.doSignInWithEmailAndPassword(email, password)
             .then(() => {
                 // history.push('/myListings');
-                // this.close();
+                this.close();
             })
             .catch(error => this.setState({ error: error }))
 

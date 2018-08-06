@@ -10,9 +10,10 @@ import SavedListings from "./pages/SavedListings";
 import images from "./images.json";//Andre Branch
 import Navbar from "./components/Navbar";//Andre Branch
 import NavHeader from './components/NavHeader';//Andre Branch
-import { Container } from "./components/Grid";//Andre Branch
+// import { Container } from "./components/Grid";//Andre Branch
 import { firebase } from './firebase';//Andre Branch
 import AuthUserContext from './components/AuthUserContext';//Andre Branch
+import API from "./utils/API"
 
 class App extends Component {
   constructor(props) {
@@ -20,10 +21,28 @@ class App extends Component {
     this.state = {
       images,
       authUser: null,
+      userId: ""
     }
   }
   componentDidMount() {
     firebase.auth.onAuthStateChanged(authUser => {
+      // ---------UNCOMMENT TO PASS USER ID TO PARAMS ------------------------
+      
+      // if (authUser) {
+      //   this.setState({ authUser })
+      //   let email = authUser.email
+      //   // console.log(userEmail)
+      //   API.getUser( email )
+      //   .then(res => 
+      //     this.setState({userId: res.data[0]._id})
+      //     // console.log(res.data[0].email)
+      //   )
+      //   .catch(err => console.log(err))
+      //     // .then(res => this.setState({ userEmail: res.data.email })
+      //     //   .catch(err => console.log(err))
+      // } else {
+      //   this.setState({ authUser: null });
+      // }
       authUser ? this.setState({ authUser }) : this.setState({ authUser: null });//if authUser is true, set state to true, else set to null
     })
   }
@@ -38,7 +57,7 @@ class App extends Component {
             src={images[0].src}
             auth={authUser ? true : false}
           />
-          {authUser && <NavHeader />}
+          {authUser && <NavHeader userId ={this.state.userId}/>}
 
           <Router>
             <div>
@@ -49,8 +68,8 @@ class App extends Component {
               {/* Routes that show when user is signed in ---- */}
               {/* <Route exact path="/:user" component={Home} /> */}
               <Route exact path="/postListing/:user" component={PostListing} />
-              <Route exact path="/listing/:id" component={Listing} />
-              <Route exact path="/myListings/:id" component={MyListings} />
+              <Route path="/listing/:id" component={Listing} />
+              <Route exact path="/myListings/:user" component={MyListings} />
               <Route exact path="/savedListings/:user" component={SavedListings} />
 
             </div>
