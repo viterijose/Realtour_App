@@ -98,9 +98,10 @@ const realtourFunctions = {
             .catch(err => res.status(422).json(err));
     },
     findAllSaved: function (req, res) {
-        user_saved
-            .find(req.query)
+        User
+            .findById(req.params.user)
             // .sort({ date: -1 })
+            .populate("savedListings")
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
@@ -121,6 +122,7 @@ router.get('/userListings/:id', realtourFunctions.getUserListings);
 router.post('/openhouse', realtourFunctions.createOpenHouse);
 router.get("/listing/:id", realtourFunctions.findbyId);
 router.post("/save/listing/:user", realtourFunctions.saveListing);
+router.get("/saved/listings/:user", realtourFunctions.findAllSaved)
 router.delete("/listing/:id", realtourFunctions.removeListing);
 router.patch("/updateListing/:user", realtourFunctions.updateListing)
 router.post('/appointment', realtourFunctions.createAppt);

@@ -31,20 +31,21 @@ export default {
         return axios.get("/api/listing/"+id)
     },
     saveListing: function(userId,data){
-        console.log(data)
-        console.log(userId)
+        // console.log(data)
+        // console.log(userId)
         // console.log(savedListings)
         return axios.post("/api/save/listing/"+userId,data)
     },
-    getMySavedListings: function(){
-        return axios.get("/api/saved/listings")
+    getMySavedListingsId: function(userId){
+        // console.log(data)
+        return axios.get("/api/saved/listings/"+userId)
     },
     deleteListing: function(id){
         return axios.delete("/api/listing/"+id)
     },
     patchListing: function(id,listingData){
-        console.log(id)
-        console.log(listingData)
+        // console.log(id)
+        // console.log(listingData)
         // console.log("IN AXIOS \n"+JSON.stringify(listingData))
         return axios.patch("/api/updateListing/"+id,listingData)
     },
