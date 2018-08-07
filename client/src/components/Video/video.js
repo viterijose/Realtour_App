@@ -25,7 +25,7 @@ socket.on('timer', function (data) {
     //@TODO: add code to for take off and land buttons to function.
     if (data[0].name == "battery") {
         //console.log(data);
-        document.getElementById("battery-indicator").style.width = data[0].value + "%";
+       // document.getElementById("battery-indicator").style.width = data[0].value + "%";
         document.getElementById("numVal").innerHTML = data[0].value + "%";
         let batPercent = data[0].value;
 
@@ -94,11 +94,31 @@ class Video extends React.Component {
 
     render() {
         return (
-            <div>
-                <Container fluid>
+            <div className ="video-container">
+
+ {/* <Container video-container> */}
+                <div className="row">
+                    <div className="col-9"> </div>
+                    <div clclassNameass="col-4">Drone Video <br />
+
+                            <div className="video-player">
+                                <div id="droneStream"></div>
+                                <p>Current Date: {this.state.timestamp} </p>
+                            </div>
+                        
+                    </div>
+                    <div className="col-6">
+                        <h1>Your Camera Feed</h1><br />
+                        <video id="live" width="640" height="360" autoPlay></video>
+                    </div>
+
+                </div>
+
+
+               
                     <Row>
 
-                        <Col size="lg-6">
+                        <Col size="lg-3">
 
 
                             <h1> Real Tour Live Drone Feed</h1>
@@ -109,19 +129,19 @@ class Video extends React.Component {
                             </div>
 
                             <br />
-                            <div className="bar color0">
+                            {/* <div className="bar color0">
                                 <span id="battery-indicator" style={{ width: "50%" }}></span>
-                            </div>
+                            </div> */}
                             <br />
 
-                            <div className="vdo-log margin_bottom">
+                            {/* <div className="vdo-log margin_bottom">
                                 <div className="video-player">
                                     <div id="droneStream">
 
                                     </div>
                                     <p>Current Date: {this.state.timestamp} </p>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="clear"></div>
 
 
@@ -153,14 +173,15 @@ class Video extends React.Component {
 
                             </div>
                         </Col>
-
-                        <Col size="lg-6">
-
-                            <h1>Your Camera Feed</h1>
-                            <video id="live" width="640" height="360" autoPlay></video>
-                        </Col>
                     </Row>
-                </Container>
+
+                    <Col size="lg-6">
+
+                        {/* <h1>Your Camera Feed</h1>
+                        <video id="live" width="640" height="360" autoPlay></video> */}
+                    </Col>
+                {/* </Container> */}
+
             </div>
         )
     }

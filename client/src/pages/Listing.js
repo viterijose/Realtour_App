@@ -32,8 +32,9 @@ class Listing extends React.Component {
     }
 
     componentDidMount() {
-        // alert("MOUNTED")
-        API.getListing(this.props.match.params.id)
+       //  alert("MOUNTED " + this.props.match.params )
+         //console.log(this.props);
+        API.getListing(this.props.params.id)
             .then(res => {
                 this.setState({ listing: res.data })
                 console.log(this.state.listing.openHouse.start)
@@ -82,5 +83,10 @@ class Listing extends React.Component {
     }
 
 }
+
+// export {
+//     authCondition,
+//     Listing
+// }
 
 export default withAuthorization(authCondition)(Listing);
