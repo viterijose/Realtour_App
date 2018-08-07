@@ -25,6 +25,7 @@ class App extends Component {
     }
   }
   componentDidMount() {
+    
     firebase.auth.onAuthStateChanged(authUser => {
       // ---------UNCOMMENT TO PASS USER ID TO PARAMS ------------------------
       
@@ -48,6 +49,7 @@ class App extends Component {
   }
   render() {
     const { images, authUser } = this.state;
+    
 
     return (
       <AuthUserContext.Provider value={authUser}>
@@ -68,7 +70,7 @@ class App extends Component {
               {/* Routes that show when user is signed in ---- */}
               {/* <Route exact path="/:user" component={Home} /> */}
               <Route exact path="/postListing/:user" component={PostListing} />
-              <Route path="/listing/:id" component={Listing} />
+              <Route exact path="/listing/:id" component={Listing}/>
               <Route exact path="/myListings/:user" component={MyListings} />
               <Route exact path="/savedListings/:user" component={SavedListings} />
 

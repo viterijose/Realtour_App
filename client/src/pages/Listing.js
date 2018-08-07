@@ -1,16 +1,12 @@
 import React from "react"; //Andre Branch
-// import Navbar from "../components/Navbar";
 import { Container } from "../../src/components/Grid";
 import ContainerSpace from "../components/Containers";//Andre Branch
-// import images from "../images.json";
 import API from "../utils/API";//Andre Branch
-// import NavHeader from "../components/NavHeader";
 import { SaveBtn, ListingDetail } from "../components/ListingDetail";//Andre Branch
 
 import withAuthorization from "../components/withAuthorization";
 
 const authCondition = (authUser) => !!authUser; //returns a true due to double exclamation mark
-
 
 class Listing extends React.Component {
     constructor(props) {
@@ -19,7 +15,10 @@ class Listing extends React.Component {
             listing: {},
             login: false,
             display: "block",
-            userId: "psmith"
+            userId: "psmith",
+            // listingId: this.props.match.params
+
+
         }
         this.SaveListing = this.SaveListing.bind(this)
 
@@ -32,9 +31,8 @@ class Listing extends React.Component {
     }
 
     componentDidMount() {
-        // alert("MOUNTED")
-        // console.log(this.props.match.params.id)
-        API.getListing(this.props.match.params.id)
+        // console.log(this.props.params.id)
+        API.getListing(this.props.params.id)
             .then(res => {
                 this.setState({ listing: res.data })
                 console.log(this.state.listing.openHouse.start)
