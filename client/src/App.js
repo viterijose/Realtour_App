@@ -24,17 +24,18 @@ class App extends Component {
     this.state = {
       images,
       authUser: null,
-      userId: ""
+      userId: "",
+      email: null,
     }
   }
   componentDidMount() {
 
     firebase.auth.onAuthStateChanged(authUser => {
       // ---------UNCOMMENT TO PASS USER ID TO PARAMS ------------------------
-
+      console.log(authUser)
       if (authUser) {
-        this.setState({ authUser })
-        let email = authUser.email
+        this.setState({ authUser: authUser, email: authUser.email })
+        const email = authUser.email
         API.getUser(email)
           .then(res => this.setState({ userId: res.data[0]._id }))
           .catch(err => console.log(err))
@@ -44,7 +45,7 @@ class App extends Component {
     })
   }
   render() {
-    const { images, authUser, userId} = this.state;
+    const { images, authUser, userId, email} = this.state;
     return (
       <AuthUserContext.Provider value={authUser}>
         <div>
@@ -52,6 +53,7 @@ class App extends Component {
           <Navbar
             src={images[0].src}
             auth={authUser ? true : false}
+            email={email}
           />
           {authUser && <NavHeader userId={userId} />}
           

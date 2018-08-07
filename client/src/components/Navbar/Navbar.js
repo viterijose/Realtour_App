@@ -18,6 +18,7 @@ class Navbar extends React.Component {
                     <div>
                         <a href="/" className="navbar-brand"><img src={src} style={{ width: 40, height: 40 }} alt="drone" />  RealTour</a>
                     </div>
+                    <p>{this.props.email}</p>
                     <div>
                         <ul className="nav justify-content-end">
                             <li className="nav-item active">
