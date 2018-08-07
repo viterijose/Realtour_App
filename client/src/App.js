@@ -40,7 +40,7 @@ class App extends Component {
           .then(res => this.setState({ userId: res.data[0]._id }))
           .catch(err => console.log(err))
       } else {
-        this.setState({ authUser: null });
+        this.setState({ authUser: null, email: null });
       }
     })
   }
