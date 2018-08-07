@@ -8,9 +8,7 @@ class ListingCard extends React.Component {
     render() {
         const { name, src, address, price, city, zipcode, id, openHouse } = this.props
         return (
-            <div className="card" id={id} 
-            // onClick={this.handleClick}
-            >
+            <div className="card" id={id} >
             <a href={"/listing/"+id} className="listingCard">
                 <div className="img-container">
                     <img alt={name} src={src} />

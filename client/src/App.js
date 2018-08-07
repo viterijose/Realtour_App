@@ -6,13 +6,17 @@ import PostListing from './pages/PostListing';
 import Register from "./pages/Register";
 import MyListings from "./pages/MyListings";
 import Listing from "./pages/Listing";
+// import ListingCard from "./components/ListingCard"
 import SavedListings from "./pages/SavedListings";
 import images from "./images.json";//Andre Branch
 import Navbar from "./components/Navbar";//Andre Branch
 import NavHeader from './components/NavHeader';//Andre Branch
-import { Container } from "./components/Grid";//Andre Branch
+// import { Container } from "./components/Grid";//Andre Branch
 import { firebase } from './firebase';//Andre Branch
 import AuthUserContext from './components/AuthUserContext';//Andre Branch
+import API from "./utils/API"
+// import PropTypes from "prop-types"
+// import ListingCard from './components/ListingCard';
 
 class App extends Component {
   constructor(props) {
@@ -20,16 +24,28 @@ class App extends Component {
     this.state = {
       images,
       authUser: null,
+      userId: "",
+      email: null,
     }
   }
   componentDidMount() {
+
     firebase.auth.onAuthStateChanged(authUser => {
-      authUser ? this.setState({ authUser }) : this.setState({ authUser: null });//if authUser is true, set state to true, else set to null
+      // ---------UNCOMMENT TO PASS USER ID TO PARAMS ------------------------
+      console.log(authUser)
+      if (authUser) {
+        this.setState({ authUser: authUser, email: authUser.email })
+        const email = authUser.email
+        API.getUser(email)
+          .then(res => this.setState({ userId: res.data[0]._id }))
+          .catch(err => console.log(err))
+      } else {
+        this.setState({ authUser: null, email: null });
+      }
     })
   }
   render() {
-    const { images, authUser } = this.state;
-
+    const { images, authUser, userId, email} = this.state;
     return (
       <AuthUserContext.Provider value={authUser}>
         <div>
@@ -37,21 +53,23 @@ class App extends Component {
           <Navbar
             src={images[0].src}
             auth={authUser ? true : false}
+            email={email}
           />
-          {authUser && <NavHeader />}
-
+          {authUser && <NavHeader userId={userId} />}
+          
           <Router>
             <div>
               {/* Regular routes for no users ---- */}
-              <Route exact path="/" component={Home} />
+              <Route exact path="/" component={Home} userId={userId}/>
+              <Route exact path={"/"+userId} components={Home} />
               <Route exact path="/register" component={Register} />
 
               {/* Routes that show when user is signed in ---- */}
-              {/* <Route exact path="/:user" component={Home} /> */}
               <Route exact path="/postListing/:user" component={PostListing} />
-              <Route exact path="/listing/:id" component={Listing} />
-              <Route exact path="/myListings/:id" component={MyListings} />
-              <Route exact path="/savedListings/:user" component={SavedListings} />
+              {/* <Route path="/listing/:id" component ={Listing}/> */}
+              <Route path="/listing/:id" render ={()=><Listing userData={authUser}/>}/>
+              <Route exact path="/myListings/:user" component={MyListings} user/>
+              <Route exact path="/userListings/:user" component={SavedListings} />
 
             </div>
           </Router>
@@ -60,5 +78,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;

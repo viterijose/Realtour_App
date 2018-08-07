@@ -1,14 +1,13 @@
 import React from "react";
-import Navbar from "../components/Navbar"
 import { Container } from "../../src/components/Grid"
 import ContainerSpace from "../components/Containers"
 import { FlexBox, FlexRow } from "../components/FlexBox"
 import ListingCard from "../components/ListingCard"
 import images from "../images.json"
 import API from "../utils/API"
-import NavHeader from "../components/NavHeader"
 import { SearchInput, SearchBtn, SearchContainer } from "../components/SearchBar"
 import { AboutUs } from "../components/AboutUs"
+import PropTypes from "prop-types";
 
 class Home extends React.Component {
     constructor(props) {
@@ -16,16 +15,13 @@ class Home extends React.Component {
         this.state = {
             images,
             listings: [],
-            login: false,
-            display: "block",
-            userId: "psmith",
             searchVal: ""
 
         }
     }
 
     componentDidMount() {
-
+        // console.log(this.props)
         this.loadListings();
     }
     searchFormSubmit = () => {
@@ -67,18 +63,6 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                {/* <Container fluid> */}
-                {/* <Navbar
-                    src={this.state.images[0].src}
-                />
-                <NavHeader
-                    display={this.state.display}
-                    userId={this.state.userId}
-                /> */}
-                {/* </Container> */}
-
-
-                {/* <ContainerSpace /> */}
 
                 <SearchContainer >
                     <SearchInput
@@ -99,6 +83,7 @@ class Home extends React.Component {
                             return (
                                 <FlexRow id={listing._id} key={listing._id}>
                                     <ListingCard
+                                        
                                         src={listing.imgSrc}
                                         id={listing._id}
                                         price={listing.price}
@@ -125,5 +110,7 @@ class Home extends React.Component {
     }
 
 }
-
+Home.props ={
+    user: PropTypes.string
+}
 export default Home;

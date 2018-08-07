@@ -25,7 +25,9 @@ const realtourFunctions = {
         // console.log(req.params.id)
         Realtour
             .findOneAndUpdate({ _id: req.params.id }, req.body)
-            .then(dbModel => res.json(dbModel))
+            .then(dbModel =>{ 
+                // console.log(dbModel)
+                res.json(dbModel)})
             .catch(err => res.status(422).json(err))
 
     },
@@ -43,23 +45,31 @@ const realtourFunctions = {
             .catch(err => res.status(422).json(err))
 
     },
-    findByZipcode: function(req,res){
+    findByZipcode: function (req, res) {
         Realtour
-        .find()
-        .where("zipcode").equals(req.params.zipcode)
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err))
+            .find()
+            .where("zipcode").equals(req.params.zipcode)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err))
     },
-    findByCity: function(req,res){
+    findByCity: function (req, res) {
         Realtour
-        .find()
-        .where("city").equals(req.params.city)
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err))
+            .find()
+            .where("city").equals(req.params.city)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err))
     },
     createUser: function (req, res) {
         User
             .create(req.body)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
+    getUser: function (req, res) {
+        // console.log(req.body.email)
+        User
+            .find()
+            .where("email").equals(req.params.user)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
@@ -70,29 +80,41 @@ const realtourFunctions = {
             .catch(err => res.status(422).json(err));
     },
     saveListing: function (req, res) {
-        user_saved
-            .create(req.body)
+        User
+            .update({ _id: req.params.user }, { $push: req.body })
+            // .findByIdAndUpdate(req.params.user, { $set:{ savedListings:req.body.data } }, { new: true })
             .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
+            .catch(err => res.status(422).json(err))
     },
     getUserListings: function (req, res) {
         Realtour
-            .findOne({ owner: req.params.id })
+            .find({ owner: req.params.id })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     createOpenHouse: function (req, res) {
         Realtour
-            .update({ owner: req.body.id }, { $set: { openHouse: { start: req.body.start, end: req.body.end } } })
-            .then(res.json(200))
+            // .create(req.body)
+            .update({ owner: req.body.id, _id: req.body.listingId }, { $set: { openHouse: { start: req.body.start, end: req.body.end } } })
+            .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     findAllSaved: function (req, res) {
-        user_saved
-            .find(req.query)
+        User
+            .findById(req.params.user)
             // .sort({ date: -1 })
+            .populate("savedListings")
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
+    },
+    updateUser: function (req, res) {
+        // console.log(req.body.listingData)
+        User
+            // .findByIdAndUpdate(req.params.user, { $set: { savedListings: req.body.listingData } })
+            .update({ _id: req.params.user }, { $pull: { savedListings: req.body.listingId } })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err))
+
     },
     // createAppointment: function(req,res){
     //     Realtour
@@ -104,17 +126,20 @@ const realtourFunctions = {
 
 
 router.post("/register", realtourFunctions.createUser);
+router.get("/user/:user", realtourFunctions.getUser);
 router.get("/listings", realtourFunctions.findAllListings);
-router.post("/postListing", realtourFunctions.createListing);
+router.post("/post/listing", realtourFunctions.createListing);
 router.get('/userListings/:id', realtourFunctions.getUserListings);
 router.post('/openhouse', realtourFunctions.createOpenHouse);
 router.get("/listing/:id", realtourFunctions.findbyId);
-router.post("/savedListing", realtourFunctions.saveListing);
+router.post("/save/listing/:user", realtourFunctions.saveListing);
+router.get("/saved/listings/:user", realtourFunctions.findAllSaved)
 router.delete("/listing/:id", realtourFunctions.removeListing);
-router.patch("/updateListing/:id", realtourFunctions.updateListing)
+router.patch("/updateListing/:user", realtourFunctions.updateListing)
+router.patch("/updateUser/:user", realtourFunctions.updateUser)
 router.post('/appointment', realtourFunctions.createAppt);
-router.get("/findListings/zipcode/:zipcode",realtourFunctions.findByZipcode);
-router.get("/findListings/city/:city",realtourFunctions.findByCity);
+router.get("/findListings/zipcode/:zipcode", realtourFunctions.findByZipcode);
+router.get("/findListings/city/:city", realtourFunctions.findByCity);
 
 // router.use(function (req, res) {
 //     res.sendFile(path.join(__dirname, "../client/build/index.html"))

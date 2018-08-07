@@ -167,20 +167,20 @@ var listingSeed = [
     }
 ]
 //--------- SEED FOR USERS ------------//
-// newUser
-//     .remove({})
-//     .then(() => 
-//         // db.Realtour.collection.insertMany(listingSeed)
-//         newUser.collection.insertMany(userSeed)  
-//     )
-//     .then(data => {
-//         console.log(data)
-//         process.exit(0);
-//     })
-//     .catch(err => {
-//         console.error(err);
-//         process.exit(1);
-//     })
+newUser
+    .remove({})
+    .then(() => 
+        // db.Realtour.collection.insertMany(listingSeed)
+        newUser.collection.insertMany(userSeed)  
+    )
+    .then(data => {
+        console.log(data)
+        process.exit(0);
+    })
+    .catch(err => {
+        console.error(err);
+        process.exit(1);
+    })
 db.newUser
     .find()
     .then(dbModel =>

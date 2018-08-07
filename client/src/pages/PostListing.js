@@ -3,8 +3,8 @@ import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { FormBtn, Input, TextArea } from "../components/Form";
 import { Carousel, CarouselItem, CarouselActItem } from "../components/Carousel"
-import Navbar from "../components/Navbar";
-import NavHeader from "../components/NavHeader"
+// import Navbar from "../components/Navbar";
+// import NavHeader from "../components/NavHeader"
 import images from "../images.json";
 import ContainerSpace from "../components/Containers";
 import withAuthorization from '../components/withAuthorization';
@@ -31,6 +31,11 @@ class PostListing extends React.Component {
             images
         }
     }
+    componentDidMount() {
+        const { params } = this.props
+        console.log(params.match.params.user)
+        this.setState({ owner: params.match.params.user })
+    }
 
     handleInputChange = event => {
         let value = event.target.value;
@@ -54,7 +59,10 @@ class PostListing extends React.Component {
             description: this.state.description
         })
             .then(res => {
-                console.log(res.data)
+                API.saveListing(this.state.owner, { postedListings: res.data._id })
+                    .then(res => console.log(res.data))
+                    .catch(err => console.log(err))
+                // console.log(res.data)
                 this.setState({
                     owner: "",
                     street: "",
@@ -95,13 +103,13 @@ class PostListing extends React.Component {
                                 boxShadow: "2px 2px grey"
                             }}>
                                 <form>
-                                    <Input
+                                    {/* <Input
                                         name="ownerName"
                                         placeholder="Owner"
                                         value={this.state.ownerName}
                                         onChange={this.handleInputChange}
                                     />
-                                    <br />
+                                    <br /> */}
                                     <Input
                                         name="price"
                                         placeholder="Price"
@@ -130,13 +138,13 @@ class PostListing extends React.Component {
                                         onChange={this.handleInputChange}
                                     />
                                     <br />
-                                    <Input
+                                    {/* <Input
                                         name="photo"
                                         type="file"
                                         accept="image/*"
                                         onChange={this.handleInputChange}
                                     />
-                                    <br />
+                                    <br /> */}
                                     <TextArea
                                         value={this.state.description}
                                         onChange={this.handleInputChange}
@@ -145,7 +153,7 @@ class PostListing extends React.Component {
                                     />
                                     <br />
                                     <FormBtn
-                                        disabled={!(this.state.ownerName && this.state.street)}
+                                        disabled={!(this.state.street)}
                                         onClick={this.handleFormSubmit}
                                     >
                                         Submit Listing

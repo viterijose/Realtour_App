@@ -15,34 +15,52 @@ class SavedListings extends React.Component {
         this.state = {
             listings: [],
             isAppointment: false,
-            userId:"5b63aeddb13c1d098fb11ab9"
+            userId:"",
+            savedListings:[]
         }
         this.deleteListing = this.deleteListing.bind(this)
         // this.setAppointment =  this.setAppointment.bind(this)
     }
     componentDidMount() {
-        this.loadListings();
+        const {params} = this.props
+        // console.log(params)
+        // this.setState({userId:this.props.params.id})
+        this.loadListings(params.match.params.user);
     }
-    loadListings = () => {
-        API.getAllListings()
+    loadListings = (userId) => {
+        console.log(userId)
+        this.setState({userId:userId})
+        API.getMySavedListingsId(userId)
             .then(res => {
-                this.setState({ listings: res.data })
-                console.log(res.data)
+                let listingInfo = []
+                // this.setState({ listings: res.data })
+                console.log(res.data.savedListings)
+                res.data.savedListings.forEach(element => {
+                    // console.log(element._id)
+                    
+                    listingInfo.push(element._id)
+                    // console.log(listingInfo)
+                });
+                this.setState({
+                    listings: res.data.savedListings,
+                    savedListings: listingInfo
+                })
+
             })
             .catch(err => console.log(err));
     }
 
-    deleteListing = listing_id => {
-        console.log(listing_id)
-        API.deleteListing(listing_id)
-            .then(res => this.loadListings())
+    deleteListing = listingId => {
+        console.log(listingId)
+        // let position = this.state.savedListings.indexOf(listing_id)
+        // // console.log(position)
+        // if(~position) this.state.savedListings.splice(position,1);
+        // console.log(this.state.savedListings)
+        // console.log(listing_id.toString())
+        API.deleteListing(this.state.userId,{listingId})
+            .then(res => this.loadListings(this.state.userId))
             .catch(err => console.log(err))
     }
-
-    // setAppointment = () =>(
-
-    // )
-
 
     render() {
 
