@@ -28,8 +28,11 @@ export default {
     getListing: function(id){
         return axios.get("/api/listing/"+id)
     },
-    saveListing: function(id){
-        return axios.post("/api/save/listing",id)
+    saveListing: function(userId,data){
+        console.log(data)
+        console.log(userId)
+        // console.log(savedListings)
+        return axios.post("/api/save/listing/"+userId,data)
     },
     getMySavedListings: function(){
         return axios.get("/api/saved/listings")

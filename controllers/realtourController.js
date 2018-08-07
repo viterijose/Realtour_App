@@ -43,19 +43,19 @@ const realtourFunctions = {
             .catch(err => res.status(422).json(err))
 
     },
-    findByZipcode: function(req,res){
+    findByZipcode: function (req, res) {
         Realtour
-        .find()
-        .where("zipcode").equals(req.params.zipcode)
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err))
+            .find()
+            .where("zipcode").equals(req.params.zipcode)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err))
     },
-    findByCity: function(req,res){
+    findByCity: function (req, res) {
         Realtour
-        .find()
-        .where("city").equals(req.params.city)
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err))
+            .find()
+            .where("city").equals(req.params.city)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err))
     },
     createUser: function (req, res) {
         User
@@ -78,10 +78,11 @@ const realtourFunctions = {
             .catch(err => res.status(422).json(err));
     },
     saveListing: function (req, res) {
-        user_saved
-            .create(req.body)
+        User
+            .update({ _id: req.params.user }, { $push: { savedListings: req.body.data  } })
+            // .findByIdAndUpdate(req.params.user, { $set:{ savedListings:req.body.data } }, { new: true })
             .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
+            .catch(err => res.status(422).json(err))
     },
     getUserListings: function (req, res) {
         Realtour
@@ -118,12 +119,12 @@ router.post("/postListing", realtourFunctions.createListing);
 router.get('/userListings/:id', realtourFunctions.getUserListings);
 router.post('/openhouse', realtourFunctions.createOpenHouse);
 router.get("/listing/:id", realtourFunctions.findbyId);
-router.post("/savedListing", realtourFunctions.saveListing);
+router.post("/save/listing/:user", realtourFunctions.saveListing);
 router.delete("/listing/:id", realtourFunctions.removeListing);
-router.patch("/updateListing/:id", realtourFunctions.updateListing)
+router.patch("/updateListing/:user", realtourFunctions.updateListing)
 router.post('/appointment', realtourFunctions.createAppt);
-router.get("/findListings/zipcode/:zipcode",realtourFunctions.findByZipcode);
-router.get("/findListings/city/:city",realtourFunctions.findByCity);
+router.get("/findListings/zipcode/:zipcode", realtourFunctions.findByZipcode);
+router.get("/findListings/city/:city", realtourFunctions.findByCity);
 
 // router.use(function (req, res) {
 //     res.sendFile(path.join(__dirname, "../client/build/index.html"))

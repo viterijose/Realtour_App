@@ -54,12 +54,12 @@ class Register extends React.Component {
         // if (this.state.password === this.passwordCheck) {
 
         API.registerUser({
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            userName: this.state.userName,
-            email: this.state.email,
-            password: this.state.password,
-            date: this.state.date
+            firstName: firstName,
+            lastName: lastName,
+            userName: userName,
+            email: email,
+            password: password,
+            date: date
         })
             .then(res => console.log(res.data))
             .catch(err => console.log(err));
@@ -87,12 +87,6 @@ class Register extends React.Component {
 
         return (
             <div>
-                {/* <Container fluid>
-                    <Navbar
-                        src={this.state.images[0].src}
-                    />
-
-                </Container> */}
 
                 <ContainerSpace />
 

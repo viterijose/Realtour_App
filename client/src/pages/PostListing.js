@@ -3,8 +3,8 @@ import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { FormBtn, Input, TextArea } from "../components/Form";
 import { Carousel, CarouselItem, CarouselActItem } from "../components/Carousel"
-import Navbar from "../components/Navbar";
-import NavHeader from "../components/NavHeader"
+// import Navbar from "../components/Navbar";
+// import NavHeader from "../components/NavHeader"
 import images from "../images.json";
 import ContainerSpace from "../components/Containers";
 import withAuthorization from '../components/withAuthorization';

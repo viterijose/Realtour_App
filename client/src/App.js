@@ -6,6 +6,7 @@ import PostListing from './pages/PostListing';
 import Register from "./pages/Register";
 import MyListings from "./pages/MyListings";
 import Listing from "./pages/Listing";
+// import ListingCard from "./components/ListingCard"
 import SavedListings from "./pages/SavedListings";
 import images from "./images.json";//Andre Branch
 import Navbar from "./components/Navbar";//Andre Branch
@@ -14,6 +15,8 @@ import NavHeader from './components/NavHeader';//Andre Branch
 import { firebase } from './firebase';//Andre Branch
 import AuthUserContext from './components/AuthUserContext';//Andre Branch
 import API from "./utils/API"
+// import PropTypes from "prop-types"
+// import ListingCard from './components/ListingCard';
 
 class App extends Component {
   constructor(props) {
@@ -25,32 +28,23 @@ class App extends Component {
     }
   }
   componentDidMount() {
-    
+
     firebase.auth.onAuthStateChanged(authUser => {
       // ---------UNCOMMENT TO PASS USER ID TO PARAMS ------------------------
-      
-      // if (authUser) {
-      //   this.setState({ authUser })
-      //   let email = authUser.email
-      //   // console.log(userEmail)
-      //   API.getUser( email )
-      //   .then(res => 
-      //     this.setState({userId: res.data[0]._id})
-      //     // console.log(res.data[0].email)
-      //   )
-      //   .catch(err => console.log(err))
-      //     // .then(res => this.setState({ userEmail: res.data.email })
-      //     //   .catch(err => console.log(err))
-      // } else {
-      //   this.setState({ authUser: null });
-      // }
-      authUser ? this.setState({ authUser }) : this.setState({ authUser: null });//if authUser is true, set state to true, else set to null
+
+      if (authUser) {
+        this.setState({ authUser })
+        let email = authUser.email
+        API.getUser(email)
+          .then(res => this.setState({ userId: res.data[0]._id }))
+          .catch(err => console.log(err))
+      } else {
+        this.setState({ authUser: null });
+      }
     })
   }
   render() {
-    const { images, authUser } = this.state;
-    
-
+    const { images, authUser, userId} = this.state;
     return (
       <AuthUserContext.Provider value={authUser}>
         <div>
@@ -59,20 +53,21 @@ class App extends Component {
             src={images[0].src}
             auth={authUser ? true : false}
           />
-          {authUser && <NavHeader userId ={this.state.userId}/>}
-
+          {authUser && <NavHeader userId={userId} />}
+          
           <Router>
             <div>
               {/* Regular routes for no users ---- */}
-              <Route exact path="/" component={Home} />
+              <Route exact path="/" component={Home} userId={userId}/>
+              <Route exact path={"/"+userId} components={Home} />
               <Route exact path="/register" component={Register} />
 
               {/* Routes that show when user is signed in ---- */}
-              {/* <Route exact path="/:user" component={Home} /> */}
               <Route exact path="/postListing/:user" component={PostListing} />
-              <Route exact path="/listing/:id" component={Listing}/>
-              <Route exact path="/myListings/:user" component={MyListings} />
-              <Route exact path="/savedListings/:user" component={SavedListings} />
+              {/* <Route path="/listing/:id" component ={Listing}/> */}
+              <Route path="/listing/:id" render ={()=><Listing userData={authUser}/>}/>
+              <Route exact path="/myListings/:id" component={MyListings} user/>
+              <Route exact path="/userListings/:id" component={SavedListings} />
 
             </div>
           </Router>
@@ -81,5 +76,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;

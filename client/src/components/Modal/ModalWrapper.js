@@ -50,7 +50,7 @@ class ModalWrapper extends React.Component {
     // const { history } = this.props;
     auth.doSignInWithEmailAndPassword(email, password)
       .then(() => {
-        // history.push('/myListings');
+        // history.push('/register');
         this.close();
       })
       .catch(error => this.setState({ error: error }))

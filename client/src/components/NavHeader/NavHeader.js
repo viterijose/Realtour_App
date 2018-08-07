@@ -11,9 +11,6 @@ class NavHeader extends React.Component {
 
     render() {
         const { userId, display } = this.props;
-        // console.log(userId)
-        // let user = JSON.stringify(userId)
-        // console.log(user)
         return (
 
             <div style={{ display: display }}>
@@ -22,13 +19,13 @@ class NavHeader extends React.Component {
                     <nav className="navbar navheader">
                         <FlexBox>
                             <div className ="flex-fill">
-                                <a href={"/myListings/:" + userId} className="navbar-brand">My Listings</a>
+                                <a href={"/myListings/" + userId} className="navbar-brand">My Listings</a>
                             </div>
                             <div className ="flex-fill">
-                                <a href={"/postListing/:" + userId} className="navbar-brand"> Post Listing</a>
+                                <a href={"/postListing/" + userId} className="navbar-brand"> Post Listing</a>
                             </div>
                             <div className ="flex-fill">
-                                <a href={"/savedListings/:" + userId} className="navbar-brand"> Saved Listings</a>
+                                <a href={"/userListings/" + userId} className="navbar-brand"> Saved Listings</a>
                             </div>
                             {/* <div>
                             <a href={"/appointment/:"+userId} className="navbar-brand">Schedule Appointment</a>

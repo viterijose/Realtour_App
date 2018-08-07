@@ -15,16 +15,19 @@ class SavedListings extends React.Component {
         this.state = {
             listings: [],
             isAppointment: false,
-            userId:"5b63aeddb13c1d098fb11ab9"
+            // userId:""
         }
         this.deleteListing = this.deleteListing.bind(this)
         // this.setAppointment =  this.setAppointment.bind(this)
     }
     componentDidMount() {
-        this.loadListings();
+        const {params} = this.props
+        console.log(params)
+        // this.setState({userId:this.props.params.id})
+        this.loadListings(params.match.params.id);
     }
-    loadListings = () => {
-        API.getAllListings()
+    loadListings = (userId) => {
+        API.getUserListings(userId)
             .then(res => {
                 this.setState({ listings: res.data })
                 console.log(res.data)
