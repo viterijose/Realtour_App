@@ -66,8 +66,8 @@ class App extends Component {
               <Route exact path="/postListing/:user" component={PostListing} />
               {/* <Route path="/listing/:id" component ={Listing}/> */}
               <Route path="/listing/:id" render ={()=><Listing userData={authUser}/>}/>
-              <Route exact path="/myListings/:id" component={MyListings} user/>
-              <Route exact path="/userListings/:id" component={SavedListings} />
+              <Route exact path="/myListings/:user" component={MyListings} user/>
+              <Route exact path="/userListings/:user" component={SavedListings} />
 
             </div>
           </Router>

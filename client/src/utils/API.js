@@ -5,9 +5,11 @@ export default {
         return axios.get("/api/listings");
     },
     getUserListings: function (user) {
+        // console.log(user)
         return axios.get(`/api/userListings/${user}`)
     },
     createOpenHouse: function(apptData) {
+        // console.log(apptData)
         return axios.post('/api/openhouse', apptData)
     },
     createAppointment: function(apptData) {
@@ -41,7 +43,8 @@ export default {
         return axios.delete("/api/listing/"+id)
     },
     patchListing: function(id,listingData){
-        // console.log(id)
+        console.log(id)
+        console.log(listingData)
         // console.log("IN AXIOS \n"+JSON.stringify(listingData))
         return axios.patch("/api/updateListing/"+id,listingData)
     },

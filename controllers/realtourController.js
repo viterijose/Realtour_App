@@ -79,21 +79,22 @@ const realtourFunctions = {
     },
     saveListing: function (req, res) {
         User
-            .update({ _id: req.params.user }, { $push: { savedListings: req.body.data  } })
+            .update({ _id: req.params.user }, { $push: req.body })
             // .findByIdAndUpdate(req.params.user, { $set:{ savedListings:req.body.data } }, { new: true })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err))
     },
     getUserListings: function (req, res) {
         Realtour
-            .findOne({ owner: req.params.id })
+            .find({ owner: req.params.id })
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     createOpenHouse: function (req, res) {
         Realtour
-            .update({ owner: req.body.id }, { $set: { openHouse: { start: req.body.start, end: req.body.end } } })
-            .then(res.json(200))
+            // .create(req.body)
+            .update({ owner: req.body.id, _id: req.body.listingId }, { $set: { openHouse: { start: req.body.start, end: req.body.end } } })
+            .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     findAllSaved: function (req, res) {
@@ -115,7 +116,7 @@ const realtourFunctions = {
 router.post("/register", realtourFunctions.createUser);
 router.get("/user/:user", realtourFunctions.getUser);
 router.get("/listings", realtourFunctions.findAllListings);
-router.post("/postListing", realtourFunctions.createListing);
+router.post("/post/listing", realtourFunctions.createListing);
 router.get('/userListings/:id', realtourFunctions.getUserListings);
 router.post('/openhouse', realtourFunctions.createOpenHouse);
 router.get("/listing/:id", realtourFunctions.findbyId);

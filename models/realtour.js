@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const realtourSchema = new Schema({
   owner: { type: Schema.Types.ObjectId, ref: 'Users' },
-  hasAppointments:{type: Boolean, required: true},
+  hasAppointments:{type: Boolean},
   appointments: [{ type: Schema.Types.ObjectId, ref: 'Appointments' }],
   street: { type: String, required: true },
   city: { type: String, required: true },
@@ -14,7 +14,6 @@ const realtourSchema = new Schema({
   description:{type:String},
   openHouse: {start: {type: Date}, end: {Type: Date}},
   pub_date: { type: Date, default: Date.now }
-
   
 })
 

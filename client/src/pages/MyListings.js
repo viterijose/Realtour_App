@@ -23,18 +23,7 @@ class MyListings extends React.Component {
             listings: [],
             listing: {},
             isUpdate: false,
-            user: {
-                "_id": "5b63aeddb13c1d098fb11ab9",
-                // "firstName": "Iman",
-                // "lastName": "Eltyab",
-                // "userName": "pbaff",
-                // "email": "andre.myers99@gmail.com",
-                // "password": "Paganizonda1",
-                // "ub_date": {
-                //     "$date": "2018-07-25T05:22:37.361Z"
-                // },
-                // "__v": 0
-            },
+            userId: "",
             startDate: moment(),
             endDate: moment(),
         };
@@ -45,9 +34,13 @@ class MyListings extends React.Component {
     }
 
     componentDidMount() {
-        this.loadListings();
+        const { params } = this.props
+        // console.log(params.match.params.user)
+        this.setState({ userId: params.match.params.user })
+        this.loadListings(params.match.params.user);
     }
     editListing = (listingId) => {
+        // console.log(listingId)
         API.getListing(listingId)
             .then(res => this.setState({ listing: res.data }))
             .catch(err => console.log(err))
@@ -69,42 +62,37 @@ class MyListings extends React.Component {
         event.preventDefault();
         API.patchListing(this.state.listing._id, this.state.listing)
             .then(res => {
-                this.setState({isUpdate: false});
+                this.setState({ isUpdate: false });
                 this.loadListings();
             })
-            .catch (err => console.log(err))
+            .catch(err => console.log(err))
     }
 
-    loadListings = () => {
-        API.getUserListings(this.state.user._id)
+    loadListings = (user) => {
+        // console.log(user)
+        API.getUserListings(user)
             .then(res => {
+                // res.data.forEach(element => {
+                //    console.log(element) 
+                // });
                 this.setState({
-                    listings: [res.data],
+                    listings: res.data,
                     listing: res.data
                 });
-                console.log(res.data)
+                // console.log(res.data[1])
             })
             .catch(err => console.log(err));
     }
 
     readListing = () => (
+        // console.log(this.state.listings)
         <div>
-            {/* <Container fluid>
-                <Navbar
-                    src={this.state.images[0].src}
-                />
-                <NavHeader
-                    display={this.state.display}
-                    userId={this.state.userId}
-                />
-            </Container> */}
             <ContainerSpace />
             <Container >
-
-
                 {this.state.listings.map(listing => {
+                    // console.log(listing[i]._id)
                     return (
-                        <div key={listing._id}>
+                        <div key={listing._id} id={listing._id}>
                             <Row>
                                 <Col size="lg-12">
                                     <ListingDetail
@@ -125,7 +113,7 @@ class MyListings extends React.Component {
                             <Row>
                                 <Col size="lg-4">
                                     From:
-                   <DatePicker
+                                     <DatePicker
                                         selected={this.state.startDate}
                                         selectsStart
                                         showTimeSelect
@@ -138,7 +126,7 @@ class MyListings extends React.Component {
                                         onChange={this.handleChangeStart}
                                     />
                                     To:
-                  <DatePicker
+                                     <DatePicker
                                         selected={this.state.endDate}
                                         selectsEnd
                                         showTimeSelect
@@ -155,7 +143,7 @@ class MyListings extends React.Component {
                             </Row>
                             <Row>
                                 <Col size="lg-2">
-                                    <button className="btn btn-success" onClick={this.createOpenHouse} >Submit</button>
+                                    <button className="btn btn-success" onClick={()=>this.createOpenHouse(listing._id)} >Submit</button>
                                 </Col>
                                 <Col size="lg-2">
                                     <EditBtn onClick={() => this.editListing(this.state.listing._id)} />
@@ -174,15 +162,6 @@ class MyListings extends React.Component {
 
     updateListing = () => (
         <div>
-            {/* <Container fluid>
-                <Navbar
-                    src={this.state.images[0].src}
-                />
-                <NavHeader
-                    display={this.state.display}
-                    userId={this.state.userId}
-                />
-            </Container> */}
             <ContainerSpace />
             <Container >
                 <Row>
@@ -242,7 +221,7 @@ class MyListings extends React.Component {
                     </Col>
                     <Col size="lg-6">
                         <h2>Current Listing Displayed:</h2>
-                        <br/>
+                        <br />
                         <div className="content">
                             <ul>
                                 <li>
@@ -261,11 +240,11 @@ class MyListings extends React.Component {
                                     <strong>Zipcode:</strong> {this.state.listing.zipcode}
                                 </li>
 
-
-                                <li>
-                                    <strong>Open House:</strong> {moment(this.state.listing.openHouse.start).format('lll')} to {moment(this.state.listing.openHouse.end).format('lll')}
-                                </li>
-
+                                {this.state.listing.openHouse &&
+                                    <li>
+                                        <strong>Open House:</strong> {moment(this.state.listing.openHouse.start).format('lll')} to {moment(this.state.listing.openHouse.end).format('lll')}
+                                    </li>
+                                }
                                 <li>
                                     <strong>Description:</strong>
                                     <p style={{ textAlign: "justify" }}>{this.state.listing.description}</p>
@@ -281,13 +260,43 @@ class MyListings extends React.Component {
 
     )
 
-    createOpenHouse() {
+    createOpenHouse(listingId) {
         API.createOpenHouse({
-            id: this.state.user._id,
+            id: this.state.userId,
             start: this.state.startDate,
             end: this.state.endDate,
+            listingId: listingId
         })
             .catch(err => console.log(err));
+
+
+        // console.log(this.state.listing)
+        // API.createOpenHouse({
+        //     host: this.state.userId,
+        //     listing: this.state.listing._id,
+        //     date: {
+        //         start: this.state.startDate,
+        //         end: this.state.endDate,
+        //     }
+
+        // })
+        //     .then(res => {
+        //         // this.setState({
+        //             this.state.listing.appointments.push(res.data._id)
+        //         // })
+        //         // this.state.listing.appointments.push(res.data._id)
+        //         // console.log(this.state.listing._id)
+        //         API.patchListing(this.state.listing._id, this.state.listing)
+        //             .then(res => {
+        //                 // this.setState({ isUpdate: false });
+        //                 console.log(res.data)
+        //                 // this.loadListings(this.state.userId);
+        //             })
+        //             .catch(err => console.log(err))
+
+        //         // console.log(res.data)
+        //     })
+        //     .catch(err => console.log(err));
     }
 
     handleChangeStart(date) {

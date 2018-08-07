@@ -19,9 +19,9 @@ class Listing extends React.Component {
         this.SaveListing = this.SaveListing.bind(this)
 
     }
-    SaveListing = (savedListings,userId) => {
+    SaveListing = (savedListings, userId) => {
         // console.log(userId)
-        API.saveListing(userId,{savedListings})
+        API.saveListing(userId, { savedListings })
             .then(res => console.log(res.data))
             .catch(err => console.log(err))
     }
@@ -29,8 +29,8 @@ class Listing extends React.Component {
     componentDidMount() {
         const { params } = this.props
         API.getUser(params.userData.email)
-        .then(res => this.setState({ userId: res.data[0]._id }))
-        .catch(err => console.log(err))
+            .then(res => this.setState({ userId: res.data[0]._id }))
+            .catch(err => console.log(err))
         API.getListing(params.match.params.id)
             .then(res => {
                 this.setState({ listing: res.data })
@@ -40,7 +40,7 @@ class Listing extends React.Component {
 
 
     render() {
-        const{
+        const {
             listing,
             userId
         } = this.state
@@ -60,7 +60,7 @@ class Listing extends React.Component {
                         openHouse={listing.openHouse}
                     />
                     <br />
-                    <SaveBtn onClick={() => this.SaveListing(listing._id,userId)} />
+                    <SaveBtn onClick={() => this.SaveListing(listing._id, userId)} />
                 </Container>
                 <ContainerSpace />
             </div>
