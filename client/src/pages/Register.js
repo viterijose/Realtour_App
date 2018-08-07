@@ -148,7 +148,7 @@ class Register extends React.Component {
                                     />
                                     <br />
                                     <FormBtn
-                                        disabled={!(this.state.firstName && this.state.lastName && this.state.userName && this.state.email && this.state.password)}
+                                        disabled={!isInvalid}
                                         onClick={this.handleFormSubmit}
                                     >
                                         Submit
