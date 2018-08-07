@@ -22,6 +22,7 @@ const customStyles = {
     transform: 'translate(-50%, -50%)'
   }
 };
+ReactModal.setAppElement(document.getElementById('.modal'));
 
 class ModalWrapper extends React.Component {
 
@@ -72,13 +73,14 @@ class ModalWrapper extends React.Component {
     const isInvalid = password === "" || email === "";
 
     return (
-      <div>
+      <div id="modal">
         {this.props.auth === false && <button onClick={this.handleOpenModal} className="btn btn-primary">Sign In</button>}
         {this.props.auth === true && <SignOutButton />}
         <ReactModal
           isOpen={this.state.showModal}
           contentLabel="Minimal Modal Example"
           style={customStyles}
+          ariaHideApp={false}
         >
           <Container fluid>
             <Row style={{ width: "80%", height: "50%" }}>

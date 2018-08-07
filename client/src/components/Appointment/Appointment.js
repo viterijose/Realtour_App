@@ -17,11 +17,14 @@ class Appointment extends React.Component {
             startDate: moment(),
             endDate: moment(),
             listing: {},
-            userId:""
+            userId: ""
         };
         this.createAppointment = this.createAppointment.bind(this);
         this.handleChangeStart = this.handleChangeStart.bind(this);
         this.handleChangeEnd = this.handleChangeEnd.bind(this);
+    }
+    componentDidMount() {
+        console.log(this.props)
     }
     handleChangeStart(date) {
         this.setState({
@@ -34,28 +37,30 @@ class Appointment extends React.Component {
             endDate: date
         });
     }
-    createAppointment(listingId,userId,owner) {
-        console.log("USERID:"+userId)
+    createAppointment(listingId, userId, owner) {
+        console.log("USERID:" + userId)
+
         API.createAppointment({
             // id: this.state.user._id,
             date: this.state.startDate,
             listing: listingId,
             host: owner,
             visitors: [userId]
-            
+
             // hasAppointments: this.state.isSet
         })
-        .then(res => {
-            this.setState({isSet:true})
-            API.patchListing(listingId, {hasAppointments:true})
-            .then(res => res.data)
-            .catch(err => console.log(err))
-            // console.log(res.data)
-        })
+            .then(res => {
+                this.setState({ isSet: true })
+                //--------------------- CHANGE API ROUTE ----------------------
+                API.patchListing(listingId, { hasAppointments: true })
+                    .then(res => res.data)
+                    .catch(err => console.log(err))
+                // console.log(res.data)
+            })
             .catch(err => console.log(err));
         // this.setState({isSet:true})
     }
-    setAppointment = (listingId, userId,owner) => (
+    setAppointment = (listingId, userId, owner) => (
         <Container>
             From:
              <DatePicker
@@ -84,7 +89,7 @@ class Appointment extends React.Component {
                 onChange={this.handleChangeEnd}
             />
             <br />
-            <SetBtn onClick={() => (this.createAppointment(listingId,userId,owner))} />
+            <SetBtn onClick={() => (this.createAppointment(listingId, userId, owner))} />
         </Container>
 
     );
@@ -96,10 +101,10 @@ class Appointment extends React.Component {
     );
 
     render() {
-        const {  listingId ,userId,owner} = this.props
+        const { listingId, userId, owner } = this.props
         console.log(userId)
         if (this.state.isSet) return this.viewOpenHouse(listingId);
-        else return this.setAppointment(listingId,userId,owner);
+        else return this.setAppointment(listingId, userId, owner);
     }
 }
 Appointment.props = {
