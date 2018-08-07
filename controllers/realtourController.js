@@ -105,6 +105,15 @@ const realtourFunctions = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+    updateUser: function (req, res) {
+        // console.log(req.body.listingData)
+        User
+            // .findByIdAndUpdate(req.params.user, { $set: { savedListings: req.body.listingData } })
+            .update({ _id: req.params.user }, { $pull: { savedListings: req.body.listingId } })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err))
+
+    },
     // createAppointment: function(req,res){
     //     Realtour
     //     .update({ owner: req.body.id }, { $set: { openHouse: { start: req.body.start, end: req.body.end } } })
@@ -125,6 +134,7 @@ router.post("/save/listing/:user", realtourFunctions.saveListing);
 router.get("/saved/listings/:user", realtourFunctions.findAllSaved)
 router.delete("/listing/:id", realtourFunctions.removeListing);
 router.patch("/updateListing/:user", realtourFunctions.updateListing)
+router.patch("/updateUser/:user", realtourFunctions.updateUser)
 router.post('/appointment', realtourFunctions.createAppt);
 router.get("/findListings/zipcode/:zipcode", realtourFunctions.findByZipcode);
 router.get("/findListings/city/:city", realtourFunctions.findByCity);

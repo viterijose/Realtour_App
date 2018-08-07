@@ -15,7 +15,8 @@ class SavedListings extends React.Component {
         this.state = {
             listings: [],
             isAppointment: false,
-            userId:""
+            userId:"",
+            savedListings:[]
         }
         this.deleteListing = this.deleteListing.bind(this)
         // this.setAppointment =  this.setAppointment.bind(this)
@@ -27,27 +28,39 @@ class SavedListings extends React.Component {
         this.loadListings(params.match.params.user);
     }
     loadListings = (userId) => {
-        // console.log(userId)
+        console.log(userId)
+        this.setState({userId:userId})
         API.getMySavedListingsId(userId)
             .then(res => {
+                let listingInfo = []
                 // this.setState({ listings: res.data })
-                // console.log(res.data.savedListings)
-                this.setState({listings: res.data.savedListings})
+                console.log(res.data.savedListings)
+                res.data.savedListings.forEach(element => {
+                    // console.log(element._id)
+                    
+                    listingInfo.push(element._id)
+                    // console.log(listingInfo)
+                });
+                this.setState({
+                    listings: res.data.savedListings,
+                    savedListings: listingInfo
+                })
+
             })
             .catch(err => console.log(err));
     }
 
-    deleteListing = listing_id => {
-        console.log(listing_id)
-        API.deleteListing(listing_id)
-            .then(res => this.loadListings())
+    deleteListing = listingId => {
+        console.log(listingId)
+        // let position = this.state.savedListings.indexOf(listing_id)
+        // // console.log(position)
+        // if(~position) this.state.savedListings.splice(position,1);
+        // console.log(this.state.savedListings)
+        // console.log(listing_id.toString())
+        API.deleteListing(this.state.userId,{listingId})
+            .then(res => this.loadListings(this.state.userId))
             .catch(err => console.log(err))
     }
-
-    // setAppointment = () =>(
-
-    // )
-
 
     render() {
 
