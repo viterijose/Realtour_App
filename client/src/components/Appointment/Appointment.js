@@ -7,6 +7,7 @@ import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import API from "../../utils/API"
 import 'react-datepicker/dist/react-datepicker.css';
+import './Appointment.css';
 
 class Appointment extends React.Component {
     // const { isSet, listingId } = this.props;

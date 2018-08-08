@@ -14,7 +14,8 @@ import NavHeader from './components/NavHeader';//Andre Branch
 // import { Container } from "./components/Grid";//Andre Branch
 import { firebase } from './firebase';//Andre Branch
 import AuthUserContext from './components/AuthUserContext';//Andre Branch
-import API from "./utils/API"
+import API from "./utils/API";
+import Video from "./components/Video/video";
 // import PropTypes from "prop-types"
 // import ListingCard from './components/ListingCard';
 
@@ -33,6 +34,7 @@ class App extends Component {
     firebase.auth.onAuthStateChanged(authUser => {
       // ---------UNCOMMENT TO PASS USER ID TO PARAMS ------------------------
       // console.log(authUser)
+
       if (authUser) {
         this.setState({ authUser: authUser, email: authUser.email })
         const email = authUser.email
@@ -70,6 +72,8 @@ class App extends Component {
               <Route path="/listing/:id" render ={()=><Listing userData={authUser}/>}/>
               <Route exact path="/myListings/:user" component={MyListings} user/>
               <Route exact path="/userListings/:user" component={SavedListings} />
+              {/* The Drone route */}
+              <Route path="/video" component={Video} />
 
             </div>
           </Router>
