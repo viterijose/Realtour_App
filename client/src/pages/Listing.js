@@ -24,7 +24,12 @@ class Listing extends React.Component {
     SaveListing = (savedListings, userId) => {
         // console.log(userId)
         API.saveListing(userId, { savedListings })
-            .then(res => console.log(res.data))
+            .then(res => {
+                this.setState({
+                    disable:true
+                })
+                console.log(res.data)}
+            )
             .catch(err => console.log(err))
     }
 
