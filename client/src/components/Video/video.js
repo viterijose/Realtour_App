@@ -4,7 +4,7 @@ import "./font-awesome.css"
 import { Col, Row, Container } from "../../components/Grid";
 
 import openSocket from 'socket.io-client';
-const socket = openSocket('http://localhost:3002');
+const socket = openSocket(':3002');
 
 socket.on('connect', function () {
     console.log("Connection Successful");
