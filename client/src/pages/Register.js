@@ -67,7 +67,7 @@ class Register extends React.Component {
         auth.doCreateUserWithEmailAndPassword(this.state.email, this.state.password)
             .then(authUser => {
                 console.log(authUser);
-                history.push('/myListings')
+                history.push('/')
             })
             .catch(err => this.setState({ error: err }));
     }
