@@ -5,7 +5,7 @@ class OpenHouse extends React.Component {
     render() {
         const { listingId} = this.props
         return (
-            <a href={"/video/:" + listingId}>View Open House</a>
+            <a href={"/video"}>View Open House</a>
         )
     }
 }
