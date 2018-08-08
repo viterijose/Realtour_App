@@ -49,18 +49,20 @@ class Listing extends React.Component {
             .catch(err => console.log(err))
         API.getListing(params.match.params.id)
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 this.setState({ listing: res.data })
-                console.log(this.state.userId)
-                if(this.state.listing.owner == this.state.userId){
+                // console.log(this.state.userId)
+                // console.log(this.state.listing.owner)
+                if(this.state.listing.owner === this.state.userId){
                     this.setState({ disable: true })
+                    // console.log("TRUE")
                 }else{
                     if (this.state.savedListings.indexOf(this.state.listing._id) < 0) {
                         this.setState({ disable: false })
                     } 
-                    // else {
-                    //     this.setState({ disable: true })
-                    // }
+                    else {
+                        this.setState({ disable: true })
+                    }
                 }
 
             })
