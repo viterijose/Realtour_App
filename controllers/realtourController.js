@@ -25,9 +25,7 @@ const realtourFunctions = {
         // console.log(req.params.id)
         Realtour
             .findOneAndUpdate({ _id: req.params.id }, req.body)
-            .then(dbModel =>{ 
-                // console.log(dbModel)
-                res.json(dbModel)})
+            .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err))
 
     },
@@ -41,6 +39,13 @@ const realtourFunctions = {
     findbyId: function (req, res) {
         Realtour
             .findById(req.params.id)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err))
+
+    },
+    findApptByListingId: function (req, res) {
+        Appointment
+            .find({listing:req.params.id})
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err))
 
@@ -135,12 +140,12 @@ router.get("/listing/:id", realtourFunctions.findbyId);
 router.post("/save/listing/:user", realtourFunctions.saveListing);
 router.get("/saved/listings/:user", realtourFunctions.findAllSaved)
 router.delete("/listing/:id", realtourFunctions.removeListing);
-router.patch("/updateListing/:user", realtourFunctions.updateListing)
+router.patch("/updateListing/:id", realtourFunctions.updateListing)
 router.patch("/updateUser/:user", realtourFunctions.updateUser)
 router.post('/appointment', realtourFunctions.createAppt);
 router.get("/findListings/zipcode/:zipcode", realtourFunctions.findByZipcode);
 router.get("/findListings/city/:city", realtourFunctions.findByCity);
-
+router.get("/appointment/:id",realtourFunctions.findApptByListingId)
 // router.use(function (req, res) {
 //     res.sendFile(path.join(__dirname, "../client/build/index.html"))
 // })

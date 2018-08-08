@@ -30,9 +30,12 @@ export default {
     getListing: function (id) {
         return axios.get("/api/listing/" + id)
     },
+    getAppt: function (listingId) {
+        return axios.get("/api/appointment/" + listingId)
+    },
     saveListing: function (userId, data) {
-        // console.log(data)
-        // console.log(userId)
+        console.log(data)
+        console.log(userId)
         // console.log(savedListings)
         return axios.post("/api/save/listing/" + userId, data)
     },
@@ -41,14 +44,14 @@ export default {
         return axios.get("/api/saved/listings/" + userId)
     },
     deleteListing: function (userId, listingId) {
-        console.log(userId)
-        console.log(listingId)
+        // console.log(userId)
+        // console.log(listingId)
         return axios.patch("/api/updateUser/" + userId, listingId)
         // return axios.delete("/api/listing/"+id)
     },
     patchListing: function (id, listingData) {
-        console.log(id)
-        console.log(listingData)
+        // console.log(id)
+        // console.log(listingData)
         // console.log("IN AXIOS \n"+JSON.stringify(listingData))
         return axios.patch("/api/updateListing/" + id, listingData)
     },

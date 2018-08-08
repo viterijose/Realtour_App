@@ -18,14 +18,23 @@ class Appointment extends React.Component {
             startDate: moment(),
             endDate: moment(),
             listing: {},
-            userId: ""
+            userId: "",
         };
         this.createAppointment = this.createAppointment.bind(this);
         this.handleChangeStart = this.handleChangeStart.bind(this);
         this.handleChangeEnd = this.handleChangeEnd.bind(this);
     }
     componentDidMount() {
-        console.log(this.props)
+        const { listingId, userId } = this.props
+
+        API.getAppt(listingId)
+            .then(res => {
+                res.data.forEach(element => {
+                    if(element.visitors.includes(userId)){this.setState({isSet:true});return} 
+                });
+            })
+            .catch(err => console.log(err))
+
     }
     handleChangeStart(date) {
         this.setState({
@@ -39,23 +48,19 @@ class Appointment extends React.Component {
         });
     }
     createAppointment(listingId, userId, owner) {
-        console.log("USERID:" + userId)
-
+        // console.log("USERID:" + userId)
         API.createAppointment({
-            // id: this.state.user._id,
             date: this.state.startDate,
             listing: listingId,
             host: owner,
             visitors: [userId]
-
-            // hasAppointments: this.state.isSet
         })
             .then(res => {
                 this.setState({ isSet: true })
                 //--------------------- CHANGE API ROUTE ----------------------
-                API.patchListing(listingId, { hasAppointments: true })
-                    .then(res => res.data)
-                    .catch(err => console.log(err))
+                // API.patchListing(listingId, { hasAppointments: true })
+                //     .then(res => res.data)
+                //     .catch(err => console.log(err))
                 // console.log(res.data)
             })
             .catch(err => console.log(err));
@@ -103,7 +108,7 @@ class Appointment extends React.Component {
 
     render() {
         const { listingId, userId, owner } = this.props
-        console.log(userId)
+        // console.log(userId)
         if (this.state.isSet) return this.viewOpenHouse(listingId);
         else return this.setAppointment(listingId, userId, owner);
     }

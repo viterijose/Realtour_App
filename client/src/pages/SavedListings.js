@@ -34,7 +34,7 @@ class SavedListings extends React.Component {
             .then(res => {
                 let listingInfo = []
                 // this.setState({ listings: res.data })
-                console.log(res.data.savedListings)
+                // console.log(res.data.savedListings)
                 res.data.savedListings.forEach(element => {
                     // console.log(element._id)
                     
