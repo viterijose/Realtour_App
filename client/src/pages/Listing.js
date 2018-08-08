@@ -51,11 +51,18 @@ class Listing extends React.Component {
             .then(res => {
                 console.log(res.data)
                 this.setState({ listing: res.data })
-                if (this.state.savedListings.indexOf(this.state.listing._id) < 0) {
-                    this.setState({ disable: false })
-                } else {
+                console.log(this.state.userId)
+                if(this.state.listing.owner == this.state.userId){
                     this.setState({ disable: true })
+                }else{
+                    if (this.state.savedListings.indexOf(this.state.listing._id) < 0) {
+                        this.setState({ disable: false })
+                    } 
+                    // else {
+                    //     this.setState({ disable: true })
+                    // }
                 }
+
             })
             .catch(err => console.log(err))
 
