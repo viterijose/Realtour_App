@@ -41,8 +41,8 @@ export default {
         return axios.get("/api/saved/listings/" + userId)
     },
     deleteListing: function (userId, listingId) {
-        console.log(userId)
-        console.log(listingId)
+        // console.log(userId)
+        // console.log(listingId)
         return axios.patch("/api/updateUser/" + userId, listingId)
         // return axios.delete("/api/listing/"+id)
     },

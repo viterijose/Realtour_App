@@ -40,9 +40,12 @@ class MyListings extends React.Component {
         this.loadListings(params.match.params.user);
     }
     editListing = (listingId) => {
-        // console.log(listingId)
+        console.log(listingId)
         API.getListing(listingId)
-            .then(res => this.setState({ listing: res.data }))
+            .then(res => {
+                console.log(res.data)
+                this.setState({ listing: res.data })
+            })
             .catch(err => console.log(err))
         this.setState({
             isUpdate: true
@@ -60,10 +63,13 @@ class MyListings extends React.Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
+        // console.log(this.state.listing.owner)
         API.patchListing(this.state.listing._id, this.state.listing)
             .then(res => {
+                console.log(res)
                 this.setState({ isUpdate: false });
-                this.loadListings();
+                // console.log(this.state.userId)
+                this.loadListings(this.state.userId);
             })
             .catch(err => console.log(err))
     }
@@ -143,10 +149,10 @@ class MyListings extends React.Component {
                             </Row>
                             <Row>
                                 <Col size="lg-2">
-                                    <button className="btn btn-success" onClick={()=>this.createOpenHouse(listing._id)} >Submit</button>
+                                    <button className="btn btn-success" onClick={() => this.createOpenHouse(listing._id)} >Submit</button>
                                 </Col>
                                 <Col size="lg-2">
-                                    <EditBtn onClick={() => this.editListing(this.state.listing._id)} />
+                                    <EditBtn onClick={() => this.editListing(listing._id)} />
                                 </Col>
                             </Row>
                             <hr />
