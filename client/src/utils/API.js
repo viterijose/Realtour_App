@@ -30,6 +30,9 @@ export default {
     getListing: function (id) {
         return axios.get("/api/listing/" + id)
     },
+    getAppt: function (listingId) {
+        return axios.get("/api/appointment/" + listingId)
+    },
     saveListing: function (userId, data) {
         console.log(data)
         console.log(userId)
