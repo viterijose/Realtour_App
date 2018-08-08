@@ -32,8 +32,9 @@ class App extends Component {
   componentDidMount() {
 
     firebase.auth.onAuthStateChanged(authUser => {
-      // ---------UNCOMMENT TO PASS USER ID TO PARAMS --------------------------
-      console.log(authUser)
+      // ---------UNCOMMENT TO PASS USER ID TO PARAMS ------------------------
+      // console.log(authUser)
+
       if (authUser) {
         this.setState({ authUser: authUser, email: authUser.email })
         const email = authUser.email
