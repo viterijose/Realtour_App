@@ -10,7 +10,7 @@ class SearchContainer extends React.Component {
         const { children } = this.props;
         return (
             <div className="searchBar-container">
-                <Container >
+                <Container fluid>
                     <Row>
                         <Col size="lg-3" />
                         <Col size="lg-6" >

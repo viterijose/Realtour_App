@@ -81,6 +81,7 @@ class Appointment extends React.Component {
                 endDate={this.state.endDate}
                 onChange={this.handleChangeStart}
             />
+            <br />
             To:
              <DatePicker
                 selected={this.state.endDate}
