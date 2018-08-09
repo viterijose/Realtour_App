@@ -56,7 +56,7 @@ class App extends Component {
             auth={authUser ? true : false}
             email={email}
           />
-          {authUser && <NavHeader userId={userId} />}
+          {authUser && <NavHeader userId={userId} email={email} src={images[0].src}/>}
           
           <Router>
             <div>
