@@ -2,11 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Col, Row, Container } from "../Grid";
 import moment from "moment";
+import { Carousel } from "../Carousel"
 
 class ListingDetail extends React.Component {
 
     render() {
-        const { name, src, address, price, city, zipcode, id, description, openHouse } = this.props
+        const { children, address, price, city, zipcode, id, description, openHouse } = this.props
+
         return (
             <div id={id}>
                 <Container fluid>
@@ -45,10 +47,7 @@ class ListingDetail extends React.Component {
                         </Col >
 
                         <Col size="lg-6">
-                            <div className="img-container">
-                                <img alt={name} src={src} style={{ width: "100%", height: "100%" }} />
-                            </div>
-
+                                {children}
                         </Col>
                     </Row>
                 </Container >
@@ -61,8 +60,6 @@ class ListingDetail extends React.Component {
 ListingDetail.props = {
     children: PropTypes.node,
     id: PropTypes.string,
-    name: PropTypes.string,
-    src: PropTypes.string,
     address: PropTypes.string,
     city: PropTypes.string,
     zipcode: PropTypes.string,
