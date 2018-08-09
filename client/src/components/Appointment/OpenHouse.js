@@ -5,7 +5,7 @@ class OpenHouse extends React.Component {
     render() {
         const { listingId} = this.props
         return (
-            <a href={"/video"}>View Open House</a>
+            <button className="btn btn-success" onClick={()=>{  window.location.href="/video" }} > <i className="fa fa-eye" aria-hidden="true"></i>&nbsp;Open House</button>
         )
     }
 }

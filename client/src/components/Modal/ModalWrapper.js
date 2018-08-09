@@ -75,7 +75,7 @@ class ModalWrapper extends React.Component {
     return (
       <div id="modal">
         {this.props.auth === false && <button onClick={this.handleOpenModal} className="btn btn-primary">Sign In</button>}
-        {this.props.auth === true && <SignOutButton />}
+        {/* {this.props.auth === true && <SignOutButton />} */}
         <ReactModal
           isOpen={this.state.showModal}
           contentLabel="Minimal Modal Example"
