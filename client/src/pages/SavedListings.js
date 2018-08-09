@@ -96,14 +96,22 @@ class SavedListings extends React.Component {
                                     // openHouse = {listing.openHouse.start}
 
                                     >
-                                        <Carousel>
+                                    {listing.img && <Carousel key={listing._id}>
                                             <CarouselActItem src={listing.img[0]} name={"first-slide"} />
                                             <CarouselItem src={listing.img[1]} name={"second-slide"} />
                                             <CarouselItem src={listing.img[2]} name={"third-slide"} />
                                             <CarouselItem src={listing.img[3]} name={"fourth-slide"} />
                                             <CarouselItem src={listing.img[4]} name={"fifth-slide"} />
                                             <CarouselItem src={listing.img[5]} name={"fifth-slide"} />
-                                        </Carousel>
+                                        </Carousel>}
+                                        {/* <Carousel key={listing._id}>
+                                            <CarouselActItem src={listing.img[0]} name={"first-slide"} />
+                                            <CarouselItem src={listing.img[1]} name={"second-slide"} />
+                                            <CarouselItem src={listing.img[2]} name={"third-slide"} />
+                                            <CarouselItem src={listing.img[3]} name={"fourth-slide"} />
+                                            <CarouselItem src={listing.img[4]} name={"fifth-slide"} />
+                                            <CarouselItem src={listing.img[5]} name={"fifth-slide"} />
+                                        </Carousel> */}
                                     </ListingDetail>
                                 </Row>
 

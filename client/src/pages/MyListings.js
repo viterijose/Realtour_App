@@ -10,7 +10,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ListingDetail, EditBtn } from "../components/ListingDetail";
 import { Input, TextArea, FormBtn } from "../components/Form";
-// import { Carousel, CarouselActItem } from "../components/Carousel"
+import { Carousel, CarouselActItem, CarouselItem } from "../components/Carousel"
 import withAuthorization from '../components/withAuthorization';//Andre Branch
 
 const authCondition = (authUser) => !!authUser;//Andre Branch
@@ -111,7 +111,24 @@ class MyListings extends React.Component {
                                         zipcode={listing.zipcode}
                                         description={listing.description}
                                         openHouse={listing.openHouse}
-                                    />
+                                    >
+                                        {listing.img && <Carousel key={listing._id}>
+                                            <CarouselActItem src={listing.img[0]} name={"first-slide"} />
+                                            <CarouselItem src={listing.img[1]} name={"second-slide"} />
+                                            <CarouselItem src={listing.img[2]} name={"third-slide"} />
+                                            <CarouselItem src={listing.img[3]} name={"fourth-slide"} />
+                                            <CarouselItem src={listing.img[4]} name={"fifth-slide"} />
+                                            <CarouselItem src={listing.img[5]} name={"fifth-slide"} />
+                                        </Carousel>}
+                                        {/* <Carousel key={listing._id}>
+                                            <CarouselActItem src={listing.img[0]} name={"first-slide"} />
+                                            <CarouselItem src={listing.img[1]} name={"second-slide"} />
+                                            <CarouselItem src={listing.img[2]} name={"third-slide"} />
+                                            <CarouselItem src={listing.img[3]} name={"fourth-slide"} />
+                                            <CarouselItem src={listing.img[4]} name={"fifth-slide"} />
+                                            <CarouselItem src={listing.img[5]} name={"fifth-slide"} />
+                                        </Carousel> */}
+                                    </ListingDetail>
 
                                 </Col>
                             </Row>
