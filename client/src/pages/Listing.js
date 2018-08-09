@@ -104,6 +104,9 @@ class Listing extends React.Component {
                         >
                             <Carousel>
                                 <CarouselActItem src={listing.img[0]} name={"first-slide"} />
+                                {/* {{if (listing.img) {
+                                    return
+                                }}} */}
                                 <CarouselItem src={listing.img[1]} name={"second-slide"} />
                                 <CarouselItem src={listing.img[2]} name={"third-slide"} />
                                 <CarouselItem src={listing.img[3]} name={"fourth-slide"} />

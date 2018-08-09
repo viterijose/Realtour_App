@@ -2,13 +2,11 @@ import React from "react";
 import API from "../utils/API";
 import { Row, Col, Container } from "../components/Grid";
 import ContainerSpace from "../components/Containers";
-// import Navbar from "../components/Navbar";
-// import NavHeader from "../components/NavHeader";
 import images from "../images.json"
 import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { ListingDetail, EditBtn } from "../components/ListingDetail";
+import { ListingDetail, EditBtn, DeleteBtn } from "../components/ListingDetail";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import { Carousel, CarouselActItem, CarouselItem } from "../components/Carousel"
 import withAuthorization from '../components/withAuthorization';//Andre Branch
@@ -31,6 +29,7 @@ class MyListings extends React.Component {
         this.handleChangeStart = this.handleChangeStart.bind(this);
         this.handleChangeEnd = this.handleChangeEnd.bind(this);
         this.editListing = this.editListing.bind(this);
+        this.deleteListing = this.deleteListing.bind(this)
     }
 
     componentDidMount() {
@@ -59,6 +58,23 @@ class MyListings extends React.Component {
         this.setState({
             listing: updatedListing
         })
+    }
+
+    deleteListing = listingId => {
+        console.log(listingId)
+        // let position = this.state.savedListings.indexOf(listing_id)
+        // // console.log(position)
+        // if(~position) this.state.savedListings.splice(position,1);
+        // console.log(this.state.savedListings)
+        // console.log(listing_id.toString())
+        API.deleteListing(this.state.userId, { listingId })
+            .then(res => {
+                API.deletePostedListing(listingId)
+                    .then(res => this.loadListings(this.state.userId))
+                    .catch(err => console.log(err))
+                // this.loadListings(this.state.userId)
+            })
+            .catch(err => console.log(err))
     }
 
     handleFormSubmit = event => {
@@ -167,6 +183,9 @@ class MyListings extends React.Component {
                             <Row>
                                 <Col size="lg-2">
                                     <button className="btn btn-success" onClick={() => this.createOpenHouse(listing._id)} >Submit</button>
+                                </Col>
+                                <Col size="lg-2">
+                                    <DeleteBtn onClick={() => this.deleteListing(listing._id)} />
                                 </Col>
                                 <Col size="lg-2">
                                     <EditBtn onClick={() => this.editListing(listing._id)} />

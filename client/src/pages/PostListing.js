@@ -55,7 +55,7 @@ class PostListing extends React.Component {
             zipcode: this.state.zipcode,
             date: this.state.date,
             price: this.state.price,
-            img: this.state.photo,
+            img: images[5].src,
             description: this.state.description
         })
             .then(res => {
