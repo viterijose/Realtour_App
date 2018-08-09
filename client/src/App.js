@@ -48,7 +48,7 @@ class App extends Component {
   }
   render() {
     const { images, authUser, userId, email} = this.state;
-    console.log(images);
+    // console.log(images);
     return (
       <AuthUserContext.Provider value={authUser}>
         <div>
