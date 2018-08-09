@@ -18,5 +18,9 @@
     {
         "src": "/images/avatar.svg",
         "value": 4
+    },
+    {
+        "src": "/images/Defaulthouse.jpg",
+        "value": 5
     }
 ]
