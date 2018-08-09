@@ -84,7 +84,7 @@ class Home extends React.Component {
                                 <FlexRow id={listing._id} key={listing._id}>
                                     <ListingCard
                                         
-                                        src={listing.imgSrc}
+                                        src={listing.img[0]}
                                         id={listing._id}
                                         price={listing.price}
                                         key={listing._id}

@@ -9,7 +9,7 @@ const realtourSchema = new Schema({
   city: { type: String, required: true },
   zipcode: { type: String, required: true },
   coordinates: [Number],
-  img: {type: String , data: Buffer},
+  img: [{type: String , data: Buffer}],
   price: { type: Number, required: true },
   description:{type:String},
   openHouse: {start: {type: Date}, end: {Type: Date}},

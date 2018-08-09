@@ -102,7 +102,7 @@ class MyListings extends React.Component {
                             <Row>
                                 <Col size="lg-12">
                                     <ListingDetail
-                                        src={listing.imgSrc}
+                                        // src={listing.imgSrc}
                                         id={listing._id}
                                         price={listing.price}
                                         key={listing._id}

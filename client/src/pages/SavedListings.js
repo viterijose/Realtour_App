@@ -3,7 +3,8 @@ import { Row, Col, Container } from "../../src/components/Grid"
 import ContainerSpace from "../components/Containers"
 import API from "../utils/API"
 import { ListingDetail, DeleteBtn } from "../components/ListingDetail";
-import {Appointment} from "../components/Appointment";
+import { Appointment } from "../components/Appointment";
+import { Carousel, CarouselItem, CarouselActItem } from "../components/Carousel"
 
 import withAuthorization from '../components/withAuthorization';
 
@@ -15,21 +16,21 @@ class SavedListings extends React.Component {
         this.state = {
             listings: [],
             isAppointment: false,
-            userId:"",
-            savedListings:[]
+            userId: "",
+            savedListings: []
         }
         this.deleteListing = this.deleteListing.bind(this)
         // this.setAppointment =  this.setAppointment.bind(this)
     }
     componentDidMount() {
-        const {params} = this.props
+        const { params } = this.props
         // console.log(params)
         // this.setState({userId:this.props.params.id})
         this.loadListings(params.match.params.user);
     }
     loadListings = (userId) => {
         console.log(userId)
-        this.setState({userId:userId})
+        this.setState({ userId: userId })
         API.getMySavedListingsId(userId)
             .then(res => {
                 let listingInfo = []
@@ -37,7 +38,7 @@ class SavedListings extends React.Component {
                 // console.log(res.data.savedListings)
                 res.data.savedListings.forEach(element => {
                     // console.log(element._id)
-                    
+
                     listingInfo.push(element._id)
                     // console.log(listingInfo)
                 });
@@ -57,7 +58,7 @@ class SavedListings extends React.Component {
         // if(~position) this.state.savedListings.splice(position,1);
         // console.log(this.state.savedListings)
         // console.log(listing_id.toString())
-        API.deleteListing(this.state.userId,{listingId})
+        API.deleteListing(this.state.userId, { listingId })
             .then(res => this.loadListings(this.state.userId))
             .catch(err => console.log(err))
     }
@@ -80,11 +81,11 @@ class SavedListings extends React.Component {
                     {this.state.listings.map(listing => {
                         // console.log(listing.openHouse.start)
                         return (
-                            
+
                             <div key={listing._id}>
                                 <Row>
                                     <ListingDetail
-                                        src={listing.imgSrc}
+                                        // src={listing.imgSrc}
                                         id={listing._id}
                                         price={listing.price}
                                         key={listing._id}
@@ -92,18 +93,27 @@ class SavedListings extends React.Component {
                                         address={listing.street}
                                         zipcode={listing.zipcode}
                                         description={listing.description}
-                                        // openHouse = {listing.openHouse.start}
+                                    // openHouse = {listing.openHouse.start}
 
-                                    />
+                                    >
+                                        <Carousel>
+                                            <CarouselActItem src={listing.img[0]} name={"first-slide"} />
+                                            <CarouselItem src={listing.img[1]} name={"second-slide"} />
+                                            <CarouselItem src={listing.img[2]} name={"third-slide"} />
+                                            <CarouselItem src={listing.img[3]} name={"fourth-slide"} />
+                                            <CarouselItem src={listing.img[4]} name={"fifth-slide"} />
+                                            <CarouselItem src={listing.img[5]} name={"fifth-slide"} />
+                                        </Carousel>
+                                    </ListingDetail>
                                 </Row>
 
                                 <br />
                                 <Row>
                                     <Col size="lg-2">
                                         <DeleteBtn onClick={() => this.deleteListing(listing._id)} />
-                                    </Col>  
-                                    <Col size = "lg-4">
-                                        <Appointment listingId = {listing._id} isAppointmentSet ={listing.hasAppointments} owner={listing.owner} userId={this.state.userId}/>
+                                    </Col>
+                                    <Col size="lg-4">
+                                        <Appointment listingId={listing._id} isAppointmentSet={listing.hasAppointments} owner={listing.owner} userId={this.state.userId} />
                                     </Col>
                                 </Row>
                                 <hr />
