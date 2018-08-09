@@ -71,9 +71,9 @@ class NavHeader extends React.Component {
                             <FlexBox>
                                 <ul className="nav navbar-nav navbar-right ml-auto">
                                     <li className="nav-item "><a href="/" className="nav-link"><i className="fa fa-home"></i><span>Home</span></a></li>
-                                    <li className="nav-item "><a href={"/myListings/:" + userId} className="nav-link"><i className="fa fa-bars"></i><span>My Listings</span></a></li>
-                                    <li className="nav-item"><a href={"/postListing/:" + userId} className="nav-link"><i className="fa fa-sticky-note-o"></i><span>Post Listings</span></a></li>
-                                    <li className="nav-item"><a href={"/savedListings/:" + userId} className="nav-link"><i className=" fa fa-floppy-o"></i><span>Saved Lisings </span></a></li>
+                                    <li className="nav-item "><a href={"/myListings/" + userId} className="nav-link"><i className="fa fa-bars"></i><span>My Listings</span></a></li>
+                                    <li className="nav-item"><a href={"/postListing/" + userId} className="nav-link"><i className="fa fa-sticky-note-o"></i><span>Post Listings</span></a></li>
+                                    <li className="nav-item"><a href={"/userListings/" + userId} className="nav-link"><i className=" fa fa-floppy-o"></i><span>Saved Lisings </span></a></li>
                                     <li className="nav-item dropdown">
                                         <a href="#" data-toggle="dropdown" className="nav-link dropdown-toggle user-action"><img src={this.props.src} className="avatar" alt="Avatar"></img> {this.props.email} <b className="caret"></b></a>
                                         <ul className="dropdown-menu">
