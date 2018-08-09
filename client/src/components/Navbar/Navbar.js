@@ -18,14 +18,15 @@ class Navbar extends React.Component {
                     <div>
                         <a href="/" className="navbar-brand"><img src={src} style={{ width: 40, height: 40 }} alt="drone" />  RealTour</a>
                     </div>
-                    <p>{this.props.email}</p>
+                    {/* <p>{this.props.email}</p> */}
                     <div>
                         <ul className="nav justify-content-end">
                             <li className="nav-item active">
                             <ModalWrapper auth={auth}/>
                             </li>
                             <li className="nav-item active">
-                                {auth === false && <a className="nav-link" href="/register">Register<span className="sr-only">(current)</span></a>}
+                                {/* {auth === false && <button className="btn btn-primary" href="/register">Register<span className="sr-only">(current)</span></button>} */}
+                                {auth === false && <button className="btn btn-info" onClick={()=>{  window.location.href="/register" }} href="/register">Register</button>}
                             </li>
                         </ul>
                     </div>

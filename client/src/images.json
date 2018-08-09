@@ -14,5 +14,9 @@
     {
         "src": "/images/drone_villa.jpg",
         "value": 3
+    },
+    {
+        "src": "/images/avatar.svg",
+        "value": 4
     }
 ]

@@ -48,6 +48,7 @@ class App extends Component {
   }
   render() {
     const { images, authUser, userId, email} = this.state;
+    console.log(images);
     return (
       <AuthUserContext.Provider value={authUser}>
         <div>
@@ -57,7 +58,7 @@ class App extends Component {
             auth={authUser ? true : false}
             email={email}
           />
-          {authUser && <NavHeader userId={userId} />}
+          {authUser && <NavHeader userId={userId} email={email} src={images[4].src}/>}
           
           <Router>
             <div>
