@@ -75,7 +75,7 @@ class NavHeader extends React.Component {
                                     <li className="nav-item"><a href={"/postListing/:" + userId} className="nav-link"><i className="fa fa-sticky-note-o"></i><span>Post Listings</span></a></li>
                                     <li className="nav-item"><a href={"/savedListings/:" + userId} className="nav-link"><i className=" fa fa-floppy-o"></i><span>Saved Lisings </span></a></li>
                                     <li className="nav-item dropdown">
-                                        <a href="#" data-toggle="dropdown" className="nav-link dropdown-toggle user-action"><img src="https://image.flaticon.com/icons/svg/206/206853.svg" className="avatar" alt="Avatar"></img> {this.props.email} <b className="caret"></b></a>
+                                        <a href="#" data-toggle="dropdown" className="nav-link dropdown-toggle user-action"><img src={this.props.src} className="avatar" alt="Avatar"></img> {this.props.email} <b className="caret"></b></a>
                                         <ul className="dropdown-menu">
                                             <li><a href="#" className="dropdown-item"><i className="fa fa-user-o"></i> Profile</a></li>
                                             <li><a href="#" className="dropdown-item"><i className="fa fa-calendar-o"></i> Calendar</a></li>
